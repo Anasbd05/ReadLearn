@@ -25,7 +25,7 @@ const Navbar = () => {
           Faqs
         </Link>
       </div>
-      <button className=" rounded-full text-white border-black py-2 px-7 font-medium border-2 hover:shadow-[3px_3px_#000] bg-emerald-500 ">
+      <button className=" rounded-full text-white border-black py-2 px-7 font-medium border-2 hover:shadow-[3px_3px_#000] bg-chart-3 ">
         Login
       </button>
     </section>

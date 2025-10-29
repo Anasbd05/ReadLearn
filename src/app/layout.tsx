@@ -21,7 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${bricolage.className} antialiased`}>{children}</body>
+      <body
+        cz-shortcut-listen="true"
+        className={`${bricolage.className} antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
