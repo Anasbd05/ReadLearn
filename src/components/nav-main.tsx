@@ -8,27 +8,37 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Images, Wallet } from "lucide-react";
+import { Book, Bookmark, Sparkles, TextInitial } from "lucide-react";
 
 export function NavMain() {
   const pathname = usePathname();
 
   const items = [
     {
-      title: "Dashboard",
-      url: "/dashboard",
-      icon: Images,
+      title: "Browse Books",
+      url: "/books",
+      icon: Book,
     },
     {
-      title: "Billing",
-      url: "/billing",
-      icon: Wallet,
+      title: "Import Text",
+      url: "/custom-text",
+      icon: TextInitial,
+    },
+    {
+      title: "Generate Content",
+      url: "/content",
+      icon: Sparkles,
+    },
+    {
+      title: "My Vocabulary",
+      url: "/vocabulary",
+      icon: Bookmark,
     },
   ];
 
   return (
     <SidebarGroup className="mt-5">
-      <SidebarMenu className="flex flex-col gap-1">
+      <SidebarMenu className="flex flex-col gap-2">
         {" "}
         {items.map((item) => (
           <Link
@@ -36,14 +46,14 @@ export function NavMain() {
             key={item.title}
             className={`rounded-none ${
               pathname === item.url
-                ? "text-primary bg-gray-100 font-medium"
-                : "text-muted-foreground"
+                ? "text-black bg-gray-200 font-medium"
+                : "text-black"
             } `}
           >
             <SidebarMenuItem>
               <SidebarMenuButton tooltip={item.title}>
                 {item.icon && <item.icon />}
-                <span>{item.title}</span>
+                <span className=" font-medium text-black ">{item.title}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </Link>

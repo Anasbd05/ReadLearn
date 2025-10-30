@@ -62,7 +62,7 @@ export async function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
             />
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-medium">Reelcaptions</span>
+            <span className="truncate font-medium">FluentsRead</span>
             <span className="truncate text-xs">{currentPlan}</span>
           </div>
         </SidebarMenuButton>
