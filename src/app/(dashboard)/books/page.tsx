@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Link from "next/link";
+import BrowseBooks from "@/components/dashboard/BrowseBooks";
 
 export default function Page() {
   return (
@@ -84,7 +85,7 @@ export default function Page() {
           </Link>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min" />
+          <BrowseBooks />
         </div>
       </SidebarInset>
     </SidebarProvider>
