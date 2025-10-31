@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState } from "react";
 import { Search, BookOpen } from "lucide-react";
-import { EnglishBooks } from "@/assets/assets"; // Adjust path based on your folder structure
+import { EnglishBooks } from "@/assets/assets";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const BrowseBooks = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
 
-  const books = EnglishBooks; // Use your imported books
+  const books = EnglishBooks;
 
   const difficulties = [
     "All",
@@ -45,8 +48,14 @@ const BrowseBooks = () => {
     }
   };
 
+  const handleBookClick = (book: any, index: number) => {
+    // Navigate to reading page with book data
+    // Using index as temporary ID until we have database IDs
+    router.push(`/read/${index}`);
+  };
+
   return (
-    <div className="w-full min-h-screen bg-muted/50 rounded-xl  p-6">
+    <div className="w-full min-h-screen bg-muted/50 rounded-xl p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -93,7 +102,11 @@ const BrowseBooks = () => {
         {filteredBooks.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {filteredBooks.map((book, index) => (
-              <div key={index} className="cursor-pointer group">
+              <div
+                key={index}
+                onClick={() => handleBookClick(book, index)}
+                className="cursor-pointer group"
+              >
                 {/* Book Cover */}
                 <div className="relative h-80 overflow-hidden rounded-lg">
                   <Image
