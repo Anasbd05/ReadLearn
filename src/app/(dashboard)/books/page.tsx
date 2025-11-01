@@ -32,7 +32,7 @@ export default function Page() {
             />
 
             {/* Language Selection */}
-            <div className="flex items-center gap-3 ml-2">
+            <div className=" hidden lg:flex items-center  gap-3 ml-2">
               {/* Known Language */}
               <Select>
                 <SelectTrigger className="w-[180px]">

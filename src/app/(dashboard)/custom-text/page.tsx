@@ -15,8 +15,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Addtext from "@/constants/Addtext";
-import Image from "next/image";
 import { supabase } from "@/utils/supabase/client";
+import Link from "next/link";
 
 export default async function Page() {
   const { data, error } = await supabase.from("importedText").select("*");
@@ -39,7 +39,7 @@ export default async function Page() {
             />
 
             {/* Language Selection */}
-            <div className="flex items-center gap-3 ml-2">
+            <div className=" hidden lg:flex items-center  gap-3 ml-2">
               {/* Fluent Language */}
               <Select>
                 <SelectTrigger className="w-[180px]">
@@ -87,33 +87,36 @@ export default async function Page() {
         </header>
 
         {/* Page Content */}
-        <div className="w-full flex items-center justify-between mt-6 px-4">
-          <h1 className="text-2xl font-semibold">My Imported Texts</h1>
-        </div>
+        <section className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <div className="w-full min-h-screen bg-muted/50 rounded-xl p-6">
+            <h1 className="text-2xl font-semibold">My Imported Texts</h1>
 
-        <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4">
-          {data && data.length > 0 ? (
-            data.map((text) => (
-              <div
-                className="flex gap-3 p-5 cursor-pointer group items-start border rounded-lg bg-background shadow-sm hover:shadow-md transition"
-                key={text.id}
-              >
-                <div className="flex flex-col gap-2">
-                  <h2 className="font-medium text-lg group-hover:text-blue-600">
-                    {text.textTitle}
-                  </h2>
-                  <p className="text-muted-foreground text-sm line-clamp-3">
-                    {text.textContent}
-                  </p>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-muted-foreground p-5">
-              No texts imported yet. Add one to get started!
-            </p>
-          )}
-        </main>
+            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
+              {data && data.length > 0 ? (
+                data.map((text) => (
+                  <Link
+                    href={`/custom-text/${text.textTitle.replaceAll(" ", "")}`}
+                    className="flex gap-3 p-5 cursor-pointer group items-start border rounded-lg bg-background shadow-sm hover:shadow-md transition"
+                    key={text.id}
+                  >
+                    <div className="flex flex-col gap-2">
+                      <h2 className="font-medium text-lg group-hover:text-blue-600">
+                        {text.textTitle}
+                      </h2>
+                      <p className="text-muted-foreground text-sm line-clamp-3">
+                        {text.textContent}
+                      </p>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <p className="text-red-500 ">
+                  No texts imported yet. Add one to get started!
+                </p>
+              )}
+            </main>
+          </div>
+        </section>
       </SidebarInset>
     </SidebarProvider>
   );
