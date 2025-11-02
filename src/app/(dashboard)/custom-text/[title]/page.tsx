@@ -5,7 +5,6 @@ import { ArrowBigLeft, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,

@@ -1,15 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState } from "react";
 import { Search, BookOpen } from "lucide-react";
 import { EnglishBooks } from "@/assets/assets";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const BrowseBooks = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const router = useRouter();
 
   const books = EnglishBooks;
 
@@ -46,12 +44,6 @@ const BrowseBooks = () => {
       default:
         return "bg-gray-100 text-gray-700 border-gray-200";
     }
-  };
-
-  const handleBookClick = (book: any, index: number) => {
-    // Navigate to reading page with book data
-    // Using index as temporary ID until we have database IDs
-    router.push(`/read/${index}`);
   };
 
   return (
@@ -102,9 +94,9 @@ const BrowseBooks = () => {
         {filteredBooks.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {filteredBooks.map((book, index) => (
-              <div
+              <Link
                 key={index}
-                onClick={() => handleBookClick(book, index)}
+                href={`/books/read/${encodeURIComponent(book.title)}`}
                 className="cursor-pointer group"
               >
                 {/* Book Cover */}
@@ -133,7 +125,7 @@ const BrowseBooks = () => {
                     {book.title}
                   </h3>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         ) : (
