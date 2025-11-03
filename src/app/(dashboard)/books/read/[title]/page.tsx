@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
@@ -14,7 +14,6 @@ function splitIntoChapters(
   content: string,
   chaptersPerBook: number = 60
 ): string[] {
-  // Split by sentences or by word count
   const wordsPerChapter = Math.ceil(
     content.split(" ").length / chaptersPerBook
   );
@@ -63,7 +62,12 @@ const Page = async ({ params, searchParams }: PageProps) => {
     notFound();
   }
 
-  const chapterContent = chapters[currentChapter - 1];
+  // Normalize content (fix cases like "CHAPTER III \n." → "CHAPTER III .")
+  const chapterContent = chapters[currentChapter - 1].replace(
+    /(CHAPTER\s+[IVXLCDM]+)\s*\n\s*\./gi,
+    "$1 ."
+  );
+
   const hasPrevious = currentChapter > 1;
   const hasNext = currentChapter < totalChapters;
 
@@ -109,20 +113,58 @@ const Page = async ({ params, searchParams }: PageProps) => {
         {/* Book Content */}
         <article className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8 border border-amber-100">
           <div className="prose prose-lg prose-amber max-w-none">
-            {chapterContent.split("\n\n").map((paragraph, idx) => (
-              <p
-                key={idx}
-                className="mb-6 leading-relaxed lg:leading-7 text-gray-800 text-justify"
-              >
-                {paragraph}
-              </p>
-            ))}
+            {chapterContent.split("\n\n").flatMap((paragraph, idx) => {
+              // Match "CHAPTER I" or "CHAPTER I." (period stays attached)
+              const chapterRegex = /\bCHAPTER\s+[IVXLCDM]+\.?\b/gi;
+              const matches = paragraph.match(chapterRegex);
+
+              if (!matches) {
+                return (
+                  <p
+                    key={`${idx}-p`}
+                    className="mb-6 leading-relaxed lg:leading-7 text-gray-800 text-justify"
+                  >
+                    {paragraph.trim()}
+                  </p>
+                );
+              }
+
+              const parts = paragraph.split(chapterRegex);
+              const elements: JSX.Element[] = [];
+
+              for (let i = 0; i < parts.length; i++) {
+                const text = parts[i].trim();
+                if (text) {
+                  elements.push(
+                    <p
+                      key={`${idx}-p-${i}`}
+                      className="mb-6 leading-relaxed lg:leading-7 text-gray-800 text-justify"
+                    >
+                      {text}
+                    </p>
+                  );
+                }
+
+                const match = matches[i];
+                if (match) {
+                  elements.push(
+                    <h2
+                      key={`${idx}-c-${i}`}
+                      className="text-4xl font-bold text-amber-700 text-center my-12 tracking-wide"
+                    >
+                      {match.trim()}
+                    </h2>
+                  );
+                }
+              }
+
+              return elements;
+            })}
           </div>
         </article>
 
         {/* Navigation Arrows */}
         <div className="flex items-center justify-between gap-6">
-          {/* Previous Button */}
           {hasPrevious ? (
             <Link
               href={`/books/read/${encodeURIComponent(decodedTitle)}?chapter=${
@@ -154,7 +196,6 @@ const Page = async ({ params, searchParams }: PageProps) => {
             </div>
           </div>
 
-          {/* Next Button */}
           {hasNext ? (
             <Link
               href={`/books/read/${encodeURIComponent(decodedTitle)}?chapter=${
