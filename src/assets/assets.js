@@ -1,75 +1,68 @@
 // Import all cover images at the top
-import theLittlePrinceCover from "./theLittlePrinceCover.jpeg";
-import charlottesWebCover from "./charlottesWebCover.jpeg";
-import oldManSeaCover from "./oldManSeaCover.jpeg";
-import animalFarmCover from "./animalFarmCover.jpeg";
 import greatGatsbyCover from "./greatGatsbyCover.jpeg";
-import toKillMockingbirdCover from "./toKillMockingbirdCover.jpeg";
 import prideAndPrejudiceCover from "./prideAndPrejudiceCover.jpeg";
-import nineteenEightyFourCover from "./nineteenEightyFourCover.jpeg";
-import mobyDickCover from "./mobyDickCover.jpeg";
-import ulyssesCover from "./ulyssesCover.jpeg";
+import Sense from "./sense.jpeg";
+import emma from "./emma.jpeg";
+import Northanger from "./Northanger.jpeg";
+import bluebird from "./bluebird.jpeg";
+import canadian from "./canadian.jpeg";
+import sherlock from "./sherlock.jpeg";
+import childhood from "./childhood.jpeg";
 
 export const EnglishBooks = [
   {
-    title: "The Little Prince",
-    author: "Antoine de Saint-Exupéry",
-    cover: theLittlePrinceCover,
-    difficulty: "Very Easy",
+    title: "Sense and Sensibility",
+    author: "Jane Austen",
+    cover: Sense,
+    difficulty: "Easy", // Simple language, social themes
   },
   {
-    title: "Charlotte's Web",
-    author: "E.B. White",
-    cover: charlottesWebCover,
-    difficulty: "Easy",
+    title: "Emma",
+    author: "Jane Austen",
+    cover: emma,
+    difficulty: "Medium", // More complex vocabulary & social satire
   },
   {
-    title: "The Old Man and the Sea",
-    author: "Ernest Hemingway",
-    cover: oldManSeaCover,
-    difficulty: "Easy",
+    title: "Northanger Abbey",
+    author: "Jane Austen",
+    cover: Northanger,
+    difficulty: "Easy", // Light, playful gothic parody
   },
   {
-    title: "Animal Farm",
-    author: "George Orwell",
-    cover: animalFarmCover,
-    difficulty: "Medium",
+    title: "The Blue Bird for Children",
+    author: "Maurice Maeterlinck",
+    cover: bluebird,
+    difficulty: "Very Easy", // Written for children, very simple language
   },
   {
     title: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
     cover: greatGatsbyCover,
-    difficulty: "Medium",
+    difficulty: "Medium", // Modern English but with symbolic and subtle style
   },
   {
-    title: "To Kill a Mockingbird",
-    author: "Harper Lee",
-    cover: toKillMockingbirdCover,
-    difficulty: "Medium",
+    title: "Canadian Fairy Tales",
+    author: "Cyrus MacMillan",
+    cover: canadian,
+    difficulty: "Easy", // Folktales, accessible language
   },
   {
     title: "Pride and Prejudice",
     author: "Jane Austen",
     cover: prideAndPrejudiceCover,
-    difficulty: "Hard",
+    difficulty: "Medium", // Clear language but subtle social commentary
   },
   {
-    title: "1984",
-    author: "George Orwell",
-    cover: nineteenEightyFourCover,
-    difficulty: "Hard",
+    title: "The Adventures of Sherlock Holmes",
+    author: "Arthur Conan Doyle",
+    cover: sherlock,
+    difficulty: "Medium", // Victorian English, slightly old-fashioned but readable
   },
   {
-    title: "Moby Dick",
-    author: "Herman Melville",
-    cover: mobyDickCover,
-    difficulty: "Very Hard",
-  },
-  {
-    title: "Ulysses",
-    author: "James Joyce",
-    cover: ulyssesCover,
-    difficulty: "Very Hard",
+    title: "Childhood",
+    author: "Leo Tolstoy",
+    cover: childhood,
+    difficulty: "Very Hard", // Complex, dense, philosophical, nautical terms
   },
 ];
 
