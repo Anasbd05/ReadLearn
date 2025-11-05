@@ -17,8 +17,8 @@ import React from "react";
 
 interface PageData {
   id: string;
-  textTitle: string;
-  textContent: string;
+  title: string;
+  content: string;
 }
 
 const Page = ({ params }: { params: Promise<{ title: string }> }) => {
@@ -42,7 +42,7 @@ const Page = ({ params }: { params: Promise<{ title: string }> }) => {
 
         // Find the text where textTitle (without spaces) matches the URL title
         const matchedText = result?.find(
-          (item) => item.textTitle.replaceAll(" ", "") === title
+          (item) => item.title.replaceAll(" ", "") === title
         );
 
         setData(matchedText || null);
@@ -143,9 +143,9 @@ const Page = ({ params }: { params: Promise<{ title: string }> }) => {
               </AlertDialogContent>
             </AlertDialog>
           </main>
-          <h1 className="text-3xl font-bold my-6">{data.textTitle}</h1>
+          <h1 className="text-3xl font-bold my-6">{data.title}</h1>
           <div className="prose prose-lg max-w-none leading-relaxed lg:leading-7 text-gray-800 whitespace-pre-wrap">
-            {data.textContent}
+            {data.content}
           </div>
         </div>
       </section>

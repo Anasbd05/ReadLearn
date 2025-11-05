@@ -40,7 +40,7 @@ export function LoginForm({
           setError(error.message);
         }
       } else {
-        router.push("/dashboard");
+        router.push("/onboarding");
       }
     } catch (error) {
       setError("An unexpected error occurred. Please try again.");

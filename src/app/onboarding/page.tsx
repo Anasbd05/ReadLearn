@@ -1,0 +1,149 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/utils/supabase/client";
+import { BookOpen, Globe, Target } from "lucide-react";
+
+const languages = [
+  { code: "en", name: "English" },
+  { code: "es", name: "Spanish" },
+  { code: "fr", name: "French" },
+  { code: "de", name: "German" },
+  { code: "ar", name: "Arabic" },
+  { code: "zh", name: "Chinese" },
+];
+
+export default function OnboardingPage() {
+  const router = useRouter();
+  const [fluentLanguage, setFluentLanguage] = useState("");
+  const [targetLanguage, setTargetLanguage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!fluentLanguage || !targetLanguage) {
+      setError("Please select both languages");
+      return;
+    }
+
+    if (fluentLanguage === targetLanguage) {
+      setError("Fluent and target languages must be different");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        throw new Error("No user found");
+      }
+
+      // Insert or update user data
+      const { error: upsertError } = await supabase.from("users").upsert({
+        id: user.id,
+        email: user.email,
+        fluent_language: fluentLanguage,
+        target_language: targetLanguage,
+        onboarding_completed: true,
+      });
+      if (upsertError) throw upsertError;
+
+      router.push("/books");
+      router.refresh();
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-linear-to-br from-amber-50 via-white to-orange-50 flex items-center justify-center p-6">
+      <div className="max-w-2xl w-full">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-amber-100 rounded-full mb-4">
+            <BookOpen className="w-8 h-8 text-amber-600" />
+          </div>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            Welcome to Your Reading Journey
+          </h1>
+          <p className="text-lg text-gray-600">
+            Let&lsquo;s personalize your learning experience
+          </p>
+        </div>
+
+        {/* Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white rounded-2xl shadow-xl p-8 border border-amber-100"
+        >
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+              {error}
+            </div>
+          )}
+
+          {/* Fluent Language */}
+          <div className="mb-8">
+            <label className="flex items-center gap-2 text-lg font-semibold text-gray-900 mb-4">
+              <Globe className="w-5 h-5 text-amber-600" />
+              What language are you fluent in?
+            </label>
+            <select
+              value={fluentLanguage}
+              onChange={(e) => setFluentLanguage(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-gray-900"
+              required
+            >
+              <option value="">Select your fluent language</option>
+              {languages.map((lang) => (
+                <option key={lang.code} value={lang.code}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Target Language */}
+          <div className="mb-8">
+            <label className="flex items-center gap-2 text-lg font-semibold text-gray-900 mb-4">
+              <Target className="w-5 h-5 text-amber-600" />
+              What language do you want to learn?
+            </label>
+            <select
+              value={targetLanguage}
+              onChange={(e) => setTargetLanguage(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-gray-900"
+              required
+            >
+              <option value="">Select your target language</option>
+              {languages.map((lang) => (
+                <option key={lang.code} value={lang.code}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? "Setting up..." : "Start Reading"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}

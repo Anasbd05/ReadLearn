@@ -5,21 +5,29 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import Addtext from "@/constants/Addtext";
-import { supabase } from "@/utils/supabase/client";
+import { createClient } from "@/utils/supabase/server";
+import { FileText } from "lucide-react";
 import Link from "next/link";
 
 export default async function Page() {
-  const { data, error } = await supabase.from("importedText").select("*");
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    console.error("User not logged in");
+    // Optionally redirect to login
+    // redirect('/login');
+  }
+
+  // Fetch only the texts belonging to this user
+  const { data, error } = await supabase
+    .from("importedText")
+    .select("*")
+    .eq("user_id", user?.id);
 
   if (error) {
     console.error("Error fetching importedText:", error.message);
@@ -37,50 +45,6 @@ export default async function Page() {
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-
-            {/* Language Selection */}
-            <div className=" hidden lg:flex items-center  gap-3 ml-2">
-              {/* Fluent Language */}
-              <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Fluent language" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Languages</SelectLabel>
-                    <SelectItem value="es">Spanish</SelectItem>
-                    <SelectItem value="fr">French</SelectItem>
-                    <SelectItem value="de">German</SelectItem>
-                    <SelectItem value="zh">Chinese</SelectItem>
-                    <SelectItem value="ar">Arabic</SelectItem>
-                    <SelectItem value="en">English</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-
-              <Separator
-                orientation="vertical"
-                className="data-[orientation=vertical]:h-4"
-              />
-
-              {/* Target Language */}
-              <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Target language" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Languages</SelectLabel>
-                    <SelectItem value="es">Spanish</SelectItem>
-                    <SelectItem value="fr">French</SelectItem>
-                    <SelectItem value="de">German</SelectItem>
-                    <SelectItem value="zh">Chinese</SelectItem>
-                    <SelectItem value="ar">Arabic</SelectItem>
-                    <SelectItem value="en">English</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
           </div>
 
           <Addtext />
@@ -95,24 +59,30 @@ export default async function Page() {
               {data && data.length > 0 ? (
                 data.map((text) => (
                   <Link
-                    href={`/custom-text/${text.textTitle.replaceAll(" ", "")}`}
-                    className="flex gap-3 p-5 cursor-pointer group items-start border rounded-lg bg-background shadow-sm hover:shadow-md transition"
                     key={text.id}
+                    href={`/custom-text/${text.title.replaceAll(" ", "")}`}
+                    className="flex gap-3 p-5 cursor-pointer group items-start border rounded-lg bg-background shadow-sm hover:shadow-md transition"
                   >
                     <div className="flex flex-col gap-2">
                       <h2 className="font-medium text-lg group-hover:text-blue-600">
-                        {text.textTitle}
+                        {text.title}
                       </h2>
                       <p className="text-muted-foreground text-sm line-clamp-3">
-                        {text.textContent}
+                        {text.content}
                       </p>
                     </div>
                   </Link>
                 ))
               ) : (
-                <p className="text-red-500 ">
-                  No texts imported yet. Add one to get started!
-                </p>
+                <div className="col-span-full flex flex-col items-center justify-center py-16 text-center">
+                  <FileText className="w-16 h-16 text-muted-foreground/40 mb-4" />
+                  <h3 className="text-lg font-medium text-foreground mb-2">
+                    No texts yet
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    Get started by importing your first text
+                  </p>
+                </div>
               )}
             </main>
           </div>

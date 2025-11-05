@@ -6,15 +6,6 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Crown } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import Link from "next/link";
 import BrowseBooks from "@/components/dashboard/BrowseBooks";
 
@@ -30,52 +21,7 @@ export default function Page() {
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-
-            {/* Language Selection */}
-            <div className=" hidden lg:flex items-center  gap-3 ml-2">
-              {/* Known Language */}
-              <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Fluent language" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Languages</SelectLabel>
-                    <SelectItem value="es">Spanish</SelectItem>
-                    <SelectItem value="fr">French</SelectItem>
-                    <SelectItem value="de">German</SelectItem>
-                    <SelectItem value="zh">Chinese</SelectItem>
-                    <SelectItem value="ar">Arabic</SelectItem>
-                    <SelectItem value="en">English</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-
-              <Separator
-                orientation="vertical"
-                className="data-[orientation=vertical]:h-4"
-              />
-
-              {/* Target Language */}
-              <Select>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Target language" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Languages</SelectLabel>
-                    <SelectItem value="es">Spanish</SelectItem>
-                    <SelectItem value="fr">French</SelectItem>
-                    <SelectItem value="de">German</SelectItem>
-                    <SelectItem value="zh">Chinese</SelectItem>
-                    <SelectItem value="ar">Arabic</SelectItem>
-                    <SelectItem value="en">English</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
           </div>
-
           <Link
             href={"/billing"}
             className="py-1.5 px-5 mx-4 bg-secondary hover:opacity-80 flex items-center font-medium gap-2 text-white rounded-md"
