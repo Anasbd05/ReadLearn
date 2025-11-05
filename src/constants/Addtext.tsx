@@ -16,6 +16,8 @@ import { supabase } from "@/utils/supabase/client";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
+
 const Addtext = () => {
   const [textTitle, setTextTitle] = useState("");
   const [textContent, setTextContent] = useState("");
@@ -24,6 +26,12 @@ const Addtext = () => {
 
   const add = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // ✅ Validation first
+    if (!textContent.trim()) {
+      toast("❌ Fill the text content");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -34,14 +42,19 @@ const Addtext = () => {
 
       if (error) {
         console.log(error);
+        toast("Error saving text");
+        return;
       }
+
+      toast("Text saved ✅");
+      router.push("/custom-text");
     } catch (error) {
       console.log(error);
+      toast("Unexpected error");
     } finally {
       setTextTitle("");
       setTextContent("");
       setLoading(false);
-      router.push("/custom-text");
     }
   };
 
@@ -57,9 +70,10 @@ const Addtext = () => {
           <DialogHeader>
             <DialogTitle>Add Text</DialogTitle>
             <DialogDescription>
-              Create and save a target text to learn from .
+              Create and save a target text to learn from.
             </DialogDescription>
           </DialogHeader>
+
           <div className="grid gap-4">
             <div className="grid gap-3">
               <Label htmlFor="audience-name">Title</Label>
@@ -67,10 +81,10 @@ const Addtext = () => {
                 value={textTitle}
                 onChange={(e) => setTextTitle(e.target.value)}
                 id="audience-name"
-                name="name"
                 placeholder="Add a short title"
               />
             </div>
+
             <div className="grid gap-3">
               <Label htmlFor="target-description">Content</Label>
               <textarea
@@ -78,17 +92,18 @@ const Addtext = () => {
                 onChange={(e) => setTextContent(e.target.value)}
                 className="h-36 text-sm rounded-md border bg-transparent px-3 py-1"
                 id="target-description"
-                name="description"
-                placeholder="Type or paste the text in your target language"
+                placeholder="Type or paste your text"
               />
             </div>
           </div>
+
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline" className="cursor-pointer">
                 Cancel
               </Button>
             </DialogClose>
+
             <Button onClick={add} className="cursor-pointer hover:opacity-80">
               {loading ? <Loader className="h-4 w-4 animate-spin" /> : "Save"}
             </Button>

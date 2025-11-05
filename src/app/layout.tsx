@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({
         className={`${bricolage.className} antialiased`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );

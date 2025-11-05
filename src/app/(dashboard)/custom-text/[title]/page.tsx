@@ -144,7 +144,7 @@ const Page = ({ params }: { params: Promise<{ title: string }> }) => {
             </AlertDialog>
           </main>
           <h1 className="text-3xl font-bold my-6">{data.textTitle}</h1>
-          <div className="prose prose-lg max-w-none leading-relaxed whitespace-pre-wrap">
+          <div className="prose prose-lg max-w-none leading-relaxed lg:leading-7 text-gray-800 whitespace-pre-wrap">
             {data.textContent}
           </div>
         </div>

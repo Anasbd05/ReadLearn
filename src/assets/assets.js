@@ -14,55 +14,55 @@ export const EnglishBooks = [
     title: "Sense and Sensibility",
     author: "Jane Austen",
     cover: Sense,
-    difficulty: "Easy", // Simple language, social themes
-  },
-  {
-    title: "Emma",
-    author: "Jane Austen",
-    cover: emma,
-    difficulty: "Medium", // More complex vocabulary & social satire
-  },
-  {
-    title: "Northanger Abbey",
-    author: "Jane Austen",
-    cover: Northanger,
-    difficulty: "Easy", // Light, playful gothic parody
+    difficulty: "Hard", // Complex 19th century syntax, formal register, period vocabulary
   },
   {
     title: "The Blue Bird for Children",
     author: "Maurice Maeterlinck",
     cover: bluebird,
-    difficulty: "Very Easy", // Written for children, very simple language
+    difficulty: "Very Easy", // Simple sentences, basic vocabulary, written for children
+  },
+  {
+    title: "Northanger Abbey",
+    author: "Jane Austen",
+    cover: Northanger,
+    difficulty: "Hard", // 19th century English with literary allusions
   },
   {
     title: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
     cover: greatGatsbyCover,
-    difficulty: "Medium", // Modern English but with symbolic and subtle style
+    difficulty: "Medium", // Modern English, poetic but accessible prose
   },
   {
     title: "Canadian Fairy Tales",
     author: "Cyrus MacMillan",
     cover: canadian,
-    difficulty: "Easy", // Folktales, accessible language
+    difficulty: "Easy", // Straightforward narrative language, clear sentence structure
   },
   {
     title: "Pride and Prejudice",
     author: "Jane Austen",
     cover: prideAndPrejudiceCover,
-    difficulty: "Medium", // Clear language but subtle social commentary
+    difficulty: "Hard", // Long sentences, archaic expressions, formal dialogue
   },
   {
     title: "The Adventures of Sherlock Holmes",
     author: "Arthur Conan Doyle",
     cover: sherlock,
-    difficulty: "Medium", // Victorian English, slightly old-fashioned but readable
+    difficulty: "Medium", // Victorian vocabulary but clear narrative style
+  },
+  {
+    title: "Emma",
+    author: "Jane Austen",
+    cover: emma,
+    difficulty: "Hard", // Dense prose, subtle irony, sophisticated vocabulary
   },
   {
     title: "Childhood",
     author: "Leo Tolstoy",
     cover: childhood,
-    difficulty: "Very Hard", // Complex, dense, philosophical, nautical terms
+    difficulty: "Very Hard", // Complex syntax, stream of consciousness, translated prose
   },
 ];
 
