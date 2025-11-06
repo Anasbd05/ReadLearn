@@ -12,19 +12,19 @@ const Navbar = () => {
       <div className=" hidden lg:flex gap-8">
         <Link
           className=" font-medium hover:text-neutral-700 hover:underline underline-offset-2 "
-          href={"/"}
+          href={"#features"}
         >
           Features
         </Link>
         <Link
           className=" font-medium hover:text-neutral-700 hover:underline underline-offset-2 "
-          href={"/"}
+          href={"#pricing"}
         >
           Pricing
         </Link>
         <Link
           className=" font-medium hover:text-neutral-700 hover:underline underline-offset-2 "
-          href={"/"}
+          href={"#faqs"}
         >
           Faqs
         </Link>

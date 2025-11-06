@@ -47,8 +47,9 @@ export const Hero = () => {
           <div className="lg:w-2/5 ">
             <Image
               src={heroImage}
-              alt="FluentRead interface showing translation features"
-              className="w-full h-auto"
+              draggable="false"
+              alt="FluentsRead interface showing translation features"
+              className="w-full h-auto  "
             />
             {/* Decorative elements */}
             <div className="absolute top-10 left-40  h-32 w-32 bg-primary/20 rounded-full blur-3xl" />

@@ -43,7 +43,7 @@ const features = [
     icon: Library,
     title: "Curated Book Library",
     description:
-      "Access thousands of books in 6 languages. Classic literature to modern stories. Filter by difficulty and genre. Track reading progress.",
+      "Access hundreds of books in 6 languages. Classic literature to modern stories. Filter by difficulty and genre. Track reading progress.",
   },
   {
     icon: TrendingUp,
