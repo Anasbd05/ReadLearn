@@ -51,7 +51,7 @@
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.607 0.204 254.604);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.647 0.166 163.245);
+  --secondary: #ff6223;
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -117,4 +117,13 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: oklch(78.116% 0.10733 247.419);
+  color: black;
 }
