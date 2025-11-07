@@ -50,7 +50,7 @@ export default function App() {
   return (
     <main id="how-it-works" className="bg-white" ref={container}>
       <section className="text-gray-900 py-10 md:py-14 w-full bg-white grid place-content-center relative">
-        <div className="relative z-10 px-8 space-y-4 text-center">
+        <div className="relative z-10 px-4 sm:px-6 lg:px-10 space-y-4 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
             Master Any Language
           </h2>

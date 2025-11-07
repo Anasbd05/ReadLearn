@@ -56,7 +56,7 @@ const features = [
 export const Features = () => {
   return (
     <section id="features" className="py-12 md:py-20 ">
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-6 lg:px-10">
         {/* Section Header */}
         <div className="text-center mb-16 space-y-4 animate-fade-in">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">

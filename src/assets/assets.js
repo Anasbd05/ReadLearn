@@ -380,3 +380,36 @@ export const ArabicBooks = [
     difficulty: "Very Hard",
   },
 ];
+
+export const plans = [
+  {
+    name: "Starter",
+    description: "Best for language learners getting started",
+    monthlyPrice: 8,
+    yearlyPrice: 76.8,
+    popular: false,
+    features: [
+      "All 6 languages",
+      "Unlimited library access",
+      "Unlimited vocabulary bookmarks",
+      "10 AI content generations per month",
+      "Progress analytics",
+      "Priority support",
+    ],
+  },
+  {
+    name: "Pro",
+    description: "Best for learners who want unlimited content on any topic",
+    monthlyPrice: 14,
+    yearlyPrice: 134.4,
+    popular: true,
+    features: [
+      "All 6 languages",
+      "Unlimited library access",
+      "Unlimited vocabulary bookmarks",
+      "Unlimited AI content generation",
+      "Progress analytics",
+      "Priority support",
+    ],
+  },
+];
