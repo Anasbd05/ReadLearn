@@ -413,3 +413,46 @@ export const plans = [
     ],
   },
 ];
+
+export const faqs = [
+  {
+    question: "Which languages does FluentRead support?",
+    answer:
+      "We currently support English, French, Spanish, German, Arabic, and Chinese. Each language has a curated library and full translation support.",
+  },
+  {
+    question: "Can I import my own content?",
+    answer:
+      "Yes! You can upload PDFs, EPUB files, plain text, or paste content directly. You can also import articles from URLs.",
+  },
+  {
+    question: "How does the instant translation work?",
+    answer:
+      "Simply click on any word while reading, and you'll see its translation, context, part of speech, and example sentences. No need to switch between apps or look up words manually.",
+  },
+  {
+    question: "What is the AI content generator?",
+    answer:
+      "Our AI creates personalized reading material based on topics you choose, adjusted to your proficiency level. It's perfect for practicing specific vocabulary or exploring new subjects.",
+  },
+  {
+    question: "How does the vocabulary tracking work?",
+    answer:
+      "Every word you bookmark is saved to your personal vocabulary list. You can review them anytime, star difficult words, and see example sentences to reinforce learning.",
+  },
+  {
+    question: "Can I switch between languages?",
+    answer:
+      "Yes! Both plans give you access to all 6 languages, and you can switch between them anytime.",
+  },
+  {
+    question: "Is my data safe?",
+    answer:
+      "Absolutely. I take privacy seriously — all data is encrypted and securely stored.",
+  },
+  {
+    question: "Can I cancel my subscription?",
+    answer:
+      "Of course. Just email me at anastrying05@gmail.com, and I’ll personally handle your cancellation within 12–24 hours.",
+  },
+];

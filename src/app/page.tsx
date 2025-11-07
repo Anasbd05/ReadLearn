@@ -1,3 +1,4 @@
+import { FAQ } from "@/components/landingpage/Faqs";
 import { Features } from "@/components/landingpage/Features";
 import { Hero } from "@/components/landingpage/Hero";
 import HowItWorks from "@/components/landingpage/HowItWorks";
@@ -12,6 +13,7 @@ export default function Home() {
       <Features />
       <HowItWorks />
       <Pricing />
+      <FAQ />
     </section>
   );
 }
