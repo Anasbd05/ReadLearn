@@ -1,62 +1,16 @@
 import {
-  BookText,
-  Target,
-  Bookmark,
-  Sparkles,
-  Library,
-  TrendingUp,
-} from "lucide-react";
-import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-const features = [
-  {
-    icon: BookText,
-    title: "Import Any Content",
-    description:
-      "Add your own text, create custom stories, notes, or learning scripts. Build your personal reading library. Save unlimited content — any length.",
-  },
-  {
-    icon: Target,
-    title: "Instant Word Translation",
-    description:
-      "Click any word for immediate translation. See context and usage examples. Understand grammar and part of speech. Native pronunciation audio.",
-  },
-  {
-    icon: Bookmark,
-    title: "Smart Vocabulary Builder",
-    description:
-      "Bookmark words you're learning. Star your most challenging words. Review with spaced repetition. Track your progress over time.",
-  },
-  {
-    icon: Sparkles,
-    title: "AI Content Generator",
-    description:
-      "Create personalized reading material. Choose your topics and interests. Adjust difficulty level (A1-C2). Get content tailored to your level.",
-  },
-  {
-    icon: Library,
-    title: "Curated Book Library",
-    description:
-      "Access hundreds of books in 6 languages. Classic literature to modern stories. Filter by difficulty and genre. Track reading progress.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Progress Tracking",
-    description:
-      "Monitor words learned. See reading statistics. Celebrate milestones. Watch your vocabulary grow.",
-  },
-];
+import { features } from "@/assets/assets";
 
 export const Features = () => {
   return (
-    <section id="features" className="py-12 md:py-20 ">
-      <div className="px-4 sm:px-6 lg:px-10">
+    <section id="features" className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 ">
+      <div className="">
         {/* Section Header */}
         <div className="text-center mb-16 space-y-4 animate-fade-in">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">

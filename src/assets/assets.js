@@ -9,6 +9,15 @@ import canadian from "./canadian.jpeg";
 import sherlock from "./sherlock.jpeg";
 import childhood from "./childhood.jpeg";
 
+import {
+  BookText,
+  Target,
+  Bookmark,
+  Sparkles,
+  Library,
+  TrendingUp,
+} from "lucide-react";
+
 export const EnglishBooks = [
   {
     title: "Sense and Sensibility",
@@ -454,5 +463,109 @@ export const faqs = [
     question: "Can I cancel my subscription?",
     answer:
       "Of course. Just email me at anastrying05@gmail.com, and I’ll personally handle your cancellation within 12–24 hours.",
+  },
+];
+export const features = [
+  {
+    icon: BookText,
+    title: "Import Any Content",
+    description:
+      "Add your own text, create custom stories, notes, or learning scripts. Build your personal reading library. Save unlimited content — any length.",
+  },
+  {
+    icon: Target,
+    title: "Instant Word Translation",
+    description:
+      "Click any word for immediate translation. See context and usage examples. Understand grammar and part of speech. Native pronunciation audio.",
+  },
+  {
+    icon: Bookmark,
+    title: "Smart Vocabulary Builder",
+    description:
+      "Bookmark words you're learning. Star your most challenging words. Review with spaced repetition. Track your progress over time.",
+  },
+  {
+    icon: Sparkles,
+    title: "AI Content Generator",
+    description:
+      "Create personalized reading material. Choose your topics and interests. Adjust difficulty level (A1-C2). Get content tailored to your level.",
+  },
+  {
+    icon: Library,
+    title: "Curated Book Library",
+    description:
+      "Access hundreds of books in 6 languages. Classic literature to modern stories. Filter by difficulty and genre. Track reading progress.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Progress Tracking",
+    description:
+      "Monitor words learned. See reading statistics. Celebrate milestones. Watch your vocabulary grow.",
+  },
+];
+export const reviews = [
+  {
+    name: "Sarah Chen",
+    role: "Learning Spanish",
+    avatar: "SC",
+    rating: 5,
+    text: "FluentRead transformed how I learn Spanish. Being able to click on any word while reading actual books is incredible.",
+    highlight: "click on any word",
+  },
+  {
+    name: "Marcus Weber",
+    role: "Learning French",
+    avatar: "MW",
+    rating: 5,
+    text: "The AI content generator is a game-changer. I can create reading material about topics I'm actually interested in.",
+    highlight: "game-changer",
+  },
+  {
+    name: "Yuki Tanaka",
+    role: "Learning English",
+    avatar: "YT",
+    rating: 5,
+    text: "My vocabulary has grown so much in just 2 months! Now I just click and continue reading without losing track.",
+    highlight: "2 months",
+  },
+  {
+    name: "Ahmed Al-Rashid",
+    role: "Learning German",
+    avatar: "AA",
+    rating: 5,
+    text: "The vocabulary tracking is brilliant. It's like having a personal language tutor in my pocket.",
+    highlight: "personal language tutor",
+  },
+  {
+    name: "Emma Laurent",
+    role: "Learning Chinese",
+    avatar: "EL",
+    rating: 5,
+    text: "Being able to click on characters and see instant translations with context made everything click.",
+    highlight: "instant translations",
+  },
+  {
+    name: "Carlos Rodriguez",
+    role: "Learning Arabic",
+    avatar: "CR",
+    rating: 5,
+    text: "I love that I can import articles from websites. Learning through content I care about is so much more engaging.",
+    highlight: "import articles",
+  },
+  {
+    name: "Sophie Andersson",
+    role: "Learning Spanish & French",
+    avatar: "SA",
+    rating: 5,
+    text: "Learning two languages at once is easy with FluentRead. Best investment I've made in my language journey!",
+    highlight: "Best investment",
+  },
+  {
+    name: "David Kim",
+    role: "Learning German",
+    avatar: "DK",
+    rating: 5,
+    text: "I've made more progress in 6 weeks than I did in a year of evening classes. Perfect for busy professionals.",
+    highlight: "6 weeks",
   },
 ];

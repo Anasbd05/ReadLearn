@@ -13,7 +13,7 @@ const Pricing = () => {
           Flexible plans designed to help you learn faster and stay consistent.
         </p>
       </div>
-      <main className=" grid grid-cols-2 w-10/12 mx-auto gap-10 ">
+      <main className=" grid grid-cols-1 lg:grid-cols-2 w-10/12 mx-auto gap-10 ">
         {plans.map((plan, index) => (
           <div
             key={index}
