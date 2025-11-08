@@ -53,7 +53,10 @@ export function LoginForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className={cn("flex flex-col gap-6", className)}
+      className={cn(
+        "flex flex-col border p-7 bg-white shadow-md rounded-lg gap-6",
+        className
+      )}
       {...props}
     >
       <div className="flex flex-col items-center gap-2 text-center">
@@ -95,7 +98,7 @@ export function LoginForm({
         </div>
         <Button
           type="submit"
-          className={`w-full ${loading && "opacity-80"} `}
+          className={`w-full cursor-pointer  ${loading && "opacity-80"} `}
           disabled={loading}
         >
           {loading ? (
