@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // ✅ Updated: `chapter` -> `page` everywhere
 import React, { JSX } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { supabase } from "@/utils/supabase/client";
+import BookContentWithTranslation from "@/components/BookContentWithTranslation";
 
 interface PageProps {
   params: { title: string } | Promise<{ title: string }>;
@@ -138,11 +140,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
           </div>
         </div>
 
-        <article className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8 border border-amber-100">
-          <div className="prose prose-lg prose-amber max-w-none ">
-            {renderChapterContent(chapterContent)}
-          </div>
-        </article>
+        <BookContentWithTranslation content={chapterContent} />
 
         <div className="flex items-center justify-between gap-6">
           {hasPrevious ? (

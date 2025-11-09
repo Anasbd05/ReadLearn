@@ -26,7 +26,7 @@ export const EnglishBooks = [
     difficulty: "Hard", // Complex 19th century syntax, formal register, period vocabulary
   },
   {
-    title: "The Blue Bird for Children",
+    title: "The Blue Bird",
     author: "Maurice Maeterlinck",
     cover: bluebird,
     difficulty: "Very Easy", // Simple sentences, basic vocabulary, written for children
