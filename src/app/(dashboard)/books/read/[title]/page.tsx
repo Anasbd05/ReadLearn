@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { supabase } from "@/utils/supabase/client";
-import BookContentWithTranslation from "@/components/BookContentWithTranslation";
+import BookContentWithTranslation from "@/components/dashboard/BookContentWithTranslation";
 
 interface PageProps {
   params: { title: string } | Promise<{ title: string }>;
