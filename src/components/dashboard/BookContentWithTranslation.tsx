@@ -180,13 +180,6 @@ export default function BookContentWithTranslation({
     const cleanWord = word.replace(/[.,!?;:'"]/g, "").toLowerCase();
     if (!cleanWord) return;
 
-    if (/^[A-Z][a-z]+$/.test(word)) {
-      setSelectedWord(cleanWord);
-      setPosition({ x, y });
-      setTranslation("Proper noun — no translation");
-      return;
-    }
-
     setSelectedWord(cleanWord);
     setPosition({ x, y });
     setLoading(true);
@@ -197,31 +190,54 @@ export default function BookContentWithTranslation({
     } = await supabase.auth.getUser();
 
     if (user) {
-      const { data } = await supabase
+      const { data: userData } = await supabase
         .from("users")
         .select("fluent_language, target_language")
         .eq("id", user.id)
         .single();
-      setFluent(data?.fluent_language);
-      setTarget(data?.target_language);
 
+      setTarget(userData?.target_language || "ar");
+
+      // Get translation
       const response = await fetch("/api/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           word: cleanWord,
-          from: data?.fluent_language,
-          to: data?.target_language,
+          from: userData?.fluent_language || "en",
+          to: userData?.target_language || "ar",
         }),
       });
 
       const result = await response.json();
-      setTranslation(result.translation || "Translation unavailable");
+      const translatedText = result.translation || "Translation unavailable";
+      setTranslation(translatedText);
+
+      // ✅ AUTO-SAVE TO VOCABULARY TABLE
+      if (result.translation) {
+        const { error } = await supabase.from("vocabulary").upsert(
+          {
+            user_id: user.id,
+            word: cleanWord,
+            translation: translatedText,
+            source_language: userData?.fluent_language || "en",
+            target_language: userData?.target_language || "ar",
+            context_sentence: null, // You can add context later
+          },
+          {
+            onConflict: "user_id,word,source_language,target_language",
+            ignoreDuplicates: true, // Don't save if already exists
+          }
+        );
+
+        if (error) {
+          console.error("Error saving to vocabulary:", error);
+        }
+      }
     }
 
     setLoading(false);
   };
-
   const handleClose = () => {
     setSelectedWord(null);
     setTranslation(null);
