@@ -1,13 +1,12 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import BrowseVocabulary from "@/components/dashboard/BrowseVocabulary";
+import VocabularyLength from "@/components/dashboard/VocabularyLength";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Crown } from "lucide-react";
-import Link from "next/link";
 
 export default function Page() {
   return (
@@ -22,13 +21,7 @@ export default function Page() {
               className="mr-2 data-[orientation=vertical]:h-4"
             />
           </div>
-          <Link
-            href={"/billing"}
-            className="py-1.5 px-5 mx-4 bg-secondary hover:opacity-80 flex items-center font-medium gap-2 text-white rounded-md"
-          >
-            <Crown className="h-4 w-4 font-medium" />
-            <span>Upgrade</span>
-          </Link>
+          <VocabularyLength />
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           <BrowseVocabulary />
