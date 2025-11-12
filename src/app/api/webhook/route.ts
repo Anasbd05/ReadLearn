@@ -49,7 +49,9 @@ export async function POST(request: Request) {
           // Determine credits based on amount
           let credits = 0;
           if (amount === 8) credits = 10;
-          if (amount === 80) credits = 100;
+          if (amount === 80) credits = 120;
+          if (amount === 14) credits = 30;
+          if (amount === 140) credits = 365;
 
           let ProductPlan = "free";
 

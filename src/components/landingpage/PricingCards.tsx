@@ -28,7 +28,7 @@ const MProFeatures = [
   "All 6 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "Unlimited AI content generation",
+  "30 AI content generation per month",
   "Progress analytics",
   "Priority support",
 ];
@@ -37,7 +37,7 @@ const YStarterFeatures = [
   "All 6 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "100 AI content generations per month",
+  "120 AI content generations per year",
   "Progress analytics",
   "Priority support",
 ];
@@ -45,7 +45,7 @@ const YProFeatures = [
   "All 6 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "Unlimited AI content generation",
+  "365 AI content generation per year",
   "Progress analytics",
   "Priority support",
 ];

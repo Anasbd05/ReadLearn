@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { dodopayments } from "@/lib/dodopayments";
 import { NextResponse } from "next/server";
 
@@ -18,11 +19,11 @@ export async function GET(request: Request) {
 
     const response = await dodopayments.subscriptions.create({
       billing: {
-        city: "Unknown",
-        country: "US",
-        state: "Unknown",
-        street: "N/A",
-        zipcode: "00000",
+        city: searchParams.get("city") || "", // Get from request
+        country: (searchParams.get("country") || "US") as any,
+        state: searchParams.get("state") || "",
+        street: searchParams.get("street") || "",
+        zipcode: searchParams.get("zipcode") || "",
       },
       customer: {
         email,
