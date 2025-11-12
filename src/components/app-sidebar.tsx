@@ -24,21 +24,23 @@ export async function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
     console.error("Error fetching auth user:", authError.message);
   }
 
-  // if (user) {
-  //   const { data, error } = await supabase
-  //     .from("users")
-  //     .select("*")
-  //     .eq("id", user.id)
-  //     .maybeSingle();
+  let profile = null;
 
-  //   if (error) {
-  //     console.error("Error retrieving user from Supabase!", error.message);
-  //   } else {
-  //     profile = data;
-  //   }
-  // }
+  if (user) {
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("id", user.id)
+      .maybeSingle();
 
-  const currentPlan = "Free";
+    if (error) {
+      console.error("Error retrieving user from Supabase!", error.message);
+    } else {
+      profile = data;
+    }
+  }
+
+  const currentPlan = profile?.plan ?? "Free";
 
   const userr = {
     name: user?.user_metadata?.name ?? "",

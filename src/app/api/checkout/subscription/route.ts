@@ -31,7 +31,7 @@ export async function GET(request: Request) {
       payment_link: true,
       product_id: productId,
       quantity: 1,
-      return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard`,
+      return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/books`,
       metadata: {
         user_id: userId,
       },

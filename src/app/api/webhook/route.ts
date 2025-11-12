@@ -48,34 +48,22 @@ export async function POST(request: Request) {
 
           // Determine credits based on amount
           let credits = 0;
-          if (amount === 8) credits = 300;
-          if (amount === 20) credits = 480;
-          if (amount === 45) credits = 1200;
-          if (amount === 80) credits = 2400;
-          else if (amount === 200) credits = 5700;
-          else if (amount === 450) credits = 14400;
+          if (amount === 8) credits = 10;
+          if (amount === 80) credits = 100;
 
           let ProductPlan = "free";
 
           // starter
-          if (subscription.product_id === "pdt_wXoCSEAWldmzqUs7hCdKo") {
+          if (subscription.product_id === "pdt_VCvmQKjGxC11zSFSs0Jzd") {
             ProductPlan = "Starter";
           }
-          if (subscription.product_id === "pdt_TxZ5kYf0338HRNojwd0mw") {
+          if (subscription.product_id === "pdt_eQrolLKL97YHO4ZRum5rc") {
             ProductPlan = "Starter";
           }
-          // creators
-          if (subscription.product_id === "pdt_NgZNeSixfz9sEb7EInPoR") {
-            ProductPlan = "Creators";
-          }
-          if (subscription.product_id === "pdt_gKRGzGU03OZfMOgqCykoW") {
-            ProductPlan = "Creators";
-          }
-
           // pro
-          if (subscription.product_id === "pdt_rBsSbB6lU1IGCTYyk4kjB") {
+          if (subscription.product_id === "pdt_5cF2E8r2I6HAldTSLPO0H") {
             ProductPlan = "Pro";
-          } else if (subscription.product_id === "pdt_NgzyrNTg6fojIRlMGmmkL") {
+          } else if (subscription.product_id === "pdt_9VEEGoDgGpqQZPka36Dfg") {
             ProductPlan = "Pro";
           }
 
