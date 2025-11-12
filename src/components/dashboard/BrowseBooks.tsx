@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Search, BookOpen } from "lucide-react";
-import { EnglishBooks } from "@/assets/assets";
+import { EnglishBooks, FrenchBooks } from "@/assets/assets";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +9,7 @@ const BrowseBooks = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const books = EnglishBooks;
+  const books = FrenchBooks;
 
   const difficulties = [
     "All",

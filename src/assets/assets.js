@@ -75,66 +75,77 @@ export const EnglishBooks = [
   },
 ];
 
+import Lupin from "./arsene_lupin.jpeg";
+import MamamLeo from "./MamanLéo.jpeg";
+import LeComte from "./LeComte.jpeg";
+import PlusFort from "./PlusFort.jpeg";
+import LeDernierJour from "./LeDernierJour.jpeg";
+import napoleon from "./napoleon.jpg";
+import Contes from "./Contes.jpeg";
+import PoilDeCarotte from "./PoildeCarotte.jpeg";
+import LAvare from "./LAvare.jpeg";
+import JeanValjean from "./JeanValjean.jpeg";
+
 export const FrenchBooks = [
   {
-    title: "Le Petit Nicolas",
-    author: "René Goscinny",
-    cover: "https://covers.openlibrary.org/b/isbn/9782070612758-L.jpg",
-    difficulty: "Very Easy",
-  },
-  {
-    title: "Le Petit Prince",
-    author: "Antoine de Saint-Exupéry",
-    cover: "https://covers.openlibrary.org/b/isbn/9782070612758-L.jpg",
+    title: "Arsène Lupin, gentleman-cambrioleur",
+    author: "Maurice Leblanc",
+    cover: Lupin,
     difficulty: "Easy",
   },
   {
-    title: "L'Étranger",
-    author: "Albert Camus",
-    cover: "https://covers.openlibrary.org/b/isbn/9782070360024-L.jpg",
-    difficulty: "Easy",
-  },
-  {
-    title: "Candide",
-    author: "Voltaire",
-    cover: "https://covers.openlibrary.org/b/isbn/9782080712790-L.jpg",
+    title: "Maman Léo",
+    author: "Paul Féval",
+    cover: MamamLeo,
     difficulty: "Medium",
   },
   {
-    title: "Le Comte de Monte-Cristo",
+    title: "Le Comte de Monte-Cristo, Tome I",
     author: "Alexandre Dumas",
-    cover: "https://covers.openlibrary.org/b/isbn/9782253098058-L.jpg",
+    cover: LeComte,
     difficulty: "Medium",
   },
   {
-    title: "Bonjour Tristesse",
-    author: "Françoise Sagan",
-    cover: "https://covers.openlibrary.org/b/isbn/9782266155267-L.jpg",
-    difficulty: "Medium",
+    title: "Plus fort que Sherlock Holmès",
+    author: "Mark Twain",
+    cover: PlusFort,
+    difficulty: "Easy",
   },
   {
-    title: "Les Misérables",
+    title: "Le Dernier Jour d'un Condamné",
     author: "Victor Hugo",
-    cover: "https://covers.openlibrary.org/b/isbn/9782253096337-L.jpg",
+    cover: LeDernierJour,
+    difficulty: "Medium",
+  },
+  {
+    title: "Napoléon Le Petit",
+    author: "Victor Hugo",
+    cover: napoleon,
     difficulty: "Hard",
   },
   {
-    title: "Madame Bovary",
-    author: "Gustave Flaubert",
-    cover: "https://covers.openlibrary.org/b/isbn/9782070413119-L.jpg",
+    title: "Contes du jour et de la nuit",
+    author: "Guy de Maupassant",
+    cover: Contes,
+    difficulty: "Medium",
+  },
+  {
+    title: "Poil de Carotte",
+    author: "Jules Renard",
+    cover: PoilDeCarotte,
+    difficulty: "Medium",
+  },
+  {
+    title: "L'Avare",
+    author: "Molière",
+    cover: LAvare,
     difficulty: "Hard",
   },
   {
-    title: "À la recherche du temps perdu",
-    author: "Marcel Proust",
-    cover: "https://covers.openlibrary.org/b/isbn/9782070755080-L.jpg",
-    difficulty: "Very Hard",
-  },
-  {
-    title: "Les Fleurs du mal",
-    author: "Charles Baudelaire",
-    cover: "https://covers.openlibrary.org/b/isbn/9782253006350-L.jpg",
-    difficulty: "Very Hard",
+    title: "Jean Valjean",
+    author: "Victor Hugo",
+    cover: JeanValjean,
+    difficulty: "Medium",
   },
 ];
 
@@ -387,39 +398,6 @@ export const ArabicBooks = [
     author: "Abu al-Faraj al-Isfahani",
     cover: "https://covers.openlibrary.org/b/isbn/9789953634869-L.jpg",
     difficulty: "Very Hard",
-  },
-];
-
-export const plans = [
-  {
-    name: "Starter",
-    description: "Best for language learners getting started",
-    monthlyPrice: 8,
-    yearlyPrice: 76.8,
-    popular: false,
-    features: [
-      "All 6 languages",
-      "Unlimited library access",
-      "Unlimited vocabulary bookmarks",
-      "10 AI content generations per month",
-      "Progress analytics",
-      "Priority support",
-    ],
-  },
-  {
-    name: "Pro",
-    description: "Best for learners who want unlimited content on any topic",
-    monthlyPrice: 14,
-    yearlyPrice: 134.4,
-    popular: true,
-    features: [
-      "All 6 languages",
-      "Unlimited library access",
-      "Unlimited vocabulary bookmarks",
-      "Unlimited AI content generation",
-      "Progress analytics",
-      "Priority support",
-    ],
   },
 ];
 
