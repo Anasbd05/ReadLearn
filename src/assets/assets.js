@@ -88,7 +88,7 @@ import JeanValjean from "./JeanValjean.jpeg";
 
 export const FrenchBooks = [
   {
-    title: "Arsène Lupin, gentleman-cambrioleur",
+    title: "Arsène Lupin",
     author: "Maurice Leblanc",
     cover: Lupin,
     difficulty: "Easy",
@@ -130,7 +130,7 @@ export const FrenchBooks = [
     difficulty: "Medium",
   },
   {
-    title: "Poil de Carotte",
+    title: "Poil de carotte",
     author: "Jules Renard",
     cover: PoilDeCarotte,
     difficulty: "Medium",
@@ -142,7 +142,7 @@ export const FrenchBooks = [
     difficulty: "Hard",
   },
   {
-    title: "Jean Valjean",
+    title: "Jean valjean",
     author: "Victor Hugo",
     cover: JeanValjean,
     difficulty: "Medium",
