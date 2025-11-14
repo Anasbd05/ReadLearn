@@ -149,6 +149,17 @@ export const FrenchBooks = [
   },
 ];
 
+import PlateroYo from "./Juan Ramon Jimenez_ Platero y yo, editorial signo, 1934_.jpeg";
+import LazarilloDeTormes from "./EL LAZARILLO DE TORMES.jpeg";
+import ElSiDeLasNinas from "./El sí de las niñas.jpg";
+import FabulasSamaniego from "./Fábulas.jpg";
+import FabulasLiterarias from "./Fábulas literarias.jpg";
+import Marianela from "./Marianela.jpg";
+import FuenteOvejuna from "./Fuente Ovejuna.jpg";
+import PepitaJimenez from "./Pepita Jiménez.jpeg";
+import MarcosDeObregon from "./Vida del escudero Marcos de Obregón.jpg";
+import LaRegenta from "./LaRegenta.jpeg";
+
 export const SpanishBooks = [
   {
     title: "Platero y yo",
@@ -206,6 +217,18 @@ export const SpanishBooks = [
   },
   {
     title: "La Regenta",
+    author: "Leopoldo Alas",
+    cover: LaRegenta,
+    difficulty: "Very Hard",
+  },
+  {
+    title: "La Regenta II",
+    author: "Leopoldo Alas",
+    cover: LaRegenta,
+    difficulty: "Very Hard",
+  },
+  {
+    title: "La Regenta III",
     author: "Leopoldo Alas",
     cover: LaRegenta,
     difficulty: "Very Hard",

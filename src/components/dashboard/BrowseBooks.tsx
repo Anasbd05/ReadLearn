@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Search, BookOpen } from "lucide-react";
-import { EnglishBooks, FrenchBooks } from "@/assets/assets";
+import { EnglishBooks, FrenchBooks, SpanishBooks } from "@/assets/assets";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +9,7 @@ const BrowseBooks = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const books = FrenchBooks;
+  const books = SpanishBooks;
 
   const difficulties = [
     "All",
@@ -97,14 +97,14 @@ const BrowseBooks = () => {
               <Link
                 key={index}
                 href={`/books/read/${encodeURIComponent(book.title)}`}
-                className="cursor-pointer group"
+                className="cursor-pointer group "
               >
                 {/* Book Cover */}
-                <div className="relative h-80 overflow-hidden rounded-lg">
+                <div className="relative h-80 hover:border-primary hover:border-2 overflow-hidden rounded-lg">
                   <Image
                     src={book.cover}
                     alt={book.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full  object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   {/* Difficulty Badge */}
                   <div className="absolute top-3 right-3">
