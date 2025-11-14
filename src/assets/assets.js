@@ -235,66 +235,77 @@ export const SpanishBooks = [
   },
 ];
 
+import DieRegentrude from "./DieRegentrude.jpeg";
+import DerSchimmelreiter from "./DerSchimmelreiter.jpg";
+import DerStruwwelpeter from "./DerStruwwelpeter.jpeg";
+import MaxandMoritz from "./MaxandMoritz.jpeg";
+import DieJudenbuche from "./DieJudenbuche.jpg";
+import AusdemLebeneinesTaugenichts from "./AusdemLebeneinesTaugenichts.jpeg";
+import EffiBriest from "./EffiBriest.jpeg";
+import IphigenieaufTauris from "./IphigenieaufTauris.jpeg";
+import DerProzess from "./DerProzess.jpeg";
+import DieLeutevonSeldwylaBandI from "./DieLeutevonSeldwylaBandI.webp";
+
 export const GermanBooks = [
   {
-    title: "Der kleine Prinz",
-    author: "Antoine de Saint-Exupéry",
-    cover: "https://covers.openlibrary.org/b/isbn/9783792000069-L.jpg",
+    title: "Die Regentrude",
+    Author: "Theodor Storm",
+    cover: DieRegentrude,
     difficulty: "Very Easy",
   },
   {
-    title: "Die Verwandlung",
-    author: "Franz Kafka",
-    cover: "https://covers.openlibrary.org/b/isbn/9783150009314-L.jpg",
+    title: "Der Schimmelreiter",
+    Author: "Theodor Storm",
+    cover: DerSchimmelreiter,
     difficulty: "Easy",
   },
   {
-    title: "Emil und die Detektive",
-    author: "Erich Kästner",
-    cover: "https://covers.openlibrary.org/b/isbn/9783855356080-L.jpg",
+    title: "Der Struwwelpeter",
+    author: "Heinrich Hoffmann",
+    cover: DerStruwwelpeter,
     difficulty: "Easy",
   },
   {
-    title: "Siddharta",
-    author: "Hermann Hesse",
-    cover: "https://covers.openlibrary.org/b/isbn/9783518366813-L.jpg",
+    title: "Max und Moritz",
+    author: "Wilhelm Busch",
+    cover: MaxandMoritz,
     difficulty: "Medium",
   },
   {
-    title: "Der Vorleser",
-    author: "Bernhard Schlink",
-    cover: "https://covers.openlibrary.org/b/isbn/9783257229530-L.jpg",
+    title: "Die Judenbuche",
+    author: "Annette von Droste-Hülshoff",
+    cover: DieJudenbuche,
     difficulty: "Medium",
   },
   {
-    title: "Im Westen nichts Neues",
-    author: "Erich Maria Remarque",
-    cover: "https://covers.openlibrary.org/b/isbn/9783462038781-L.jpg",
+    title: "Aus dem Leben eines Taugenichts: Novelle",
+    author: "Freiherr von Joseph Eichendorff",
+    cover: AusdemLebeneinesTaugenichts,
     difficulty: "Medium",
   },
   {
-    title: "Die Blechtrommel",
-    author: "Günter Grass",
-    cover: "https://covers.openlibrary.org/b/isbn/9783423110259-L.jpg",
+    title: "Effi Briest",
+    author: "Theodor Fontane",
+    cover: EffiBriest,
+    difficulty: "Hard",
+  },
+  {
+    title: "Iphigenie auf Tauris",
+    author: "Johann Wolfgang von Goethe",
+    cover: IphigenieaufTauris,
     difficulty: "Hard",
   },
   {
     title: "Der Prozess",
     author: "Franz Kafka",
-    cover: "https://covers.openlibrary.org/b/isbn/9783596521265-L.jpg",
-    difficulty: "Hard",
-  },
-  {
-    title: "Faust",
-    author: "Johann Wolfgang von Goethe",
-    cover: "https://covers.openlibrary.org/b/isbn/9783150000014-L.jpg",
+    cover: DerProzess,
     difficulty: "Very Hard",
   },
   {
-    title: "Der Zauberberg",
-    author: "Thomas Mann",
-    cover: "https://covers.openlibrary.org/b/isbn/9783596294312-L.jpg",
-    difficulty: "Very Hard",
+    title: "Die Leute von Seldwyla Band I",
+    author: "Gottfried Keller",
+    cover: DieLeutevonSeldwylaBandI,
+    difficulty: "Very Easy",
   },
 ];
 
