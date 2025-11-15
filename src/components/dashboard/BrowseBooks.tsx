@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Search, BookOpen } from "lucide-react";
 import {
+  ChineseBooks,
   EnglishBooks,
   FrenchBooks,
   GermanBooks,
@@ -14,7 +15,7 @@ const BrowseBooks = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const books = GermanBooks;
+  const books = ChineseBooks;
 
   const difficulties = [
     "All",

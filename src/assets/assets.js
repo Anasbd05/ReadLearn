@@ -308,66 +308,79 @@ export const GermanBooks = [
     difficulty: "Very Easy",
   },
 ];
-
+import 論語 from "./論語.jpg";
+import 孟子 from "./孟子.jpg";
+import 三字經 from "./三字經.webp";
+import 聊齋志異 from "./聊齋志異.jpg";
+import 古文觀止 from "./古文觀止.jpg";
+import 東周列國志 from "./東周列國志.jpg";
+import 世說新語 from "./世說新語.jpg";
+import 史記 from "./史記.jpg";
 export const ChineseBooks = [
   {
-    title: "小王子",
-    author: "Antoine de Saint-Exupéry",
-    cover: "https://covers.openlibrary.org/b/isbn/9787544270878-L.jpg",
-    difficulty: "Very Easy",
+    title: "論語",
+    author: "Confucius",
+    cover: 論語,
+    difficulty: "Hard", // Classical Chinese, concise but difficult
   },
   {
-    title: "城南旧事",
-    author: "Lin Haiyin",
-    cover: "https://covers.openlibrary.org/b/isbn/9787020002207-L.jpg",
-    difficulty: "Easy",
+    title: "孟子",
+    author: "Mencius",
+    cover: 孟子,
+    difficulty: "Very Hard", // Philosophical + dense Classical Chinese
   },
   {
-    title: "三毛流浪记",
-    author: "Zhang Leping",
-    cover: "https://covers.openlibrary.org/b/isbn/9787532243945-L.jpg",
-    difficulty: "Easy",
+    title: "三字經",
+    author: "Yinglin Wang",
+    cover: 三字經,
+    difficulty: "Medium", // Simple sentences, easier classical style
   },
   {
-    title: "活着",
-    author: "Yu Hua",
-    cover: "https://covers.openlibrary.org/b/isbn/9787506365437-L.jpg",
+    title: "聊齋志異 I",
+    author: "Songling Pu",
+    cover: 聊齋志異,
+    difficulty: "Medium", // Vernacular Classical Chinese, manageable
+  },
+  {
+    title: "聊齋志異 II",
+    author: "Songling Pu",
+    cover: 聊齋志異,
     difficulty: "Medium",
   },
   {
-    title: "围城",
-    author: "Qian Zhongshu",
-    cover: "https://covers.openlibrary.org/b/isbn/9787020024759-L.jpg",
-    difficulty: "Medium",
+    title: "古文觀止",
+    author: "Dazhi Wu && Chengquan Wu",
+    cover: 古文觀止,
+    difficulty: "Very Hard", // Pure Classical Chinese anthology
   },
   {
-    title: "平凡的世界",
-    author: "Lu Yao",
-    cover: "https://covers.openlibrary.org/b/isbn/9787530211007-L.jpg",
-    difficulty: "Medium",
+    title: "世說新語",
+    author: "Yiqing Liu",
+    cover: 世說新語,
+    difficulty: "Hard", // Anecdotal classical prose, short but dense
   },
   {
-    title: "红楼梦",
-    author: "Cao Xueqin",
-    cover: "https://covers.openlibrary.org/b/isbn/9787020002207-L.jpg",
-    difficulty: "Hard",
+    title: "東周列國志",
+    author: "Menglong Feng",
+    cover: 東周列國志,
+    difficulty: "Medium", // Vernacular Chinese; much easier than classical works
   },
   {
-    title: "三国演义",
-    author: "Luo Guanzhong",
-    cover: "https://covers.openlibrary.org/b/isbn/9787020008735-L.jpg",
-    difficulty: "Hard",
+    title: "史记 I",
+    author: "Qian Sima",
+    cover: 史記,
+    difficulty: "Very Hard", // Pure Classical Chinese, historical narrative
   },
   {
-    title: "西游记",
-    author: "Wu Cheng'en",
-    cover: "https://covers.openlibrary.org/b/isbn/9787020008728-L.jpg",
+    title: "史記 II",
+    author: "Qian Sima",
+    cover: 史記,
     difficulty: "Very Hard",
   },
   {
-    title: "金瓶梅",
-    author: "Lanling Xiaoxiao Sheng",
-    cover: "https://covers.openlibrary.org/b/isbn/9787020008711-L.jpg",
+    title: "史記 III",
+    author: "Qian Sima",
+    cover: 史記,
     difficulty: "Very Hard",
   },
 ];
