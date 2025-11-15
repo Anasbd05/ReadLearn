@@ -19,9 +19,9 @@ export const Hero = () => {
                 <span className="text-primary">Power of Reading</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
-                Learn English, French, Spanish, German, Arabic, and Chinese by
-                reading what you love. Click any word for instant translation
-                and build your vocabulary naturally.
+                Learn English, French, Spanish, German and Chinese by reading
+                what you love. Click any word for instant translation and build
+                your vocabulary naturally.
               </p>
             </div>
 

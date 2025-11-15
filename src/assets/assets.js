@@ -385,79 +385,15 @@ export const ChineseBooks = [
   },
 ];
 
-export const ArabicBooks = [
-  {
-    title: "الأمير الصغير",
-    author: "Antoine de Saint-Exupéry",
-    cover: "https://covers.openlibrary.org/b/isbn/9789953639048-L.jpg",
-    difficulty: "Very Easy",
-  },
-  {
-    title: "رجال في الشمس",
-    author: "Ghassan Kanafani",
-    cover: "https://covers.openlibrary.org/b/isbn/9789953634807-L.jpg",
-    difficulty: "Easy",
-  },
-  {
-    title: "الخبز الحافي",
-    author: "Mohamed Choukri",
-    cover: "https://covers.openlibrary.org/b/isbn/9789953634814-L.jpg",
-    difficulty: "Easy",
-  },
-  {
-    title: "موسم الهجرة إلى الشمال",
-    author: "Tayeb Salih",
-    cover: "https://covers.openlibrary.org/b/isbn/9789953634821-L.jpg",
-    difficulty: "Medium",
-  },
-  {
-    title: "ثلاثية غرناطة",
-    author: "Radwa Ashour",
-    cover: "https://covers.openlibrary.org/b/isbn/9789771413943-L.jpg",
-    difficulty: "Medium",
-  },
-  {
-    title: "بنات الرياض",
-    author: "Rajaa Alsanea",
-    cover: "https://covers.openlibrary.org/b/isbn/9789953634838-L.jpg",
-    difficulty: "Medium",
-  },
-  {
-    title: "أولاد حارتنا",
-    author: "Naguib Mahfouz",
-    cover: "https://covers.openlibrary.org/b/isbn/9789770927991-L.jpg",
-    difficulty: "Hard",
-  },
-  {
-    title: "ألف ليلة وليلة",
-    author: "Unknown",
-    cover: "https://covers.openlibrary.org/b/isbn/9789953634845-L.jpg",
-    difficulty: "Hard",
-  },
-  {
-    title: "ديوان المتنبي",
-    author: "Al-Mutanabbi",
-    cover: "https://covers.openlibrary.org/b/isbn/9789953634852-L.jpg",
-    difficulty: "Very Hard",
-  },
-  {
-    title: "الأغاني",
-    author: "Abu al-Faraj al-Isfahani",
-    cover: "https://covers.openlibrary.org/b/isbn/9789953634869-L.jpg",
-    difficulty: "Very Hard",
-  },
-];
-
 export const faqs = [
   {
     question: "Which languages does FluentRead support?",
     answer:
-      "We currently support English, French, Spanish, German, Arabic, and Chinese. Each language has a curated library and full translation support.",
+      "We currently support English, French, Spanish, German and Chinese. Each language has a curated library and full translation support.",
   },
   {
     question: "Can I import my own content?",
-    answer:
-      "Yes! You can upload PDFs, EPUB files, plain text, or paste content directly. You can also import articles from URLs.",
+    answer: "Yes! You can paste your text directly into the platform.",
   },
   {
     question: "How does the instant translation work?",
@@ -568,14 +504,6 @@ export const reviews = [
     rating: 5,
     text: "Being able to click on characters and see instant translations with context made everything click.",
     highlight: "instant translations",
-  },
-  {
-    name: "Carlos Rodriguez",
-    role: "Learning Arabic",
-    avatar: "CR",
-    rating: 5,
-    text: "I love that I can import articles from websites. Learning through content I care about is so much more engaging.",
-    highlight: "import articles",
   },
   {
     name: "Sophie Andersson",

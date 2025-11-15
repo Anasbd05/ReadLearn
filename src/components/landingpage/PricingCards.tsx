@@ -16,7 +16,7 @@ type Product = {
 };
 
 const MStarterFeatures = [
-  "All 6 languages",
+  "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
   "10 AI content generations per month",
@@ -25,7 +25,7 @@ const MStarterFeatures = [
 ];
 
 const MProFeatures = [
-  "All 6 languages",
+  "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
   "30 AI content generation per month",
@@ -34,7 +34,7 @@ const MProFeatures = [
 ];
 
 const YStarterFeatures = [
-  "All 6 languages",
+  "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
   "120 AI content generations per year",
@@ -42,7 +42,7 @@ const YStarterFeatures = [
   "Priority support",
 ];
 const YProFeatures = [
-  "All 6 languages",
+  "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
   "365 AI content generation per year",
