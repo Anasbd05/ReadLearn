@@ -108,8 +108,9 @@ export default function BrowseVocabulary() {
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
                     <p className="text-sm text-gray-500">
-                      {languageMap[item.source_language] ||
-                        item.source_language}
+                      {languageMap[item.target_language] ||
+                        item.target_language}
+                      :
                     </p>
                     <h3 className="text-xl font-bold text-gray-900 mb-1">
                       {item.word}
@@ -124,8 +125,8 @@ export default function BrowseVocabulary() {
                 </div>
 
                 <div className="mb-4">
-                  <p className="text-sm text-gray-500 mb-1">
-                    {languageMap[item.target_language] || item.target_language}:
+                  <p className="text-sm text-gray-500">
+                    {languageMap[item.source_language] || item.source_language}
                   </p>
                   <p className="text-lg font-semibold text-amber-700">
                     {item.translation}

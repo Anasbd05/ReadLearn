@@ -13,6 +13,7 @@ interface TranslationPopupProps {
   position: { x: number; y: number };
   onClose: () => void;
   targetLanguageLabel: string;
+  fluentLanguage: string;
 }
 
 const TranslationPopup = ({
@@ -22,6 +23,7 @@ const TranslationPopup = ({
   position,
   onClose,
   targetLanguageLabel,
+  fluentLanguage,
 }: TranslationPopupProps) => {
   const languageMap: Record<string, string> = {
     ar: "Arabic",
@@ -31,15 +33,51 @@ const TranslationPopup = ({
     es: "Spanish",
     de: "German",
   };
-  const targetLabel = languageMap[targetLanguageLabel] || targetLanguageLabel;
+
+  const getLanguageName = (code: string) => {
+    return languageMap[code?.toLowerCase()] || code;
+  };
+
+  const targetLabel = getLanguageName(targetLanguageLabel);
+  const fluentLabel = getLanguageName(fluentLanguage);
+
+  // Calculate if popup would go off-screen and adjust position
+  const popupWidth = 300;
+  const popupHeight = 150;
+  const viewportWidth =
+    typeof window !== "undefined" ? window.innerWidth : 1000;
+  const viewportHeight =
+    typeof window !== "undefined" ? window.innerHeight : 1000;
+
+  let adjustedX = position.x;
+  const adjustedY = position.y;
+  let transformX = "-50%";
+  let transformY = "-100%";
+
+  // Check if popup goes off right edge
+  if (position.x + popupWidth / 2 > viewportWidth) {
+    adjustedX = viewportWidth - popupWidth / 2 - 20;
+    transformX = "-50%";
+  }
+
+  // Check if popup goes off left edge
+  if (position.x - popupWidth / 2 < 0) {
+    adjustedX = popupWidth / 2 + 20;
+    transformX = "-50%";
+  }
+
+  // Check if popup goes off top edge - show below selection instead
+  if (position.y - popupHeight < 0) {
+    transformY = "10px";
+  }
 
   return (
     <div
       className="fixed z-50 bg-white rounded-lg shadow-2xl border-2 border-amber-200 p-4 min-w-[200px] max-w-[300px]"
       style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-        transform: "translate(-50%, -120%)",
+        left: `${adjustedX}px`,
+        top: `${adjustedY}px`,
+        transform: `translate(${transformX}, ${transformY})`,
       }}
     >
       <div className="flex items-center justify-between mb-2">
@@ -70,7 +108,7 @@ const TranslationPopup = ({
           </div>
         ) : translation ? (
           <div>
-            <p className="text-xs text-gray-500 mb-1">{targetLabel}:</p>
+            <p className="text-xs text-gray-500 mb-1">{fluentLabel}:</p>
             <p className="font-semibold text-amber-700 text-lg">
               {translation}
             </p>
@@ -196,7 +234,8 @@ export default function BookContentWithTranslation({
         .eq("id", user.id)
         .single();
 
-      setTarget(userData?.target_language || "ar");
+      setFluent(userData?.fluent_language);
+      setTarget(userData?.target_language);
 
       // Get translation
       const response = await fetch("/api/translate", {
@@ -204,8 +243,8 @@ export default function BookContentWithTranslation({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           word: cleanWord,
-          from: userData?.fluent_language || "en",
-          to: userData?.target_language || "ar",
+          from: userData?.target_language,
+          to: userData?.fluent_language,
         }),
       });
 
@@ -238,6 +277,7 @@ export default function BookContentWithTranslation({
 
     setLoading(false);
   };
+
   const handleClose = () => {
     setSelectedWord(null);
     setTranslation(null);
@@ -260,6 +300,7 @@ export default function BookContentWithTranslation({
           position={position}
           onClose={handleClose}
           targetLanguageLabel={target}
+          fluentLanguage={fluent}
         />
       )}
 

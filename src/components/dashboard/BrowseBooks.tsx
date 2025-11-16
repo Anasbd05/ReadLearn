@@ -15,7 +15,7 @@ const BrowseBooks = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const books = ChineseBooks;
+  const books = EnglishBooks;
 
   const difficulties = [
     "All",

@@ -19,8 +19,6 @@ export default async function Page() {
 
   if (!user) {
     console.error("User not logged in");
-    // Optionally redirect to login
-    // redirect('/login');
   }
 
   // Fetch only the texts belonging to this user

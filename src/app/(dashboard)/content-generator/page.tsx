@@ -1,0 +1,41 @@
+import { AppSidebar } from "@/components/app-sidebar";
+import ContentGenerator from "@/components/dashboard/ContentGenerator";
+import { Separator } from "@/components/ui/separator";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { Crown } from "lucide-react";
+import Link from "next/link";
+
+const page = () => {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2 px-4">
+            <SidebarTrigger className="-ml-1" />
+            <Separator
+              orientation="vertical"
+              className="mr-2 data-[orientation=vertical]:h-4"
+            />
+          </div>
+          <Link
+            href={"/billing"}
+            className="py-1.5 px-5 mx-4 bg-secondary hover:opacity-80 flex items-center font-medium gap-2 text-white rounded-md"
+          >
+            <Crown className="h-4 w-4 font-medium" />
+            <span>Upgrade</span>
+          </Link>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <ContentGenerator />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+};
+
+export default page;

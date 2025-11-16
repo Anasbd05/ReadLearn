@@ -26,7 +26,7 @@ export function NavMain() {
     },
     {
       title: "Generate Content",
-      url: "/content",
+      url: "/content-generator",
       icon: Sparkles,
     },
     {

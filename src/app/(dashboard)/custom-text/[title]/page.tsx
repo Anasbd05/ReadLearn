@@ -29,6 +29,7 @@ interface TranslationPopupProps {
   position: { x: number; y: number };
   onClose: () => void;
   targetLanguageLabel: string;
+  fluentLanguage: string;
 }
 
 const TranslationPopup = ({
@@ -38,6 +39,7 @@ const TranslationPopup = ({
   position,
   onClose,
   targetLanguageLabel,
+  fluentLanguage,
 }: TranslationPopupProps) => {
   const languageMap: Record<string, string> = {
     ar: "Arabic",
@@ -47,7 +49,13 @@ const TranslationPopup = ({
     es: "Spanish",
     de: "German",
   };
-  const targetLabel = languageMap[targetLanguageLabel] || targetLanguageLabel;
+
+  const getLanguageName = (code: string) => {
+    return languageMap[code?.toLowerCase()] || code;
+  };
+
+  const targetLabel = getLanguageName(targetLanguageLabel);
+  const fluentLabel = getLanguageName(fluentLanguage);
 
   // Calculate if popup would go off-screen and adjust position
   const popupWidth = 300;
@@ -105,7 +113,7 @@ const TranslationPopup = ({
 
       <div className="space-y-2">
         <div>
-          <p className="text-xs text-gray-500 mb-1">Original:</p>
+          <p className="text-xs text-gray-500 mb-1">{targetLabel}:</p>
           <p className="font-semibold text-gray-900">{word}</p>
         </div>
 
@@ -116,7 +124,7 @@ const TranslationPopup = ({
           </div>
         ) : translation ? (
           <div>
-            <p className="text-xs text-gray-500 mb-1">{targetLabel}:</p>
+            <p className="text-xs text-gray-500 mb-1">{fluentLabel}:</p>
             <p className="font-semibold text-amber-700 text-lg">
               {translation}
             </p>
@@ -176,6 +184,7 @@ const Page = ({ params }: { params: Promise<{ title: string }> }) => {
   const [translationLoading, setTranslationLoading] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [target, setTarget] = useState("ar");
+  const [fluentLanguage, setFluentLanguage] = useState("en");
 
   React.useEffect(() => {
     const fetchText = async () => {
@@ -230,15 +239,16 @@ const Page = ({ params }: { params: Promise<{ title: string }> }) => {
         .eq("id", user.id)
         .single();
 
-      setTarget(userData?.target_language || "ar");
+      setTarget(userData?.target_language);
+      setFluentLanguage(userData?.fluent_language);
 
       const response = await fetch("/api/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           word: cleanWord,
-          from: userData?.fluent_language || "en",
-          to: userData?.target_language || "ar",
+          from: userData?.target_language,
+          to: userData?.fluent_language,
         }),
       });
 
@@ -364,6 +374,7 @@ const Page = ({ params }: { params: Promise<{ title: string }> }) => {
             position={position}
             onClose={handleCloseTranslation}
             targetLanguageLabel={target}
+            fluentLanguage={fluentLanguage}
           />
         )}
 
