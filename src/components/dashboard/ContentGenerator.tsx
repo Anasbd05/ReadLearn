@@ -2,17 +2,18 @@
 /* eslint-disable prefer-const */
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Sparkles,
   Loader2,
   Clock,
   Copy,
-  Save,
   X,
   Languages,
+  Coins,
 } from "lucide-react";
 import { supabase } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 interface TranslationPopupProps {
   word: string;
@@ -23,6 +24,7 @@ interface TranslationPopupProps {
   targetLanguageLabel: string;
   fluentLanguage: string;
 }
+
 const TranslationPopup = ({
   word,
   translation,
@@ -152,17 +154,22 @@ function handleTextClick(
 }
 
 export default function ContentGenerator() {
+  const router = useRouter();
   const [topic, setTopic] = useState("");
   const [wordCount, setWordCount] = useState(2000);
   const [difficulty, setDifficulty] = useState<
     "beginner" | "intermediate" | "advanced"
   >("intermediate");
   const [loading, setLoading] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
   const [generatedContent, setGeneratedContent] = useState<{
     title: string;
     content: string;
     wordCount: number;
   } | null>(null);
+
+  // ✅ NEW: Credits state
+  const [credits, setCredits] = useState<number>(0);
 
   // Translation states
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
@@ -172,16 +179,73 @@ export default function ContentGenerator() {
   const [target, setTarget] = useState("");
   const [fluent, setFluent] = useState("");
 
+  // ✅ CHECK AUTH, PLAN & CREDITS ON COMPONENT MOUNT
+  useEffect(() => {
+    const checkAuthAndPlan = async () => {
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+
+        if (!user) {
+          console.error("User not logged in");
+          router.push("/login");
+          return;
+        }
+
+        // ✅ Get plan AND credits
+        const { data: profile, error: profileError } = await supabase
+          .from("users") // or "profiles" depending on your schema
+          .select("plan, credits")
+          .eq("id", user.id)
+          .single();
+
+        console.log("=== PLAN & CREDITS CHECK ===");
+        console.log("User ID:", user.id);
+        console.log("Profile data:", profile);
+        console.log("Profile error:", profileError);
+        console.log("Plan value:", profile?.plan);
+        console.log("Credits:", profile?.credits);
+        console.log("============================");
+
+        // If profile doesn't exist or plan is free, redirect
+        if (!profile || profile?.plan === "free") {
+          console.log("REDIRECTING TO BILLING");
+          router.push("/billing");
+          return;
+        }
+
+        // ✅ Set credits
+        setCredits(profile?.credits || 0);
+        setCheckingAuth(false);
+      } catch (error) {
+        console.error("Auth check error:", error);
+        router.push("/login");
+      }
+    };
+
+    checkAuthAndPlan();
+  }, [router]);
+
   const popularTopics = [
     "Travel & Culture",
     "Technology",
-    "Food & Cooking",
-    "Business",
-    "History",
-    "Science",
+    "Social Issues",
+    "artificial intelligence",
+    "Social media",
+    "Human Rights",
   ];
 
   const handleGenerate = async () => {
+    // ✅ CHECK CREDITS BEFORE GENERATING
+    if (credits <= 0) {
+      alert(
+        "You have no credits left. Please purchase more credits to continue."
+      );
+      router.push("/billing");
+      return;
+    }
+
     if (!topic.trim() || topic.length < 10) {
       alert("Please enter a topic (at least 10 characters)");
       return;
@@ -225,6 +289,22 @@ export default function ContentGenerator() {
           content: data.content,
           wordCount: data.wordCount,
         });
+
+        // ✅ DECREASE CREDITS AFTER SUCCESSFUL GENERATION
+        if (user) {
+          const { data: updatedProfile, error } = await supabase
+            .from("users") // or "profiles"
+            .update({ credits: credits - 1 })
+            .eq("id", user.id)
+            .select("credits")
+            .single();
+
+          if (error) {
+            console.error("Error updating credits:", error);
+          } else {
+            setCredits(updatedProfile?.credits || 0);
+          }
+        }
       } else {
         alert("Failed to generate content: " + data.error);
       }
@@ -233,18 +313,6 @@ export default function ContentGenerator() {
       alert("An error occurred. Please try again.");
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleSave = async () => {
-    if (!generatedContent) return;
-
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) {
-      alert("Please sign in to save content");
-      return;
     }
   };
 
@@ -302,11 +370,11 @@ export default function ContentGenerator() {
             translation: translatedText,
             source_language: userData?.fluent_language || "en",
             target_language: userData?.target_language || "ar",
-            context_sentence: null, // You can add context later
+            context_sentence: null,
           },
           {
             onConflict: "user_id,word,source_language,target_language",
-            ignoreDuplicates: true, // Don't save if already exists
+            ignoreDuplicates: true,
           }
         );
 
@@ -325,10 +393,44 @@ export default function ContentGenerator() {
     setTranslationLoading(false);
   };
 
+  // Show loading while checking auth
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
+          <p className="text-gray-600">Checking access...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-5xl mx-auto">
-        {/* LinguaBot Welcome Message - Small at top */}
+        {/* ✅ NO CREDITS WARNING */}
+        {credits === 0 && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-start gap-3">
+            <Coins className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <h3 className="font-semibold text-red-900 text-sm mb-1">
+                No Credits Remaining
+              </h3>
+              <p className="text-sm text-red-700 mb-3">
+                You&#39;ve used all your credits. Purchase more to continue
+                generating content.
+              </p>
+              <button
+                onClick={() => router.push("/billing")}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium transition-colors"
+              >
+                Get More Credits
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* LinguaBot Welcome Message */}
         {!generatedContent && !loading && (
           <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 flex items-start gap-3">
             <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
@@ -336,11 +438,11 @@ export default function ContentGenerator() {
             </div>
             <div>
               <h3 className="font-semibold text-gray-900 text-sm mb-1">
-                Welcome to LinguaBot
+                Welcome to FluentsBot
               </h3>
               <p className="text-sm text-gray-600 leading-relaxed">
                 What topic would you like to explore and learn from today?
-                I&#39;ll create personalized reading content tailored to your
+                I&lsquo;ll create personalized reading content tailored to your
                 language level and interests.
               </p>
             </div>
@@ -364,18 +466,20 @@ export default function ContentGenerator() {
               placeholder="e.g., Travel in Paris, Italian cooking, AI and technology..."
               className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-primary resize-none"
               rows={3}
+              disabled={credits === 0}
             />
             <p className="text-xs text-gray-400 mt-1.5">
               {topic.length} characters (min 10)
             </p>
 
-            {/* Popular Topics - Below input */}
+            {/* Popular Topics */}
             <div className="mt-3 flex flex-wrap gap-2">
               {popularTopics.map((t) => (
                 <button
                   key={t}
                   onClick={() => setTopic(t)}
-                  className="text-xs px-3 py-1.5 bg-gray-50 border border-gray-300 rounded-md hover:bg-gray-100 text-gray-700 transition-colors"
+                  disabled={credits === 0}
+                  className="text-xs px-3 py-1.5 bg-gray-50 border border-gray-300 rounded-md hover:bg-gray-100 text-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {t}
                 </button>
@@ -383,9 +487,8 @@ export default function ContentGenerator() {
             </div>
           </div>
 
-          {/* Content Length & Difficulty - Side by side */}
+          {/* Content Length & Difficulty */}
           <div className="grid grid-cols-2 gap-4 mb-4">
-            {/* Content Length Select */}
             <div>
               <label className="block text-sm font-semibold text-gray-900 mb-2">
                 Content Length
@@ -393,7 +496,8 @@ export default function ContentGenerator() {
               <select
                 value={wordCount}
                 onChange={(e) => setWordCount(Number(e.target.value))}
-                className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-primary bg-white"
+                disabled={credits === 0}
+                className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-primary bg-white disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <option value={1000}>1,000 words (~5 min)</option>
                 <option value={2000}>2,000 words (~10 min)</option>
@@ -403,7 +507,6 @@ export default function ContentGenerator() {
               </select>
             </div>
 
-            {/* Difficulty Select */}
             <div>
               <label className="block text-sm font-semibold text-gray-900 mb-2">
                 Language Difficulty
@@ -411,7 +514,8 @@ export default function ContentGenerator() {
               <select
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value as any)}
-                className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-primary bg-white"
+                disabled={credits === 0}
+                className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-primary bg-white disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <option value="beginner">Beginner (A1-A2)</option>
                 <option value="intermediate">Intermediate (B1-B2)</option>
@@ -423,7 +527,7 @@ export default function ContentGenerator() {
           {/* Generate Button */}
           <button
             onClick={handleGenerate}
-            disabled={loading || topic.length < 10}
+            disabled={loading || topic.length < 10 || credits === 0}
             className="w-full py-3 bg-primary hover:bg-primary/90 text-white font-medium text-sm rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {loading ? (
@@ -431,10 +535,15 @@ export default function ContentGenerator() {
                 <Loader2 className="w-4 h-4 animate-spin" />
                 Creating...
               </>
+            ) : credits === 0 ? (
+              <>
+                <Coins className="w-4 h-4" />
+                No Credits Available
+              </>
             ) : (
               <>
                 <Sparkles className="w-4 h-4" />
-                Generate Content
+                Generate Content (1 credit)
               </>
             )}
           </button>
@@ -448,7 +557,7 @@ export default function ContentGenerator() {
               Crafting your personalized content...
             </h3>
             <p className="text-sm text-gray-600">
-              This may take a minute. We&apos;re creating something special for
+              This may take a minute. We&#39;re creating something special for
               you!
             </p>
           </div>
@@ -488,13 +597,6 @@ export default function ContentGenerator() {
 
             {/* Action Buttons */}
             <div className="flex gap-3">
-              <button
-                onClick={handleSave}
-                className="px-5 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-medium flex items-center gap-2 transition-colors"
-              >
-                <Save className="w-4 h-4" />
-                Save to Library
-              </button>
               <button
                 onClick={handleCopy}
                 className="px-5 py-2.5 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors"

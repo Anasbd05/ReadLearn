@@ -11,7 +11,6 @@ const languages = [
   { code: "es", name: "Spanish" },
   { code: "fr", name: "French" },
   { code: "de", name: "German" },
-  { code: "ar", name: "Arabic" },
   { code: "zh", name: "Chinese" },
 ];
 
@@ -57,7 +56,7 @@ export default function OnboardingPage() {
       });
       if (upsertError) throw upsertError;
 
-      router.push("/books");
+      router.push("/billing");
       router.refresh();
     } catch (err: any) {
       setError(err.message || "Something went wrong");

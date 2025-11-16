@@ -398,7 +398,7 @@ export const faqs = [
   {
     question: "How does the instant translation work?",
     answer:
-      "Simply click on any word while reading, and you'll see its translation, context, part of speech, and example sentences. No need to switch between apps or look up words manually.",
+      "Simply click on any word while reading, and you'll see its translation. No need to switch between apps or look up words manually.",
   },
   {
     question: "What is the AI content generator?",
@@ -408,12 +408,12 @@ export const faqs = [
   {
     question: "How does the vocabulary tracking work?",
     answer:
-      "Every word you bookmark is saved to your personal vocabulary list. You can review them anytime, star difficult words, and see example sentences to reinforce learning.",
+      "Every word you clicked on is saved to your personal vocabulary list. You can review them anytime, star difficult words, and see example sentences to reinforce learning.",
   },
   {
     question: "Can I switch between languages?",
     answer:
-      "Yes! Both plans give you access to all 6 languages, and you can switch between them anytime.",
+      "Yes! Both plans give you access to all 5 languages, and you can switch between them anytime.",
   },
   {
     question: "Is my data safe?",
@@ -423,7 +423,7 @@ export const faqs = [
   {
     question: "Can I cancel my subscription?",
     answer:
-      "Of course. Just email me at anastrying05@gmail.com, and I’ll personally handle your cancellation within 12–24 hours.",
+      "Yes, there's no lock-in and you can cancel your subscription at anytime of the month. When cancelling it will cancel at the end of your current billing period; you can still use the features until the end of your billing period.",
   },
 ];
 export const features = [

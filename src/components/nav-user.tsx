@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsUpDown, LogOut } from "lucide-react";
+import { ChevronsUpDown, LogOut, Wallet } from "lucide-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -81,18 +81,28 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <button
-                onClick={async () => {
-                  await logOut();
-                  router.push("/login");
-                }}
-                className="bg-red-100 flex items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-red-600 w-full"
-              >
-                <LogOut className="size-4 text-destructive" />
-                Logout
-              </button>
+              <div className=" flex flex-col gap-1 ">
+                <button
+                  onClick={() => {
+                    router.push("/login");
+                  }}
+                  className=" flex items-center gap-2 hover:bg-muted/50 cursor-pointer rounded-sm px-2 py-1.5 text-sm w-full"
+                >
+                  <Wallet className="size-4" />
+                  Billing
+                </button>
+                <button
+                  onClick={async () => {
+                    await logOut();
+                    router.push("/login");
+                  }}
+                  className="hover:bg-red-100 flex items-center gap-2 cursor-pointer rounded-sm px-2 py-1.5 text-sm text-red-600  w-full"
+                >
+                  <LogOut className="size-4 text-destructive" />
+                  Logout
+                </button>
+              </div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

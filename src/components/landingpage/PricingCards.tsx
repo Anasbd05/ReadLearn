@@ -145,7 +145,7 @@ const PricingCards = ({
           {Mfeatures.map((feature, i) => (
             <div className=" flex gap-2 items-center " key={i}>
               <Check className=" text-primary w-5 h-5 " />
-              <p className=" font-bold">{feature}</p>
+              <p className="  font-medium text-neutral-800">{feature}</p>
             </div>
           ))}
         </ul>
@@ -154,7 +154,7 @@ const PricingCards = ({
           {Yfeatures.map((feature, i) => (
             <div className=" flex gap-2 items-center " key={i}>
               <Check className=" text-primary w-5 h-5 " />
-              <p className=" font-bold">{feature}</p>
+              <p className=" font-medium text-neutral-800 ">{feature}</p>
             </div>
           ))}
         </ul>
@@ -162,7 +162,7 @@ const PricingCards = ({
 
       {user ? (
         <button
-          className=" hover:bg-secondary  py-2.5 cursor-pointer bg-[#132440] hover:-translate-1 duration-500 hover:shadow-[3px_3px_#000] rounded-full w-full flex justify-center text-white font-semibold "
+          className=" hover:bg-secondary  py-2.5 cursor-pointer bg-[#132440] hover:-translate-1 duration-500 hover:shadow-[3px_3px_#000] rounded-lg w-full flex justify-center text-white font-semibold "
           onClick={() =>
             checkoutProduct(product.product_id, product.is_recurring)
           }
@@ -179,7 +179,7 @@ const PricingCards = ({
       ) : (
         <Link
           href="/login"
-          className=" hover:bg-secondary  py-2.5 cursor-pointer bg-[#132440] hover:-translate-1 duration-500 hover:shadow-[3px_3px_#000] rounded-full w-full flex justify-center text-white font-semibold "
+          className=" hover:bg-secondary  py-2.5 cursor-pointer bg-[#132440] hover:-translate-1 duration-500 hover:shadow-[3px_3px_#000] rounded-lg w-full flex justify-center text-white font-semibold "
         >
           {loading ? (
             <div className=" flex gap-2 justify-center items-center ">

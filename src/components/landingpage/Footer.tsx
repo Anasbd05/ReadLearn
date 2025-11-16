@@ -14,11 +14,11 @@ const Footer = () => {
           <div className="md:col-span-4">
             <div className="flex items-center gap-2 mb-4">
               <BookOpen className="w-7 h-7 text-primary" />
-              <h3 className="text-2xl font-bold text-gray-900">FluentRead</h3>
+              <h3 className="text-2xl font-bold text-gray-900">FluentsRead</h3>
             </div>
             <p className="text-gray-600 mb-6 leading-relaxed">
               Master languages through the power of reading. Learn English,
-              French, Spanish, German, Arabic, and Chinese naturally.
+              French, Spanish, German and Chinese naturally.
             </p>
           </div>
 

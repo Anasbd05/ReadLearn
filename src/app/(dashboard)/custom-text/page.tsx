@@ -9,6 +9,7 @@ import Addtext from "@/constants/Addtext";
 import { createClient } from "@/utils/supabase/server";
 import { FileText } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
   const supabase = await createClient();
@@ -19,6 +20,23 @@ export default async function Page() {
 
   if (!user) {
     console.error("User not logged in");
+    redirect("/login");
+  }
+
+  // Check user's plan with detailed logging
+  const { data: profile, error: profileError } = await supabase
+    .from("users")
+    .select("plan")
+    .eq("id", user.id)
+    .single();
+
+  // DEBUG: Log everything
+  console.log("Profile error:", profileError);
+
+  // Original check
+  if (profile?.plan === "free" || !profile) {
+    console.log("REDIRECTING TO BILLING");
+    redirect("/billing");
   }
 
   // Fetch only the texts belonging to this user

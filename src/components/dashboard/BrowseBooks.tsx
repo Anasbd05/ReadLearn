@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { useState } from "react";
-import { Search, BookOpen } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Search, BookOpen, Loader2 } from "lucide-react";
 import {
   ChineseBooks,
   EnglishBooks,
@@ -10,12 +11,84 @@ import {
 } from "@/assets/assets";
 import Image from "next/image";
 import Link from "next/link";
+import { supabase } from "@/utils/supabase/client";
 
 const BrowseBooks = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [books, setBooks] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [targetLanguage, setTargetLanguage] = useState("");
 
-  const books = EnglishBooks;
+  useEffect(() => {
+    const fetchUserLanguageAndBooks = async () => {
+      try {
+        // Get current user
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+
+        if (!user) {
+          console.error("User not logged in");
+          setLoading(false);
+          return;
+        }
+
+        // Fetch user's target language from profiles table
+        const { data: userData, error: userError } = await supabase
+          .from("users") // Change to "users" if that's your table name
+          .select("target_language")
+          .eq("id", user.id)
+          .single();
+
+        if (userError) {
+          console.error("Error fetching user data:", userError);
+          setLoading(false);
+          return;
+        }
+
+        const language = userData?.target_language;
+        setTargetLanguage(language);
+
+        // Set books based on target language
+        let selectedBooks: any[] = [];
+
+        switch (language?.toLowerCase()) {
+          case "en":
+          case "english":
+            selectedBooks = EnglishBooks;
+            break;
+          case "fr":
+          case "french":
+            selectedBooks = FrenchBooks;
+            break;
+          case "es":
+          case "spanish":
+            selectedBooks = SpanishBooks;
+            break;
+          case "de":
+          case "german":
+            selectedBooks = GermanBooks;
+            break;
+          case "zh":
+          case "chinese":
+            selectedBooks = ChineseBooks;
+            break;
+          default:
+            selectedBooks = EnglishBooks; // Default to English
+            break;
+        }
+
+        setBooks(selectedBooks);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error in fetchUserLanguageAndBooks:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchUserLanguageAndBooks();
+  }, []);
 
   const difficulties = [
     "All",
@@ -52,6 +125,18 @@ const BrowseBooks = () => {
     }
   };
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen bg-muted/50 rounded-xl p-6 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
+          <p className="text-gray-600">Loading your books...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full min-h-screen bg-muted/50 rounded-xl p-6">
       <div className="max-w-7xl mx-auto">
@@ -61,7 +146,14 @@ const BrowseBooks = () => {
             <BookOpen className="w-8 h-8 text-blue-600" />
             Book Library
           </h1>
-          <p className="text-gray-600">Choose a book to start learning</p>
+          <p className="text-gray-600">
+            Choose a book to start learning{" "}
+            {targetLanguage && (
+              <span className="font-medium text-primary">
+                ({targetLanguage.toUpperCase()})
+              </span>
+            )}
+          </p>
         </div>
 
         {/* Search and Filters */}
@@ -103,14 +195,14 @@ const BrowseBooks = () => {
               <Link
                 key={index}
                 href={`/books/read/${encodeURIComponent(book.title)}`}
-                className="cursor-pointer group "
+                className="cursor-pointer group"
               >
                 {/* Book Cover */}
                 <div className="relative h-80 hover:border-primary hover:border-2 overflow-hidden rounded-lg">
                   <Image
                     src={book.cover}
                     alt={book.title}
-                    className="w-full h-full  object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   {/* Difficulty Badge */}
                   <div className="absolute top-3 right-3">

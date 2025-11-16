@@ -1,6 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import Credits from "@/components/Credits";
-import ContentGenerator from "@/components/dashboard/ContentGenerator";
+import BillingCards from "@/components/dashboard/BillingCards";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -8,7 +7,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
-const page = () => {
+export default function Page() {
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -21,14 +20,11 @@ const page = () => {
               className="mr-2 data-[orientation=vertical]:h-4"
             />
           </div>
-          <Credits />
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <ContentGenerator />
+          <BillingCards />
         </div>
       </SidebarInset>
     </SidebarProvider>
   );
-};
-
-export default page;
+}

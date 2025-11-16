@@ -8,8 +8,36 @@ import {
 import { Crown } from "lucide-react";
 import Link from "next/link";
 import BrowseBooks from "@/components/dashboard/BrowseBooks";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
-export default function Page() {
+export default async function Page() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    console.error("User not logged in");
+    redirect("/login");
+  }
+
+  // Check user's plan with detailed logging
+  const { data: profile, error: profileError } = await supabase
+    .from("users")
+    .select("plan")
+    .eq("id", user.id)
+    .single();
+
+  // DEBUG: Log everything
+  console.log("Profile error:", profileError);
+
+  // Original check
+  if (profile?.plan === "free" || !profile) {
+    console.log("REDIRECTING TO BILLING");
+    redirect("/billing");
+  }
   return (
     <SidebarProvider>
       <AppSidebar />

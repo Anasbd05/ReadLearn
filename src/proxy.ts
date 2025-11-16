@@ -59,28 +59,68 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // If user is logged in
+  const currentPath = request.nextUrl.pathname;
+
+  // Define protected routes that require authentication
+  const protectedRoutes = [
+    "/books",
+    "/custom-text",
+    "/content-generator",
+    "/onboarding",
+    "/billing",
+  ];
+
+  // Define routes that require a paid plan
+  const paidRoutes = ["/books", "/custom-text", "/content-generator"];
+
+  // Check if current path is protected
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    currentPath.startsWith(route)
+  );
+
+  // Check if current path requires paid plan
+  const isPaidRoute = paidRoutes.some((route) => currentPath.startsWith(route));
+
+  // If user is NOT logged in
+  if (!user) {
+    // If trying to access protected route, redirect to login
+    if (isProtectedRoute) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+    // Allow access to public routes
+    return response;
+  }
+
+  // If user IS logged in
   if (user) {
-    // Check if user has completed onboarding
+    // Fetch user data including onboarding status and plan
     const { data: userData } = await supabase
-      .from("users")
-      .select("onboarding_completed")
+      .from("users") //
+      .select("onboarding_completed, plan")
       .eq("id", user.id)
       .single();
 
-    // If user hasn't completed onboarding and not on onboarding page
+    // 1. Check onboarding completion
     if (
       !userData?.onboarding_completed &&
-      !request.nextUrl.pathname.startsWith("/onboarding")
+      !currentPath.startsWith("/onboarding")
     ) {
       return NextResponse.redirect(new URL("/onboarding", request.url));
     }
-    // If user has completed onboarding and is on onboarding page
+
+    // If user completed onboarding and is on onboarding page, redirect to books
     if (
       userData?.onboarding_completed &&
-      request.nextUrl.pathname.startsWith("/onboarding")
+      currentPath.startsWith("/onboarding")
     ) {
       return NextResponse.redirect(new URL("/books", request.url));
+    }
+
+    // 2. Check plan for paid routes
+    if (isPaidRoute) {
+      if (!userData?.plan || userData.plan === "free") {
+        return NextResponse.redirect(new URL("/billing", request.url));
+      }
     }
   }
 
