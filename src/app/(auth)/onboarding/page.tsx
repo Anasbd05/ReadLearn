@@ -13,7 +13,15 @@ const languages = [
   { code: "de", name: "German" },
   { code: "zh", name: "Chinese" },
 ];
-
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 export default function OnboardingPage() {
   const router = useRouter();
   const [fluentLanguage, setFluentLanguage] = useState("");
@@ -92,45 +100,57 @@ export default function OnboardingPage() {
           )}
 
           {/* Fluent Language */}
-          <div className="mb-8">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-900 mb-4">
-              <Globe className="w-5 h-5 text-amber-600" />
-              What language are you fluent in?
+          <div>
+            <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+              <Globe className="w-4 h-4 text-amber-600" />
+              Fluent Language
             </label>
-            <select
+            <Select
               value={fluentLanguage}
-              onChange={(e) => setFluentLanguage(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-gray-900"
+              onValueChange={(value) => setFluentLanguage(value)}
               required
             >
-              <option value="">Select your fluent language</option>
-              {languages.map((lang) => (
-                <option key={lang.code} value={lang.code}>
-                  {lang.name}
-                </option>
-              ))}
-            </select>
+              <SelectTrigger className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900">
+                <SelectValue placeholder="Select language" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Fluent Language</SelectLabel>
+                  {languages.map((lang) => (
+                    <SelectItem key={lang.code} value={lang.code}>
+                      {lang.name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Target Language */}
-          <div className="mb-8">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-900 mb-4">
-              <Target className="w-5 h-5 text-amber-600" />
-              What language do you want to learn?
+          <div className=" my-6">
+            <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+              <Target className="w-4 h-4 text-amber-600" />
+              Learning Language
             </label>
-            <select
+            <Select
               value={targetLanguage}
-              onChange={(e) => setTargetLanguage(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-gray-900"
+              onValueChange={(value) => setTargetLanguage(value)}
               required
             >
-              <option value="">Select your target language</option>
-              {languages.map((lang) => (
-                <option key={lang.code} value={lang.code}>
-                  {lang.name}
-                </option>
-              ))}
-            </select>
+              <SelectTrigger className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900">
+                <SelectValue placeholder="Select language" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Learning Language</SelectLabel>
+                  {languages.map((lang) => (
+                    <SelectItem key={lang.code} value={lang.code}>
+                      {lang.name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Submit Button */}
