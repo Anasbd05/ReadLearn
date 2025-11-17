@@ -1,8 +1,15 @@
+import { createClient } from "@/utils/supabase/server";
 import { BookOpen } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import MobileNav from "./MobileNav";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   return (
     <section className=" py-5 px-4 sm:px-6 lg:px-10 w-full flex justify-between items-center border-b">
       <Link href={"/"} className=" flex items-center gap-1.5 ">
@@ -24,17 +31,28 @@ const Navbar = () => {
         </Link>
         <Link
           className=" font-medium hover:text-neutral-700 hover:underline underline-offset-2 "
-          href={"#faqs"}
+          href={"#FAQ"}
         >
-          Faqs
+          FAQ
         </Link>
       </div>
-      <Link
-        href="/login"
-        className=" rounded-full text-white border-black py-1.5 duration-500 px-7 font-medium border-[1.5px] hover:shadow-[3px_3px_#000] bg-secondary "
-      >
-        Login
-      </Link>
+      {user ? (
+        <Link
+          href="/books"
+          className="py-2 px-5 text-white bg-primary font-semibold hover:shadow-[4px_4px_#03045e] rounded-lg hidden md:block duration-500  cursor-pointer"
+        >
+          dashboard
+        </Link>
+      ) : (
+        <Link
+          href="/login"
+          className="py-2 px-5 text-white bg-primary font-semibold hover:shadow-[4px_4px_#03045e]  rounded-lg hidden md:block duration-500  cursor-pointer"
+        >
+          Login
+        </Link>
+      )}
+
+      <MobileNav user={user} />
     </section>
   );
 };

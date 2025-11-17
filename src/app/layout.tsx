@@ -10,9 +10,9 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   title:
-    "FluentsRead - Learn languages naturally by reading books with instant translations",
+    "FluentsRead - Learn languages naturally by reading books , contents with instant translations",
   description:
-    "Learn languages naturally by reading books with instant translations, Click any word or sentence to see instant translations. Stay in your flow, build your vocabulary naturally, and enjoy reading in your target language.",
+    "Learn languages naturally by reading books and contents with instant translations, Click any word or sentence to see instant translations. Stay in your flow, build your vocabulary naturally, and enjoy reading in your target language.",
 };
 
 export default function RootLayout({

@@ -101,7 +101,7 @@ export default function BillingCards() {
           >
             Yearly
             <span className="text-xs bg-green-200 text-black px-2 py-0.5 rounded">
-              Save 18-38%
+              2 months free
             </span>
           </button>
         </div>

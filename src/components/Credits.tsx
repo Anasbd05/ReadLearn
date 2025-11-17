@@ -1,6 +1,5 @@
 "use client";
 import { supabase } from "@/utils/supabase/client";
-import { Crown } from "lucide-react";
 import React, { useState, useEffect } from "react";
 
 const Credits = () => {
@@ -43,7 +42,9 @@ const Credits = () => {
 
   return (
     <div className="py-1.5 px-4 mx-4 bg-gray-50 border  hover:opacity-80 flex items-center font-medium gap-2 text-black rounded-md">
-      <span className=" flex items-center justify-center ">{credits}</span>
+      <span className=" flex items-center justify-center text-secondary ">
+        {credits}
+      </span>
       <span>Credits</span>
     </div>
   );

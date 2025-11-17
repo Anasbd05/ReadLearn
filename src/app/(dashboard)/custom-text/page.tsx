@@ -71,7 +71,7 @@ export default async function Page() {
           <div className="w-full min-h-screen bg-muted/50 rounded-xl p-6">
             <h1 className="text-2xl font-semibold">My Imported Texts</h1>
 
-            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
+            <main className="grid grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
               {data && data.length > 0 ? (
                 data.map((text) => (
                   <Link

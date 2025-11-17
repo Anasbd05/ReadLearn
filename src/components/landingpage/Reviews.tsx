@@ -37,14 +37,6 @@ const Reviews = () => {
             className="break-inside-avoid bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-all inline-block w-full"
           >
             {/* Rating */}
-            <div className="flex gap-1 mb-4">
-              {[...Array(review.rating)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="w-4 h-4 fill-amber-400 text-amber-400"
-                />
-              ))}
-            </div>
 
             {/* Review Text */}
             <p className="text-gray-700 leading-relaxed mb-6 text-sm">
@@ -56,11 +48,18 @@ const Reviews = () => {
               <div className="w-10 h-10 rounded-full flex bg-secondary items-center justify-center text-white font-bold text-sm shrink-0">
                 {review.avatar}
               </div>
-              <div className="flex-1 min-w-0">
+              <div className=" flex flex-col gap-0.5">
                 <h4 className="font-bold text-gray-900 text-sm truncate">
                   {review.name}
                 </h4>
-                <p className="text-xs text-gray-600 truncate">{review.role}</p>
+                <div className="flex gap-1">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-amber-400 text-amber-400"
+                    />
+                  ))}
+                </div>{" "}
               </div>
             </div>
           </div>

@@ -1,9 +1,34 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
+import { supabase } from "@/utils/supabase/client";
+import { toast } from "sonner";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const [email, setEmail] = useState("");
+
+  const collectEmails = async () => {
+    const { error } = await supabase.from("emails").insert({ email: email });
+
+    try {
+      if (!email) {
+        toast.error("Enter your email");
+      } else if (!/\S+@\S+\.\S+/.test(email)) {
+        toast.error("Enter a valid email address");
+      } else if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success("Subscribed successfully!");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setEmail("");
+    }
+  };
 
   return (
     <footer className="bg-gray-200 border-t border-gray-200">
@@ -60,7 +85,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/Content-generator"
+                  href="/content-generator"
                   className="text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   AI Generator
@@ -71,7 +96,7 @@ const Footer = () => {
 
           {/* Company Column */}
           <div className="md:col-span-2">
-            <h4 className="font-bold text-gray-900 mb-4">Company</h4>
+            <h4 className="font-bold text-gray-900 mb-4">Legal</h4>
             <ul className="space-y-3">
               <li>
                 <Link
@@ -101,10 +126,15 @@ const Footer = () => {
             <div className="flex px-2.5 py-1 border bg-white border-gray-300 rounded-lg gap-3">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email"
                 className=" w-full outline-0 bg-white p-1  text-sm"
               />
-              <button className="px-4 cursor-pointer py-2 bg-secondary hover:bg-secondary/80  text-white font-semibold rounded-lg transition-colors text-sm whitespace-nowrap">
+              <button
+                onClick={collectEmails}
+                className="px-4 cursor-pointer py-2 bg-secondary hover:bg-secondary/80  text-white font-semibold rounded-lg transition-colors text-sm whitespace-nowrap"
+              >
                 Subscribe
               </button>
             </div>

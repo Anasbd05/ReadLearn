@@ -9,14 +9,7 @@ import canadian from "./canadian.jpeg";
 import sherlock from "./sherlock.jpeg";
 import childhood from "./childhood.jpeg";
 
-import {
-  BookText,
-  Target,
-  Bookmark,
-  Sparkles,
-  Library,
-  TrendingUp,
-} from "lucide-react";
+import { BookText, Target, Bookmark, Sparkles, Library } from "lucide-react";
 
 export const EnglishBooks = [
   {
@@ -385,47 +378,6 @@ export const ChineseBooks = [
   },
 ];
 
-export const faqs = [
-  {
-    question: "Which languages does FluentRead support?",
-    answer:
-      "We currently support English, French, Spanish, German and Chinese. Each language has a curated library and full translation support.",
-  },
-  {
-    question: "Can I import my own content?",
-    answer: "Yes! You can paste your text directly into the platform.",
-  },
-  {
-    question: "How does the instant translation work?",
-    answer:
-      "Simply click on any word while reading, and you'll see its translation. No need to switch between apps or look up words manually.",
-  },
-  {
-    question: "What is the AI content generator?",
-    answer:
-      "Our AI creates personalized reading material based on topics you choose, adjusted to your proficiency level. It's perfect for practicing specific vocabulary or exploring new subjects.",
-  },
-  {
-    question: "How does the vocabulary tracking work?",
-    answer:
-      "Every word you clicked on is saved to your personal vocabulary list. You can review them anytime, star difficult words, and see example sentences to reinforce learning.",
-  },
-  {
-    question: "Can I switch between languages?",
-    answer:
-      "Yes! Both plans give you access to all 5 languages, and you can switch between them anytime.",
-  },
-  {
-    question: "Is my data safe?",
-    answer:
-      "Absolutely. I take privacy seriously — all data is encrypted and securely stored.",
-  },
-  {
-    question: "Can I cancel my subscription?",
-    answer:
-      "Yes, there's no lock-in and you can cancel your subscription at anytime of the month. When cancelling it will cancel at the end of your current billing period; you can still use the features until the end of your billing period.",
-  },
-];
 export const features = [
   {
     icon: BookText,
@@ -437,13 +389,13 @@ export const features = [
     icon: Target,
     title: "Instant Word Translation",
     description:
-      "Click any word for immediate translation. See context and usage examples. Understand grammar and part of speech. Native pronunciation audio.",
+      "Tap or highlight any word or line in your text to see it instantly translated into your language.",
   },
   {
     icon: Bookmark,
     title: "Smart Vocabulary Builder",
     description:
-      "Bookmark words you're learning. Star your most challenging words. Review with spaced repetition. Track your progress over time.",
+      "Any word or line you click or select is automatically added to your personal vocabulary for easy reference.",
   },
   {
     icon: Sparkles,
@@ -455,27 +407,20 @@ export const features = [
     icon: Library,
     title: "Curated Book Library",
     description:
-      "Access hundreds of books in 6 languages. Classic literature to modern stories. Filter by difficulty and genre. Track reading progress.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Progress Tracking",
-    description:
-      "Monitor words learned. See reading statistics. Celebrate milestones. Watch your vocabulary grow.",
+      "Access a small selection of books with more coming soon. From classic literature to modern stories, filtered by difficulty and genre.",
   },
 ];
+
 export const reviews = [
   {
-    name: "Sarah Chen",
-    role: "Learning Spanish",
-    avatar: "SC",
+    name: "Abhijeet Satogiya",
+    avatar: "AS",
     rating: 5,
-    text: "FluentRead transformed how I learn Spanish. Being able to click on any word while reading actual books is incredible.",
-    highlight: "click on any word",
+    text: "Love the concept - learning through real content is the most natural method. The UI looks clean and focused.",
+    highlight: "learning through real content is the most natural method",
   },
   {
     name: "Marcus Weber",
-    role: "Learning French",
     avatar: "MW",
     rating: 5,
     text: "The AI content generator is a game-changer. I can create reading material about topics I'm actually interested in.",
@@ -483,7 +428,6 @@ export const reviews = [
   },
   {
     name: "Yuki Tanaka",
-    role: "Learning English",
     avatar: "YT",
     rating: 5,
     text: "My vocabulary has grown so much in just 2 months! Now I just click and continue reading without losing track.",
@@ -491,7 +435,6 @@ export const reviews = [
   },
   {
     name: "Ahmed Al-Rashid",
-    role: "Learning German",
     avatar: "AA",
     rating: 5,
     text: "The vocabulary tracking is brilliant. It's like having a personal language tutor in my pocket.",
@@ -499,7 +442,6 @@ export const reviews = [
   },
   {
     name: "Emma Laurent",
-    role: "Learning Chinese",
     avatar: "EL",
     rating: 5,
     text: "Being able to click on characters and see instant translations with context made everything click.",
@@ -507,7 +449,6 @@ export const reviews = [
   },
   {
     name: "Sophie Andersson",
-    role: "Learning Spanish & French",
     avatar: "SA",
     rating: 5,
     text: "Learning two languages at once is easy with FluentRead. Best investment I've made in my language journey!",
@@ -515,7 +456,6 @@ export const reviews = [
   },
   {
     name: "David Kim",
-    role: "Learning German",
     avatar: "DK",
     rating: 5,
     text: "I've made more progress in 6 weeks than I did in a year of evening classes. Perfect for busy professionals.",

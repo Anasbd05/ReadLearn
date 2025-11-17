@@ -50,7 +50,7 @@ const VocabularyLength = () => {
         {loading ? <Loader2 className=" animate-spin " /> : vocabulary.length}{" "}
         Word
       </span>
-      <BookmarkCheck className="h-4 w-4 font-medium" />
+      <BookmarkCheck className="h-4 w-4 text-secondary font-bold" />
     </div>
   );
 };

@@ -149,8 +149,8 @@ export default function PrivacyPolicy() {
           <li>Update or correct your personal information at any time.</li>
           <li>Request a copy of your data in a portable format.</li>
           <li>
-            Request deletion of your account and associated data by contacting
-            support.
+            You can delete your account and all associated data directly from
+            your account settings.
           </li>
           <li>
             Opt out of promotional communications while continuing to use the

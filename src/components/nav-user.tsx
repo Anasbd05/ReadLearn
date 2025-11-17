@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsUpDown, LogOut, Wallet } from "lucide-react";
+import { ChevronsUpDown, LogOut, Settings, Wallet } from "lucide-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -85,7 +85,16 @@ export function NavUser({
               <div className=" flex flex-col gap-1 ">
                 <button
                   onClick={() => {
-                    router.push("/login");
+                    router.push("/settings");
+                  }}
+                  className=" flex items-center gap-2 hover:bg-muted/50 cursor-pointer rounded-sm px-2 py-1.5 text-sm w-full"
+                >
+                  <Settings className="size-4" />
+                  Settings
+                </button>
+                <button
+                  onClick={() => {
+                    router.push("/billing");
                   }}
                   className=" flex items-center gap-2 hover:bg-muted/50 cursor-pointer rounded-sm px-2 py-1.5 text-sm w-full"
                 >

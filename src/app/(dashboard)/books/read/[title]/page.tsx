@@ -8,8 +8,8 @@ import { supabase } from "@/utils/supabase/client";
 import BookContentWithTranslation from "@/components/dashboard/BookContentWithTranslation";
 
 interface PageProps {
-  params: { title: string } | Promise<{ title: string }>;
-  searchParams: { page?: string } | Promise<{ page?: string }>;
+  params: Promise<{ title: string }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
 // Helper: split book into equal-length sections by lines

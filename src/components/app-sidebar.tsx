@@ -11,6 +11,7 @@ import {
 import { NavUser } from "./nav-user";
 import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
+import logo from "@/assets/logo.png";
 
 export async function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   const supabase = await createClient();
@@ -54,15 +55,13 @@ export async function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
           size="lg"
           className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
         >
-          <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-            <Image
-              src={"/logo.png"}
-              alt="logo image"
-              height={20}
-              width={20}
-              className="h-6 w-6"
-            />
-          </div>
+          <Image
+            src={logo}
+            alt="logo image"
+            height={20}
+            width={20}
+            className="aspect-square size-8 rounded-lg"
+          />
           <div className="grid flex-1 text-left text-sm leading-tight">
             <span className="truncate font-medium">FluentsRead</span>
             <span className="truncate text-xs">{currentPlan}</span>

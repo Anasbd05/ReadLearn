@@ -99,11 +99,12 @@ export default function BrowseVocabulary() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="columns-2 lg:columns-3 gap-6">
+            {" "}
             {vocabulary.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-xl p-4 shadow-sm border border-amber-100 hover:shadow-md transition-all"
+                className="break-inside-avoid mb-6 p-6 rounded-xl border shadow-sm bg-white"
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
@@ -128,7 +129,7 @@ export default function BrowseVocabulary() {
                   <p className="text-sm text-gray-500">
                     {languageMap[item.source_language] || item.source_language}
                   </p>
-                  <p className="text-lg font-semibold text-amber-700">
+                  <p className="text-lg font-semibold text-secondary ">
                     {item.translation}
                   </p>
                 </div>
