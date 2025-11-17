@@ -20,7 +20,7 @@ const Page: React.FC<PageProps> = async ({ searchParams }) => {
       <div className="flex flex-col items-center w-full gap-4 p-4 md:p-6">
         <Link href={"/"} className=" flex items-center justify-center gap-1">
           <BookOpen className=" w-6 h-6 text-primary" />
-          <span className=" font-semibold text-xl">FluentsRead</span>
+          <span className=" font-semibold text-xl">FluencyWave</span>
         </Link>
         <div className="flex w-full max-w-md flex-col gap-6">
           <ForgetPass

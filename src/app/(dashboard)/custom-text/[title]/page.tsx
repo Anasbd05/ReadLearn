@@ -1,8 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/utils/supabase/client";
-import { ArrowBigLeft, Trash2, X, Loader2, Languages } from "lucide-react";
+import {
+  ArrowBigLeft,
+  Trash2,
+  X,
+  Loader2,
+  Languages,
+  ArrowRight,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import {
   AlertDialog,
@@ -36,7 +42,6 @@ const TranslationPopup = ({
   word,
   translation,
   loading,
-  position,
   onClose,
   targetLanguageLabel,
   fluentLanguage,
@@ -57,81 +62,138 @@ const TranslationPopup = ({
   const targetLabel = getLanguageName(targetLanguageLabel);
   const fluentLabel = getLanguageName(fluentLanguage);
 
-  // Calculate if popup would go off-screen and adjust position
-  const popupWidth = 300;
-  const popupHeight = 150;
-  const viewportWidth =
-    typeof window !== "undefined" ? window.innerWidth : 1000;
-  const viewportHeight =
-    typeof window !== "undefined" ? window.innerHeight : 1000;
-
-  let adjustedX = position.x;
-  const adjustedY = position.y;
-  let transformX = "-50%";
-  let transformY = "-100%";
-
-  // Check if popup goes off right edge
-  if (position.x + popupWidth / 2 > viewportWidth) {
-    adjustedX = viewportWidth - popupWidth / 2 - 20;
-    transformX = "-50%";
-  }
-
-  // Check if popup goes off left edge
-  if (position.x - popupWidth / 2 < 0) {
-    adjustedX = popupWidth / 2 + 20;
-    transformX = "-50%";
-  }
-
-  // Check if popup goes off top edge - show below selection instead
-  if (position.y - popupHeight < 0) {
-    transformY = "10px";
-  }
-
   return (
-    <div
-      className="fixed z-50 bg-white rounded-lg shadow-2xl border-2 border-amber-200 p-4 min-w-[200px] max-w-[300px]"
-      style={{
-        left: `${adjustedX}px`,
-        top: `${adjustedY}px`,
-        transform: `translate(${transformX}, ${transformY})`,
-      }}
-    >
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
-          <Languages className="w-4 h-4 text-amber-600" />
-          <span className="text-xs font-semibold text-amber-700 uppercase">
-            Translation
-          </span>
+    <>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 animate-fadeIn"
+        onClick={onClose}
+      />
+
+      {/* Popup - Always centered */}
+      <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 animate-scaleIn">
+        <div className="bg-linear-to-br from-white to-amber-50/30 rounded-2xl shadow-2xl border border-amber-200/50 w-[420px] max-w-[90vw] backdrop-blur-xl overflow-hidden">
+          {/* Decorative linear bar */}
+          <div className="h-1.5 bg-linear-to-r from-amber-400 via-orange-400 to-amber-500" />
+
+          {/* Header */}
+          <div className="flex items-center justify-between p-5 pb-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-linear-to-br from-amber-100 to-orange-100 rounded-xl">
+                <Languages className="w-5 h-5 text-amber-700" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-gray-800">Translation</h3>
+                <p className="text-xs text-gray-500">
+                  {targetLabel} → {fluentLabel}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100 rounded-xl transition-all duration-200 hover:rotate-90 group"
+            >
+              <X className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
+            </button>
+          </div>
+
+          {/* Content */}
+          <div className="px-5 pb-5 space-y-4">
+            {/* Original text card */}
+            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 rounded-full bg-blue-500" />
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                  {targetLabel}
+                </p>
+              </div>
+              <p className="text-gray-900 text-base leading-relaxed wrap-break-word">
+                {word}
+              </p>
+            </div>
+
+            {/* Arrow indicator */}
+            <div className="flex justify-center">
+              <div className="p-2 bg-linear-to-r from-amber-100 to-orange-100 rounded-full">
+                <ArrowRight className="w-4 h-4 text-amber-600" />
+              </div>
+            </div>
+
+            {/* Loading state */}
+            {loading && (
+              <div className="bg-linear-to-br from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-200/50">
+                <div className="flex flex-col items-center gap-3">
+                  <Loader2 className="w-8 h-8 animate-spin text-amber-600" />
+                  <span className="text-sm font-medium text-amber-700">
+                    Translating your text...
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {/* Translation result */}
+            {!loading && translation && (
+              <div className="bg-linear-to-br from-amber-50 to-orange-50 rounded-xl p-4 shadow-sm border border-amber-200/50 animate-slideUp">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-2 h-2 rounded-full bg-amber-500" />
+                  <p className="text-xs font-semibold text-amber-700 uppercase tracking-wide">
+                    {fluentLabel}
+                  </p>
+                </div>
+                <p className="text-amber-900 text-lg font-semibold leading-relaxed wrap-break-word">
+                  {translation}
+                </p>
+              </div>
+            )}
+          </div>
         </div>
-        <button
-          onClick={onClose}
-          className="text-gray-400 hover:text-gray-600 transition-colors"
-        >
-          <X className="w-4 h-4" />
-        </button>
       </div>
 
-      <div className="space-y-2">
-        <div>
-          <p className="text-xs text-gray-500 mb-1">{targetLabel}:</p>
-          <p className="font-semibold text-gray-900">{word}</p>
-        </div>
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
 
-        {loading ? (
-          <div className="flex items-center gap-2 text-amber-600 py-2">
-            <Loader2 className="w-4 h-4 animate-spin" />
-            <span className="text-sm">Translating...</span>
-          </div>
-        ) : translation ? (
-          <div>
-            <p className="text-xs text-gray-500 mb-1">{fluentLabel}:</p>
-            <p className="font-semibold text-amber-700 text-lg">
-              {translation}
-            </p>
-          </div>
-        ) : null}
-      </div>
-    </div>
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+          }
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.2s ease-out;
+        }
+
+        .animate-scaleIn {
+          animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .animate-slideUp {
+          animation: slideUp 0.4s ease-out;
+        }
+      `}</style>
+    </>
   );
 };
 
@@ -375,15 +437,6 @@ const Page = ({ params }: { params: Promise<{ title: string }> }) => {
             onClose={handleCloseTranslation}
             targetLanguageLabel={target}
             fluentLanguage={fluentLanguage}
-          />
-        )}
-
-        {/* Backdrop to close popup */}
-        {selectedWord && (
-          <div
-            className="fixed inset-0 z-40"
-            onClick={handleCloseTranslation}
-            style={{ background: "transparent" }}
           />
         )}
       </>

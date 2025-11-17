@@ -73,7 +73,7 @@ const Page = async ({ searchParams }: PageProps) => {
         <div className="flex justify-center gap-2 md:justify-start">
           <Link href={"/"} className=" flex items-center justify-center gap-1">
             <BookOpen className=" w-6 h-6 text-primary" />
-            <span className=" font-semibold text-xl">FluentsRead</span>
+            <span className=" font-semibold text-xl">FluencyWave</span>
           </Link>
         </div>
         <div className="flex w-full max-w-md flex-col gap-6">

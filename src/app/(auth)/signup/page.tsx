@@ -2,6 +2,8 @@ import { Suspense } from "react";
 import { SignupForm } from "@/components/Signup-form";
 import Link from "next/link";
 import { BookOpen, LoaderIcon } from "lucide-react";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
 
 interface PageProps {
   searchParams: Promise<{
@@ -24,13 +26,22 @@ function SignupLoader() {
 export default async function SignupPage({ searchParams }: PageProps) {
   // Await the searchParams Promise
   const params = await searchParams;
+  const supabase = createClient();
+
+  const {
+    data: { user },
+  } = await (await supabase).auth.getUser();
+
+  if (user) {
+    redirect("/books");
+  }
 
   return (
     <Suspense fallback={<SignupLoader />}>
       <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
         <Link href={"/"} className=" flex items-center justify-center gap-1">
           <BookOpen className=" w-6 h-6 text-primary" />
-          <span className=" font-semibold text-xl">FluentsRead</span>
+          <span className=" font-semibold text-xl">FluencyWave</span>
         </Link>
         <div className="flex w-full max-w-md flex-col gap-6">
           <SignupForm

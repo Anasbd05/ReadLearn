@@ -14,7 +14,7 @@ export default function PrivacyPolicy() {
       </div>
 
       <h1 className="text-4xl font-bold mb-6 border-b-2 border-gray-300 pb-4">
-        Privacy Policy — FluentsRead
+        Privacy Policy — FluencyWave
       </h1>
 
       <p className="mb-6 text-gray-600">
@@ -22,10 +22,10 @@ export default function PrivacyPolicy() {
       </p>
 
       <p className="mb-8 leading-relaxed">
-        This Privacy Policy describes how <strong>FluentsRead</strong>{" "}
+        This Privacy Policy describes how <strong>FluencyWave</strong>{" "}
         (&#34;we,&#34; &#34;our,&#34; or &#34;us&#34;) collects, uses, and
         protects your information when you use our language learning app and
-        related services. By using FluentsRead, you agree to this policy.
+        related services. By using FluencyWave, you agree to this policy.
       </p>
 
       <section className="mb-8">
@@ -177,7 +177,7 @@ export default function PrivacyPolicy() {
           7. Children&#34;s Privacy
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          FluentsRead may be used by learners of all ages. If you are under 18,
+          FluencyWave may be used by learners of all ages. If you are under 18,
           please ensure you have parental or guardian consent before using our
           app. We do not knowingly collect personal information from children
           under 13 without parental consent. If you believe a child has provided
@@ -219,7 +219,7 @@ export default function PrivacyPolicy() {
           We may update this Privacy Policy periodically to reflect changes in
           our practices or legal requirements. The latest version will always be
           available in the app and on our website, with the &#34;Last
-          updated&#34; date at the top. Continued use of FluentsRead after
+          updated&#34; date at the top. Continued use of FluencyWave after
           updates means you accept the new terms. For significant changes, we
           will notify you via email or app notification.
         </p>
@@ -242,7 +242,7 @@ export default function PrivacyPolicy() {
       </section>
 
       <div className="mt-12 pt-6 border-t border-gray-300 text-center text-sm text-gray-600">
-        <p>© 2025 FluentsRead. All rights reserved.</p>
+        <p>© 2025 FluencyWave. All rights reserved.</p>
       </div>
     </main>
   );

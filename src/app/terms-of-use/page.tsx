@@ -14,7 +14,7 @@ export default function TermsOfUse() {
       </div>
 
       <h1 className="text-4xl font-bold mb-6 border-b-2 border-gray-300 pb-4">
-        Terms of Use — FluentsRead
+        Terms of Use — FluencyWave
       </h1>
 
       <p className="mb-6 text-gray-600">
@@ -23,10 +23,10 @@ export default function TermsOfUse() {
 
       <p className="mb-8 leading-relaxed">
         These Terms of Use (&#34;Terms&#34;) govern your access to and use of{" "}
-        <strong>FluentsRead</strong> (&#34;we,&#34; &#34;our,&#34; or
+        <strong>FluencyWave</strong> (&#34;we,&#34; &#34;our,&#34; or
         &#34;us&#34;), including our language learning app, website, and related
         services (collectively, the &#34;Service&#34;). By accessing or using
-        FluentsRead, you agree to be bound by these Terms. If you do not agree,
+        FluencyWave, you agree to be bound by these Terms. If you do not agree,
         please do not use our Service.
       </p>
 
@@ -35,7 +35,7 @@ export default function TermsOfUse() {
           1. Acceptance of Terms
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          By creating an account or using FluentsRead, you confirm that you are
+          By creating an account or using FluencyWave, you confirm that you are
           at least 13 years old (or the minimum age required in your country),
           and if you are under 18, you have obtained parental or guardian
           consent. You agree to comply with these Terms and all applicable laws
@@ -79,7 +79,7 @@ export default function TermsOfUse() {
         </h2>
         <div className="space-y-3 text-gray-700">
           <p>
-            <strong>Permitted Use:</strong> FluentsRead is designed to help you
+            <strong>Permitted Use:</strong> FluencyWave is designed to help you
             learn languages through reading and interactive content. You may use
             the Service for personal, non-commercial educational purposes.
           </p>
@@ -154,7 +154,7 @@ export default function TermsOfUse() {
           <p>
             All content, features, and functionality of the Service, including
             but not limited to text, graphics, logos, software, and learning
-            materials, are owned by FluentsRead or our licensors and are
+            materials, are owned by FluencyWave or our licensors and are
             protected by copyright, trademark, and other intellectual property
             laws.
           </p>
@@ -171,7 +171,7 @@ export default function TermsOfUse() {
         </h2>
         <div className="space-y-3 text-gray-700">
           <p>
-            <strong>Paid Subscription:</strong> FluentsRead is a paid service.
+            <strong>Paid Subscription:</strong> FluencyWave is a paid service.
             Subscription pricing and billing terms will be clearly displayed
             before purchase. You must maintain an active paid subscription to
             access the Service.
@@ -224,13 +224,13 @@ export default function TermsOfUse() {
             be uninterrupted, error-free, or secure.
           </p>
           <p>
-            <strong>Educational Tool:</strong> FluentsRead is a language
+            <strong>Educational Tool:</strong> FluencyWave is a language
             learning tool and does not guarantee fluency or specific learning
             outcomes. Results depend on individual effort and commitment.
           </p>
           <p>
             <strong>Limitation of Liability:</strong> To the fullest extent
-            permitted by law, FluentsRead and its affiliates shall not be liable
+            permitted by law, FluencyWave and its affiliates shall not be liable
             for any indirect, incidental, special, consequential, or punitive
             damages arising from your use of the Service, including but not
             limited to loss of data, profits, or learning progress.
@@ -326,7 +326,7 @@ export default function TermsOfUse() {
       </section>
 
       <div className="mt-12 pt-6 border-t border-gray-300 text-center text-sm text-gray-600">
-        <p>© 2025 FluentsRead. All rights reserved.</p>
+        <p>© 2025 FluencyWave. All rights reserved.</p>
       </div>
     </main>
   );

@@ -14,7 +14,7 @@ const Navbar = async () => {
     <section className=" py-5 px-4 sm:px-6 lg:px-10 w-full flex justify-between items-center border-b">
       <Link href={"/"} className=" flex items-center gap-1.5 ">
         <BookOpen className=" w-7 h-7 text-primary" />
-        <span className=" font-semibold text-2xl">FluentsRead</span>
+        <span className=" font-semibold text-2xl">FluencyWave</span>
       </Link>
       <div className=" hidden lg:flex gap-8">
         <Link
