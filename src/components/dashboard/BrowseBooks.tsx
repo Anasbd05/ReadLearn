@@ -190,7 +190,7 @@ const BrowseBooks = () => {
 
         {/* Books Grid */}
         {filteredBooks.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
             {filteredBooks.map((book, index) => (
               <Link
                 key={index}
@@ -198,7 +198,7 @@ const BrowseBooks = () => {
                 className="cursor-pointer group"
               >
                 {/* Book Cover */}
-                <div className="relative h-[360px] hover:border-primary hover:border-2 overflow-hidden rounded-lg">
+                <div className="relative h-[330px] hover:border-primary hover:border-2 overflow-hidden rounded-lg">
                   <Image
                     src={book.cover}
                     alt={book.title}

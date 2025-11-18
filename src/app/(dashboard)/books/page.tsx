@@ -10,6 +10,7 @@ import Link from "next/link";
 import BrowseBooks from "@/components/dashboard/BrowseBooks";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import ContinueReading from "@/components/dashboard/ContinueReading";
 
 export default async function Page() {
   const supabase = await createClient();
@@ -59,6 +60,7 @@ export default async function Page() {
           </Link>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <ContinueReading />
           <BrowseBooks />
         </div>
       </SidebarInset>
