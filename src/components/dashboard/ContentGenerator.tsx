@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Sparkles,
   Loader2,
@@ -241,6 +241,35 @@ export default function ContentGenerator() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [target, setTarget] = useState("");
   const [fluent, setFluent] = useState("");
+
+  // ✅ FETCH USER CREDITS ON COMPONENT MOUNT
+  useEffect(() => {
+    const fetchUserCredits = async () => {
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+
+        if (user) {
+          const { data: userData, error } = await supabase
+            .from("users")
+            .select("credits")
+            .eq("id", user.id)
+            .single();
+
+          if (error) {
+            console.error("Error fetching credits:", error);
+          } else {
+            setCredits(userData?.credits || 0);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user credits:", error);
+      }
+    };
+
+    fetchUserCredits();
+  }, []);
 
   const popularTopics = [
     "Travel & Culture",
