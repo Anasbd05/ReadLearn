@@ -61,36 +61,6 @@ export async function proxy(request: NextRequest) {
 
   const currentPath = request.nextUrl.pathname;
 
-  // Define protected routes that require authentication
-  const protectedRoutes = [
-    "/books",
-    "/custom-text",
-    "/content-generator",
-    "/onboarding",
-    "/billing",
-  ];
-
-  // Define routes that require a paid plan
-  const paidRoutes = ["/books", "/custom-text", "/content-generator"];
-
-  // Check if current path is protected
-  const isProtectedRoute = protectedRoutes.some((route) =>
-    currentPath.startsWith(route)
-  );
-
-  // Check if current path requires paid plan
-  const isPaidRoute = paidRoutes.some((route) => currentPath.startsWith(route));
-
-  // If user is NOT logged in
-  if (!user) {
-    // If trying to access protected route, redirect to login
-    if (isProtectedRoute) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-    // Allow access to public routes
-    return response;
-  }
-
   // If user IS logged in
   if (user) {
     // Fetch user data including onboarding status and plan
@@ -114,13 +84,6 @@ export async function proxy(request: NextRequest) {
       currentPath.startsWith("/onboarding")
     ) {
       return NextResponse.redirect(new URL("/books", request.url));
-    }
-
-    // 2. Check plan for paid routes
-    if (isPaidRoute) {
-      if (!userData?.plan || userData.plan === "free") {
-        return NextResponse.redirect(new URL("/billing", request.url));
-      }
     }
   }
 

@@ -1,14 +1,14 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import Credits from "@/components/Credits";
-import ContentGenerator from "@/components/dashboard/ContentGenerator";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import ContentGenerator from "@/components/dashboard/ContentGenerator";
+import Credits from "@/components/Credits";
 
-const page = () => {
+export default async function Page() {
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -23,12 +23,11 @@ const page = () => {
           </div>
           <Credits />
         </header>
+
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           <ContentGenerator />
         </div>
       </SidebarInset>
     </SidebarProvider>
   );
-};
-
-export default page;
+}

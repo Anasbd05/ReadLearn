@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Sparkles,
   Loader2,
@@ -225,7 +225,6 @@ export default function ContentGenerator() {
     "beginner" | "intermediate" | "advanced"
   >("intermediate");
   const [loading, setLoading] = useState(false);
-  const [checkingAuth, setCheckingAuth] = useState(true);
   const [generatedContent, setGeneratedContent] = useState<{
     title: string;
     content: string;
@@ -242,54 +241,6 @@ export default function ContentGenerator() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [target, setTarget] = useState("");
   const [fluent, setFluent] = useState("");
-
-  // ✅ CHECK AUTH, PLAN & CREDITS ON COMPONENT MOUNT
-  useEffect(() => {
-    const checkAuthAndPlan = async () => {
-      try {
-        const {
-          data: { user },
-        } = await supabase.auth.getUser();
-
-        if (!user) {
-          console.error("User not logged in");
-          router.push("/login");
-          return;
-        }
-
-        // ✅ Get plan AND credits
-        const { data: profile, error: profileError } = await supabase
-          .from("users") // or "profiles" depending on your schema
-          .select("plan, credits")
-          .eq("id", user.id)
-          .single();
-
-        console.log("=== PLAN & CREDITS CHECK ===");
-        console.log("User ID:", user.id);
-        console.log("Profile data:", profile);
-        console.log("Profile error:", profileError);
-        console.log("Plan value:", profile?.plan);
-        console.log("Credits:", profile?.credits);
-        console.log("============================");
-
-        // If profile doesn't exist or plan is free, redirect
-        if (!profile || profile?.plan === "free") {
-          console.log("REDIRECTING TO BILLING");
-          router.push("/billing");
-          return;
-        }
-
-        // ✅ Set credits
-        setCredits(profile?.credits || 0);
-        setCheckingAuth(false);
-      } catch (error) {
-        console.error("Auth check error:", error);
-        router.push("/login");
-      }
-    };
-
-    checkAuthAndPlan();
-  }, [router]);
 
   const popularTopics = [
     "Travel & Culture",
@@ -456,18 +407,6 @@ export default function ContentGenerator() {
     setTranslation(null);
     setTranslationLoading(false);
   };
-
-  // Show loading while checking auth
-  if (checkingAuth) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-gray-600">Checking access...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
