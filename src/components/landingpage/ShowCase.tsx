@@ -34,10 +34,10 @@ export default function ProductShowcase() {
 
   return (
     <main
-      className="bg-linear-to-b from-white py-10 to-[#D2DCFF]"
+      className="bg-linear-to-b py-8 md:py-12 lg:py-14 from-white to-[#D2DCFF]"
       ref={container}
     >
-      <section className="text-gray-900 w-full">
+      <section className="text-gray-900 w-full  mb-16 ">
         <div className="relative z-10 px-4 sm:px-6 lg:px-10 space-y-4 text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
             Your Learning Journey, Visualized
@@ -97,7 +97,7 @@ const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
   return (
     <div
       ref={container}
-      className="h-screen flex items-center justify-center sticky top-0"
+      className=" flex items-center justify-center sticky top-0"
     >
       <motion.div
         style={{
