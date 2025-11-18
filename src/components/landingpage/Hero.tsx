@@ -7,16 +7,17 @@ export const Hero = () => {
   return (
     <section
       id="hero"
-      className="py-10 relative md:py-14 xl:py-16  bg-linear-to-b from-muted/30 to-background"
+      className="py-10 relative md:py-8 xl:py-12  bg-linear-to-b from-muted/30 to-background"
     >
       <div className=" px-4 sm:px-6 lg:px-8">
         <div className="flex gap-8 items-center flex-col lg:flex-row ">
           {/* Left Content */}
           <div className="space-y-8 lg:w-3/5 animate-fade-in">
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Master Any Language Through the{" "}
-                <span className="text-primary">Power of Reading</span>
+              <h1 className="text-4xl lg:text-5xl  font-bold text-foreground leading-tight">
+                Stop breaking your reading flow—
+                <span className="text-primary">learn languages </span>
+                naturally with instant translations.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
                 Learn English, French, Spanish, German and Chinese by reading

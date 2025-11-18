@@ -82,7 +82,7 @@ export default function BrowseVocabulary() {
             My vocabulary
           </h1>
           <p className="text-gray-600 px-1">
-            You have learned {vocabulary.length} word
+            You have learned {vocabulary.length} expressions
             {vocabulary.length !== 1 ? "s" : ""}
           </p>
         </div>

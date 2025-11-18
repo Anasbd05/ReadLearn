@@ -48,7 +48,7 @@ const VocabularyLength = () => {
     <div className="py-1.5 px-4 mx-4 bg-gray-50 border  hover:opacity-80 flex items-center font-medium gap-2 text-black rounded-md">
       <span className=" flex items-center justify-center ">
         {loading ? <Loader2 className=" animate-spin " /> : vocabulary.length}{" "}
-        Word
+        Expressions
       </span>
       <BookmarkCheck className="h-4 w-4 text-secondary font-bold" />
     </div>

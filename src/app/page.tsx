@@ -6,6 +6,7 @@ import HowItWorks from "@/components/landingpage/HowItWorks";
 import Navbar from "@/components/landingpage/Navbar";
 import Pricing from "@/components/landingpage/Pricing";
 import Reviews from "@/components/landingpage/Reviews";
+import ProductShowcase from "@/components/landingpage/ShowCase";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Features />
+      <ProductShowcase />
       <Reviews />
       <HowItWorks />
       <Pricing />
