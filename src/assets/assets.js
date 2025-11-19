@@ -420,11 +420,11 @@ export const reviews = [
     highlight: "learning through real content is the most natural method",
   },
   {
-    name: "Marcus Weber",
-    avatar: "MW",
+    name: "Nellie",
+    avatar: "NL",
     rating: 5,
-    text: "The AI content generator is a game-changer. I can create reading material about topics I'm actually interested in.",
-    highlight: "game-changer",
+    text: "the platform is really helpful and user friendly! it was just a tiny bit hard to translate full sentences, especially since French is very context specific. but nonetheless, I really enjoyed it",
+    highlight: "the platform is really helpful and user friendly!",
   },
   {
     name: "Yuki Tanaka",
