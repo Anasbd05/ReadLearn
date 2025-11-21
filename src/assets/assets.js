@@ -434,11 +434,11 @@ export const reviews = [
     highlight: "language learning fun is by reading",
   },
   {
-    name: "Ahmed Al-Rashid",
-    avatar: "AA",
+    name: "Moon X",
+    avatar: "MX",
     rating: 5,
-    text: "The vocabulary tracking is brilliant. It's like having a personal language tutor in my pocket.",
-    highlight: "personal language tutor",
+    text: "The translation is good and clear. As for how user friendly it is, I’m not completely sure. I find it easy to understand.",
+    highlight: "The translation is good and clear",
   },
   {
     name: "Emma Laurent",
