@@ -16,7 +16,7 @@ export const FAQ = () => {
             Frequently Asked Questions
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Everything you need to know about FluentsRead
+            Everything you need to know about Fluencywave
           </p>
         </div>
 
@@ -29,7 +29,20 @@ export const FAQ = () => {
               className="bg-background border border-border rounded-lg px-6 shadow-sm hover:shadow-md transition-shadow"
             >
               <AccordionTrigger className="text-left text-lg font-semibold hover:text-primary">
-                Which languages does FluentRead support?
+                Is it possible to learn a language just by reading it?
+              </AccordionTrigger>
+              <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
+                In this case, you might not even need to listen. just read as
+                much (and as widely) as possible, and you will gradually get
+                very proficient at it and you will build a massive vocabulary.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem
+              value="item-1"
+              className="bg-background border border-border rounded-lg px-6 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <AccordionTrigger className="text-left text-lg font-semibold hover:text-primary">
+                Which languages does Fluencywave support?
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
                 We currently support English, French, Spanish, German and

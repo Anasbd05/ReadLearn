@@ -15,14 +15,14 @@ export const Hero = () => {
           <div className="space-y-8 lg:w-3/5 animate-fade-in">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-5xl  font-bold text-foreground leading-tight">
-                Stop breaking your reading flow—
+                Stop breaking your reading flow —
                 <span className="text-primary">learn languages </span>
                 naturally with instant translations.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
                 Learn English, French, Spanish, German and Chinese by reading
-                what you love. Click any word for instant translation and build
-                your vocabulary naturally.
+                whatever you like. Click any word for instant translation and
+                build your vocabulary naturally.
               </p>
             </div>
 
