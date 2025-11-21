@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title:
     "fluencywave - Learn Languages Naturally by Reading Books, AI-Generated Content & Your Own Stories with Instant Translations | English, French, Spanish, German & Chinese",
   description:
-    "Master English, French, Spanish, German, and Chinese naturally with fluencywave. Read books, generate AI-powered content, or import your own stories with instant translations. Click any word for context-based learning. Build vocabulary through immersive reading tailored to your interests. The most natural way to achieve language fluency online.",
+    "Learn languages by reading books you love. Get instant translations, improve vocabulary naturally, and create AI-generated stories about any topic. Reading is your fastest path to fluency.",
 };
 
 export default function RootLayout({
@@ -23,6 +23,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${bricolage.className} antialiased`}>
+      <head>
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-96x96.png"
+          sizes="96x96"
+        />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
       <body cz-shortcut-listen="true">
         {/* Google Analytics */}
         <Script

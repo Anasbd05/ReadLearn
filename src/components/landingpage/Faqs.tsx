@@ -91,8 +91,8 @@ export const FAQ = () => {
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
                 Our AI creates personalized reading material based on topics you
-                choose, adjusted to your proficiency level. It&rsquo;s perfect
-                for practicing specific vocabulary or exploring new subjects.
+                choose, adjusted to your proficiency level. It is perfect for
+                practicing specific vocabulary or exploring new subjects.
               </AccordionContent>
             </AccordionItem>
 
