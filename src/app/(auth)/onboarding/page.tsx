@@ -6,13 +6,32 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/utils/supabase/client";
 import { BookOpen, Globe, Target } from "lucide-react";
 
-const languages = [
+const fluentLanguages = [
+  { code: "en", name: "English" },
+  { code: "es", name: "Spanish" },
+  { code: "fr", name: "French" },
+  { code: "de", name: "German" },
+  { code: "zh", name: "Chinese" },
+  { code: "ar", name: "Arabic" },
+  { code: "pt", name: "Portuguese" },
+  { code: "ru", name: "Russian" },
+  { code: "ja", name: "Japanese" },
+  { code: "ko", name: "Korean" },
+  { code: "it", name: "Italian" },
+  { code: "nl", name: "Dutch" },
+  { code: "pl", name: "Polish" },
+  { code: "tr", name: "Turkish" },
+  { code: "hi", name: "Hindi" },
+];
+
+const targetLanguages = [
   { code: "en", name: "English" },
   { code: "es", name: "Spanish" },
   { code: "fr", name: "French" },
   { code: "de", name: "German" },
   { code: "zh", name: "Chinese" },
 ];
+
 import {
   Select,
   SelectContent,
@@ -22,6 +41,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 export default function OnboardingPage() {
   const router = useRouter();
   const [fluentLanguage, setFluentLanguage] = useState("");
@@ -38,7 +58,7 @@ export default function OnboardingPage() {
     }
 
     if (fluentLanguage === targetLanguage) {
-      setError("Fluent and target languages must be different");
+      setError("Native and target languages must be different");
       return;
     }
 
@@ -103,7 +123,7 @@ export default function OnboardingPage() {
           <div>
             <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
               <Globe className="w-4 h-4 text-amber-600" />
-              Fluent Language
+              Native Language
             </label>
             <Select
               value={fluentLanguage}
@@ -115,8 +135,8 @@ export default function OnboardingPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>Fluent Language</SelectLabel>
-                  {languages.map((lang) => (
+                  <SelectLabel>Native Language</SelectLabel>
+                  {fluentLanguages.map((lang) => (
                     <SelectItem key={lang.code} value={lang.code}>
                       {lang.name}
                     </SelectItem>
@@ -143,7 +163,7 @@ export default function OnboardingPage() {
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Learning Language</SelectLabel>
-                  {languages.map((lang) => (
+                  {targetLanguages.map((lang) => (
                     <SelectItem key={lang.code} value={lang.code}>
                       {lang.name}
                     </SelectItem>
