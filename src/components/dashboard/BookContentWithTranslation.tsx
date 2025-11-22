@@ -274,6 +274,8 @@ export default function BookContentWithTranslation({
     const cleanWord = word.replace(/[.,!?;:'"]/g, "").toLowerCase();
     if (!cleanWord) return;
 
+    console.log("🔍 Word clicked:", cleanWord);
+
     setSelectedWord(cleanWord);
     setPosition({ x, y });
     setLoading(true);
@@ -283,12 +285,16 @@ export default function BookContentWithTranslation({
       data: { user },
     } = await supabase.auth.getUser();
 
+    console.log("👤 User:", user?.id);
+
     if (user) {
       const { data: userData } = await supabase
         .from("users")
         .select("fluent_language, target_language")
         .eq("id", user.id)
         .single();
+
+      console.log("🌐 User languages:", userData);
 
       setFluent(userData?.fluent_language);
       setTarget(userData?.target_language);
@@ -305,30 +311,57 @@ export default function BookContentWithTranslation({
       });
 
       const result = await response.json();
+      console.log("📖 Translation result:", result);
+
       const translatedText = result.translation || "Translation unavailable";
       setTranslation(translatedText);
 
       // ✅ AUTO-SAVE TO VOCABULARY TABLE
       if (result.translation) {
-        const { error } = await supabase.from("vocabulary").upsert(
-          {
-            user_id: user.id,
-            word: cleanWord,
-            translation: translatedText,
-            source_language: userData?.fluent_language || "en",
-            target_language: userData?.target_language || "ar",
-            context_sentence: null, // You can add context later
-          },
-          {
-            onConflict: "user_id,word,source_language,target_language",
-            ignoreDuplicates: true, // Don't save if already exists
-          }
-        );
+        console.log("💾 Attempting to save vocabulary...");
 
-        if (error) {
-          console.error("Error saving to vocabulary:", error);
+        const vocabEntry = {
+          user_id: user.id,
+          word: cleanWord,
+          translation: translatedText,
+          target_language: userData?.target_language || "ar",
+          native_language: userData?.fluent_language || "en",
+        };
+
+        console.log("📝 Vocab entry to save:", vocabEntry);
+
+        // First check if word already exists
+        const { data: existing } = await supabase
+          .from("vocabulary")
+          .select("id")
+          .eq("user_id", user.id)
+          .eq("word", cleanWord)
+          .single();
+
+        if (existing) {
+          console.log("ℹ️ Word already exists in vocabulary, skipping...");
+        } else {
+          // Insert new word
+          const { data: vocabData, error: vocabError } = await supabase
+            .from("vocabulary")
+            .insert(vocabEntry);
+
+          if (vocabError) {
+            console.error("❌ Error saving to vocabulary:", vocabError);
+            console.error(
+              "Full error details:",
+              JSON.stringify(vocabError, null, 2)
+            );
+          } else {
+            console.log("✅ Successfully saved to vocabulary!");
+            console.log("Saved data:", vocabData);
+          }
         }
+      } else {
+        console.warn("⚠️ No translation available, skipping save");
       }
+    } else {
+      console.error("❌ No user found");
     }
 
     setLoading(false);

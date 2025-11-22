@@ -8,9 +8,8 @@ interface VocabularyWord {
   id: string;
   word: string;
   translation: string;
-  source_language: string;
+  native_language: string;
   target_language: string;
-  context_sentence: string | null;
   created_at: string;
 }
 
@@ -127,7 +126,7 @@ export default function BrowseVocabulary() {
 
                 <div className="mb-4">
                   <p className="text-sm text-gray-500">
-                    {languageMap[item.source_language] || item.source_language}
+                    {languageMap[item.native_language] || item.native_language}
                   </p>
                   <p className="text-lg font-semibold text-secondary ">
                     {item.translation}

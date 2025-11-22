@@ -448,11 +448,11 @@ export const reviews = [
     highlight: "learn and practice my spanish",
   },
   {
-    name: "Sophie Andersson",
-    avatar: "SA",
+    name: "Wesley Javorsky",
+    avatar: "WJ",
     rating: 5,
-    text: "Learning two languages at once is easy with FluentRead. Best investment I've made in my language journey!",
-    highlight: "Best investment",
+    text: "I liked the idea, the website is quite good, and it’s appearance is very beautifull",
+    highlight: "it’s appearance is very beautifull",
   },
   {
     name: "David Kim",

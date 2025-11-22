@@ -42,6 +42,23 @@ const languages = [
   { code: "de", name: "German" },
   { code: "zh", name: "Chinese" },
 ];
+const fluentLanguages = [
+  { code: "en", name: "English" },
+  { code: "es", name: "Spanish" },
+  { code: "fr", name: "French" },
+  { code: "de", name: "German" },
+  { code: "zh", name: "Chinese" },
+  { code: "ar", name: "Arabic" },
+  { code: "pt", name: "Portuguese" },
+  { code: "ru", name: "Russian" },
+  { code: "ja", name: "Japanese" },
+  { code: "ko", name: "Korean" },
+  { code: "it", name: "Italian" },
+  { code: "nl", name: "Dutch" },
+  { code: "pl", name: "Polish" },
+  { code: "tr", name: "Turkish" },
+  { code: "hi", name: "Hindi" },
+];
 
 export default function SettingsPage() {
   const [userEmail, setUserEmail] = useState("");
@@ -248,7 +265,7 @@ export default function SettingsPage() {
                         <SelectContent>
                           <SelectGroup>
                             <SelectLabel>Fluent Language</SelectLabel>
-                            {languages.map((lang) => (
+                            {fluentLanguages.map((lang) => (
                               <SelectItem key={lang.code} value={lang.code}>
                                 {lang.name}
                               </SelectItem>
