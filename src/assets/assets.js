@@ -441,8 +441,8 @@ export const reviews = [
     highlight: "The translation is good and clear",
   },
   {
-    name: "Bumhometickler",
-    avatar: "BH",
+    name: "Amanda",
+    avatar: "AM",
     rating: 5,
     text: "Wait omg that's actually really great I've been searching for website where there's spanish book so i can learn and practice my spanish And finnaly found one",
     highlight: "learn and practice my spanish",
