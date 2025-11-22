@@ -194,7 +194,7 @@ const BrowseBooks = () => {
             {filteredBooks.map((book, index) => (
               <Link
                 key={index}
-                href={`/books/read/${encodeURIComponent(book.title)}`}
+                href={`/books/${encodeURIComponent(book.title)}`}
                 className="cursor-pointer group"
               >
                 {/* Book Cover */}

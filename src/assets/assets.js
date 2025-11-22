@@ -242,13 +242,13 @@ import DieLeutevonSeldwylaBandI from "./DieLeutevonSeldwylaBandI.webp";
 export const GermanBooks = [
   {
     title: "Die Regentrude",
-    Author: "Theodor Storm",
+    author: "Theodor Storm",
     cover: DieRegentrude,
     difficulty: "Very Easy",
   },
   {
     title: "Der Schimmelreiter",
-    Author: "Theodor Storm",
+    author: "Theodor Storm",
     cover: DerSchimmelreiter,
     difficulty: "Easy",
   },
@@ -441,11 +441,11 @@ export const reviews = [
     highlight: "The translation is good and clear",
   },
   {
-    name: "Emma Laurent",
-    avatar: "EL",
+    name: "Bumhometickler",
+    avatar: "BH",
     rating: 5,
-    text: "Being able to click on characters and see instant translations with context made everything click.",
-    highlight: "instant translations",
+    text: "Wait omg that's actually really great I've been searching for website where there's spanish book so i can learn and practice my spanish And finnaly found one",
+    highlight: "learn and practice my spanish",
   },
   {
     name: "Sophie Andersson",
