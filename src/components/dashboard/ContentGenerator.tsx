@@ -11,6 +11,8 @@ import {
   Languages,
   Coins,
   ArrowRight,
+  BookOpen,
+  FileText,
 } from "lucide-react";
 import { supabase } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
@@ -51,19 +53,13 @@ const TranslationPopup = ({
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 animate-fadeIn"
         onClick={onClose}
       />
-
-      {/* Popup - Always centered */}
       <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 animate-scaleIn">
         <div className="bg-linear-to-br from-white to-amber-50/30 rounded-2xl shadow-2xl border border-amber-200/50 w-[420px] max-w-[90vw] backdrop-blur-xl overflow-hidden">
-          {/* Decorative linear bar */}
           <div className="h-1.5 bg-linear-to-r from-amber-400 via-orange-400 to-amber-500" />
-
-          {/* Header */}
           <div className="flex items-center justify-between p-5 pb-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-linear-to-br from-amber-100 to-orange-100 rounded-xl">
@@ -83,10 +79,7 @@ const TranslationPopup = ({
               <X className="w-5 h-5 text-gray-400 group-hover:text-gray-600" />
             </button>
           </div>
-
-          {/* Content */}
           <div className="px-5 pb-5 space-y-4">
-            {/* Original text card */}
             <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2 h-2 rounded-full bg-blue-500" />
@@ -98,15 +91,11 @@ const TranslationPopup = ({
                 {word}
               </p>
             </div>
-
-            {/* Arrow indicator */}
             <div className="flex justify-center">
               <div className="p-2 bg-linear-to-r from-amber-100 to-orange-100 rounded-full">
                 <ArrowRight className="w-4 h-4 text-amber-600" />
               </div>
             </div>
-
-            {/* Loading state */}
             {loading && (
               <div className="bg-linear-to-br from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-200/50">
                 <div className="flex flex-col items-center gap-3">
@@ -117,8 +106,6 @@ const TranslationPopup = ({
                 </div>
               </div>
             )}
-
-            {/* Translation result */}
             {!loading && translation && (
               <div className="bg-linear-to-br from-amber-50 to-orange-50 rounded-xl p-4 shadow-sm border border-amber-200/50 animate-slideUp">
                 <div className="flex items-center gap-2 mb-2">
@@ -135,7 +122,6 @@ const TranslationPopup = ({
           </div>
         </div>
       </div>
-
       <style jsx>{`
         @keyframes fadeIn {
           from {
@@ -145,7 +131,6 @@ const TranslationPopup = ({
             opacity: 1;
           }
         }
-
         @keyframes scaleIn {
           from {
             opacity: 0;
@@ -156,7 +141,6 @@ const TranslationPopup = ({
             transform: translate(-50%, -50%) scale(1);
           }
         }
-
         @keyframes slideUp {
           from {
             opacity: 0;
@@ -167,15 +151,12 @@ const TranslationPopup = ({
             transform: translateY(0);
           }
         }
-
         .animate-fadeIn {
           animation: fadeIn 0.2s ease-out;
         }
-
         .animate-scaleIn {
           animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
         .animate-slideUp {
           animation: slideUp 0.4s ease-out;
         }
@@ -224,17 +205,21 @@ export default function ContentGenerator() {
   const [difficulty, setDifficulty] = useState<
     "beginner" | "intermediate" | "advanced"
   >("intermediate");
+
+  // ✨ NEW: Content type state
+  const [contentType, setContentType] = useState<"article" | "story">(
+    "article"
+  );
+
   const [loading, setLoading] = useState(false);
   const [generatedContent, setGeneratedContent] = useState<{
     title: string;
     content: string;
     wordCount: number;
+    contentType: string;
   } | null>(null);
 
-  // ✅ NEW: Credits state
   const [credits, setCredits] = useState<number>(0);
-
-  // Translation states
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [translation, setTranslation] = useState<string | null>(null);
   const [translationLoading, setTranslationLoading] = useState(false);
@@ -242,21 +227,18 @@ export default function ContentGenerator() {
   const [target, setTarget] = useState("");
   const [fluent, setFluent] = useState("");
 
-  // ✅ FETCH USER CREDITS ON COMPONENT MOUNT
   useEffect(() => {
     const fetchUserCredits = async () => {
       try {
         const {
           data: { user },
         } = await supabase.auth.getUser();
-
         if (user) {
           const { data: userData, error } = await supabase
             .from("users")
             .select("credits")
             .eq("id", user.id)
             .single();
-
           if (error) {
             console.error("Error fetching credits:", error);
           } else {
@@ -267,21 +249,31 @@ export default function ContentGenerator() {
         console.error("Error fetching user credits:", error);
       }
     };
-
     fetchUserCredits();
   }, []);
 
-  const popularTopics = [
+  // ✨ NEW: Different suggestions for articles and stories
+  const articleTopics = [
     "Travel & Culture",
     "Technology",
     "Social Issues",
-    "artificial intelligence",
-    "Social media",
+    "Artificial Intelligence",
+    "Social Media",
     "Human Rights",
   ];
 
+  const storyTopics = [
+    "A Lost Dog Finding Its Way Home",
+    "Time Travel Adventure",
+    "Mystery in a Small Town",
+    "Friendship Across Cultures",
+    "A Day in the Life of a Chef",
+    "Magical Garden Discovery",
+  ];
+
+  const popularTopics = contentType === "article" ? articleTopics : storyTopics;
+
   const handleGenerate = async () => {
-    // ✅ CHECK CREDITS BEFORE GENERATING
     if (credits <= 0) {
       alert(
         "You have no credits left. Please purchase more credits to continue."
@@ -302,15 +294,14 @@ export default function ContentGenerator() {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-
       let targetLanguage = "en";
+
       if (user) {
         const { data: userData } = await supabase
           .from("users")
           .select("target_language")
           .eq("id", user.id)
           .single();
-
         targetLanguage = userData?.target_language || "en";
       }
 
@@ -322,6 +313,7 @@ export default function ContentGenerator() {
           wordCount,
           difficulty,
           targetLanguage,
+          contentType, // ✨ NEW: Pass content type to API
         }),
       });
 
@@ -332,12 +324,12 @@ export default function ContentGenerator() {
           title: data.title,
           content: data.content,
           wordCount: data.wordCount,
+          contentType: data.contentType || contentType,
         });
 
-        // ✅ DECREASE CREDITS AFTER SUCCESSFUL GENERATION
         if (user) {
           const { data: updatedProfile, error } = await supabase
-            .from("users") // or "profiles"
+            .from("users")
             .update({ credits: credits - 1 })
             .eq("id", user.id)
             .select("credits")
@@ -390,7 +382,6 @@ export default function ContentGenerator() {
       setFluent(userData?.fluent_language);
       setTarget(userData?.target_language);
 
-      // Get translation
       const response = await fetch("/api/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -405,26 +396,48 @@ export default function ContentGenerator() {
       const translatedText = result.translation || "Translation unavailable";
       setTranslation(translatedText);
 
-      // ✅ AUTO-SAVE TO VOCABULARY TABLE
       if (result.translation) {
-        const { error } = await supabase.from("vocabulary").upsert(
-          {
-            user_id: user.id,
-            word: cleanWord,
-            translation: translatedText,
-            source_language: userData?.fluent_language || "en",
-            target_language: userData?.target_language || "ar",
-            context_sentence: null,
-          },
-          {
-            onConflict: "user_id,word,source_language,target_language",
-            ignoreDuplicates: true,
-          }
-        );
+        console.log("💾 Attempting to save vocabulary...");
 
-        if (error) {
-          console.error("Error saving to vocabulary:", error);
+        const vocabEntry = {
+          user_id: user.id,
+          word: cleanWord,
+          translation: translatedText,
+          target_language: userData?.target_language || "ar",
+          native_language: userData?.fluent_language || "en",
+        };
+
+        console.log("📝 Vocab entry to save:", vocabEntry);
+
+        // First check if word already exists
+        const { data: existing } = await supabase
+          .from("vocabulary")
+          .select("id")
+          .eq("user_id", user.id)
+          .eq("word", cleanWord)
+          .single();
+
+        if (existing) {
+          console.log("ℹ️ Word already exists in vocabulary, skipping...");
+        } else {
+          // Insert new word
+          const { data: vocabData, error: vocabError } = await supabase
+            .from("vocabulary")
+            .insert(vocabEntry);
+
+          if (vocabError) {
+            console.error("❌ Error saving to vocabulary:", vocabError);
+            console.error(
+              "Full error details:",
+              JSON.stringify(vocabError, null, 2)
+            );
+          } else {
+            console.log("✅ Successfully saved to vocabulary!");
+            console.log("Saved data:", vocabData);
+          }
         }
+      } else {
+        console.warn("⚠️ No translation available, skipping save");
       }
     }
 
@@ -440,7 +453,6 @@ export default function ContentGenerator() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-5xl mx-auto">
-        {/* ✅ NO CREDITS WARNING */}
         {credits === 0 && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-start gap-3">
             <Coins className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
@@ -462,7 +474,6 @@ export default function ContentGenerator() {
           </div>
         )}
 
-        {/* LinguaBot Welcome Message */}
         {!generatedContent && !loading && (
           <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 flex items-start gap-3">
             <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
@@ -470,32 +481,120 @@ export default function ContentGenerator() {
             </div>
             <div>
               <h3 className="font-semibold text-gray-900 text-sm mb-1">
-                Welcome to FluentsBot
+                Welcome to FluencyBot
               </h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                What topic would you like to explore and learn from today?
-                I&lsquo;ll create personalized reading content tailored to your
-                language level and interests.
+                What would you like to explore today? Choose between educational
+                articles or engaging stories, and I&lsquo;ll create personalized
+                content tailored to your language level.
               </p>
             </div>
           </div>
         )}
 
-        {/* Content Settings Card */}
         <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
           <h2 className="text-lg font-bold text-gray-900 mb-4">
             Content Settings
           </h2>
 
-          {/* Topic Input */}
+          {/* ✨ NEW: Content Type Selector */}
           <div className="mb-4">
             <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Choose Your Topic
+              Content Type
+            </label>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={() => {
+                  setContentType("article");
+                  setTopic(""); // Clear topic when switching
+                }}
+                disabled={credits === 0}
+                className={`p-4 rounded-lg border-2 transition-all ${
+                  contentType === "article"
+                    ? "border-primary bg-blue-50"
+                    : "border-gray-200 hover:border-gray-300"
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`p-2 rounded-lg ${
+                      contentType === "article"
+                        ? "bg-primary/10"
+                        : "bg-gray-100"
+                    }`}
+                  >
+                    <FileText
+                      className={`w-5 h-5 ${
+                        contentType === "article"
+                          ? "text-primary"
+                          : "text-gray-600"
+                      }`}
+                    />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-sm text-gray-900">
+                      Article
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      Educational content
+                    </div>
+                  </div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => {
+                  setContentType("story");
+                  setTopic(""); // Clear topic when switching
+                }}
+                disabled={credits === 0}
+                className={`p-4 rounded-lg border-2 transition-all ${
+                  contentType === "story"
+                    ? "border-primary bg-blue-50"
+                    : "border-gray-200 hover:border-gray-300"
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`p-2 rounded-lg ${
+                      contentType === "story" ? "bg-primary/10" : "bg-gray-100"
+                    }`}
+                  >
+                    <BookOpen
+                      className={`w-5 h-5 ${
+                        contentType === "story"
+                          ? "text-primary"
+                          : "text-gray-600"
+                      }`}
+                    />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-sm text-gray-900">
+                      Story
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      Creative narrative
+                    </div>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-semibold text-gray-900 mb-2">
+              {contentType === "article"
+                ? "Choose Your Topic"
+                : "Story Theme or Prompt"}
             </label>
             <textarea
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
-              placeholder="e.g., Travel in Paris, Italian cooking, AI and technology..."
+              placeholder={
+                contentType === "article"
+                  ? "e.g., Travel in Paris, Italian cooking, AI and technology..."
+                  : "e.g., A mysterious package arrives, An unexpected journey, A talking cat..."
+              }
               className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-primary resize-none"
               rows={3}
               disabled={credits === 0}
@@ -504,7 +603,6 @@ export default function ContentGenerator() {
               {topic.length} characters (min 10)
             </p>
 
-            {/* Popular Topics */}
             <div className="mt-3 flex flex-wrap gap-2">
               {popularTopics.map((t) => (
                 <button
@@ -519,7 +617,6 @@ export default function ContentGenerator() {
             </div>
           </div>
 
-          {/* Content Length & Difficulty */}
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block text-sm font-semibold text-gray-900 mb-2">
@@ -531,11 +628,11 @@ export default function ContentGenerator() {
                 disabled={credits === 0}
                 className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-primary bg-white disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <option value={1000}>1,000 words (~5 min)</option>
-                <option value={2000}>2,000 words (~10 min)</option>
-                <option value={3000}>3,000 words (~15 min)</option>
-                <option value={4000}>4,000 words (~20 min)</option>
-                <option value={5000}>5,000 words (~25 min)</option>
+                <option value={1000}>Less than 1,000 words</option>
+                <option value={2000}>Less than 2,000 words</option>
+                <option value={3000}>Less than 3,000 words</option>
+                <option value={4000}>Less than 4,000 words</option>
+                <option value={5000}>Less than 5,000 words</option>
               </select>
             </div>
 
@@ -556,7 +653,6 @@ export default function ContentGenerator() {
             </div>
           </div>
 
-          {/* Generate Button */}
           <button
             onClick={handleGenerate}
             disabled={loading || topic.length < 10 || credits === 0}
@@ -574,19 +670,25 @@ export default function ContentGenerator() {
               </>
             ) : (
               <>
-                <Sparkles className="w-4 h-4" />
-                Generate Content (1 credit)
+                {contentType === "article" ? (
+                  <FileText className="w-4 h-4" />
+                ) : (
+                  <BookOpen className="w-4 h-4" />
+                )}
+                Generate {contentType === "article" ? "Article" : "Story"} (1
+                credit)
               </>
             )}
           </button>
         </div>
 
-        {/* Loading State */}
         {loading && (
           <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
             <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Crafting your personalized content...
+              {contentType === "article"
+                ? "Crafting your personalized article..."
+                : "Writing your story..."}
             </h3>
             <p className="text-sm text-gray-600">
               This may take a minute. We&#39;re creating something special for
@@ -595,11 +697,19 @@ export default function ContentGenerator() {
           </div>
         )}
 
-        {/* Generated Content */}
         {generatedContent && (
           <div>
-            {/* Content Header */}
             <div className="mb-4">
+              <div className="flex items-center gap-2 mb-3">
+                {generatedContent.contentType === "story" ? (
+                  <BookOpen className="w-5 h-5 text-primary" />
+                ) : (
+                  <FileText className="w-5 h-5 text-primary" />
+                )}
+                <span className="text-xs font-semibold text-primary uppercase">
+                  {generatedContent.contentType}
+                </span>
+              </div>
               <h1 className="text-3xl font-bold text-gray-900 mb-3">
                 {generatedContent.title}
               </h1>
@@ -617,7 +727,6 @@ export default function ContentGenerator() {
               </div>
             </div>
 
-            {/* Content Body */}
             <div
               className="bg-white rounded-xl border border-gray-200 p-8 mb-4 cursor-text"
               onClick={(e) => handleTextClick(e, handleWordClick)}
@@ -627,7 +736,6 @@ export default function ContentGenerator() {
               </div>
             </div>
 
-            {/* Action Buttons */}
             <div className="flex gap-3">
               <button
                 onClick={handleCopy}
@@ -647,7 +755,6 @@ export default function ContentGenerator() {
           </div>
         )}
 
-        {/* Translation Popup */}
         {selectedWord && (
           <TranslationPopup
             word={selectedWord}

@@ -62,17 +62,17 @@ export default function NotFound() {
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link
-              href="/custom-text"
+              href="/personal-library"
               className="text-sm text-primary hover:underline"
             >
-              Custom Text
+              Personal Library
             </Link>
             <span className="text-gray-300">•</span>
             <Link
-              href="/content-generator"
+              href="/ai-creator"
               className="text-sm text-primary hover:underline"
             >
-              Content Generator
+              Ai creator
             </Link>
             <span className="text-gray-300">•</span>
             <Link

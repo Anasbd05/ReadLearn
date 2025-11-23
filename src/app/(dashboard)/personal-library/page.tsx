@@ -51,14 +51,14 @@ export default async function Page() {
         {/* Page Content */}
         <section className="flex flex-1 flex-col gap-4 p-4 pt-0">
           <div className="w-full min-h-screen bg-muted/50 rounded-xl p-6">
-            <h1 className="text-2xl font-semibold">My Imported Texts</h1>
+            <h1 className="text-2xl font-semibold">My Personal Library</h1>
 
             <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
               {data && data.length > 0 ? (
                 data.map((text) => (
                   <Link
                     key={text.id}
-                    href={`/custom-text/${text.title.replaceAll(" ", "")}`}
+                    href={`/personal-library/${text.title.replaceAll(" ", "")}`}
                     className="flex gap-3 p-5 cursor-pointer group items-start border rounded-lg bg-background shadow-sm hover:shadow-md transition"
                   >
                     <div className="flex flex-col gap-2">
@@ -75,10 +75,11 @@ export default async function Page() {
                 <div className="col-span-full flex flex-col items-center justify-center py-16 text-center">
                   <FileText className="w-16 h-16 text-muted-foreground/40 mb-4" />
                   <h3 className="text-lg font-medium text-foreground mb-2">
-                    No texts yet
+                    Your Personal Library is Empty
                   </h3>
                   <p className="text-sm text-muted-foreground mb-6">
-                    Get started by importing your first text
+                    Start building your collection by importing texts, stories,
+                    or articles to practice with
                   </p>
                 </div>
               )}

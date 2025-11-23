@@ -44,7 +44,7 @@ const Addtext = () => {
 
     // ✅ Validation
     if (!textContent.trim()) {
-      toast.error("Please fill in the text content");
+      toast.error("Please add your text content");
       return;
     }
 
@@ -68,7 +68,7 @@ const Addtext = () => {
         return;
       }
 
-      toast.success("Text saved successfully! ✅");
+      toast.success("Added to your library! ✅");
 
       // Reset form
       setTextTitle("");
@@ -88,16 +88,19 @@ const Addtext = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="mx-4">
-          Add Text
+        <Button
+          variant="outline"
+          className="mx-4 hover:bg-primary hover:text-white cursor-pointer "
+        >
+          Import content
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={add}>
           <DialogHeader>
-            <DialogTitle>Add Text</DialogTitle>
+            <DialogTitle>Import to Your Library</DialogTitle>
             <DialogDescription>
-              Create and save a target text to learn from.
+              Add any text, story, or article you want to read and learn from.
             </DialogDescription>
           </DialogHeader>
 
@@ -108,7 +111,7 @@ const Addtext = () => {
                 value={textTitle}
                 onChange={(e) => setTextTitle(e.target.value)}
                 id="audience-name"
-                placeholder="Add a short title (optional)"
+                placeholder="e.g., My Favorite Story (optional)"
                 disabled={loading}
               />
             </div>
@@ -122,7 +125,7 @@ const Addtext = () => {
                 onChange={(e) => setTextContent(e.target.value)}
                 className="h-36 text-sm rounded-md border bg-transparent px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
                 id="target-description"
-                placeholder="Type or paste your text"
+                placeholder="Paste or type your text here..."
                 required
                 disabled={loading}
               />
@@ -149,10 +152,10 @@ const Addtext = () => {
               {loading ? (
                 <>
                   <Loader className="h-4 w-4 animate-spin mr-2" />
-                  Saving...
+                  Adding...
                 </>
               ) : (
-                "Save"
+                "Add to Library"
               )}
             </Button>
           </DialogFooter>

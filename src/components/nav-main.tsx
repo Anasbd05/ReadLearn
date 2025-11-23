@@ -20,13 +20,13 @@ export function NavMain() {
       icon: Book,
     },
     {
-      title: "Import Text",
-      url: "/custom-text",
+      title: "Personal Library",
+      url: "/personal-library",
       icon: TextInitial,
     },
     {
-      title: "Generate Content",
-      url: "/content-generator",
+      title: "Ai Creator",
+      url: "/ai-creator",
       icon: Sparkles,
     },
     {
