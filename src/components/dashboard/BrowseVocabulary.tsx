@@ -98,7 +98,7 @@ export default function BrowseVocabulary() {
             </p>
           </div>
         ) : (
-          <div className="columns-2 lg:columns-3 gap-6">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
             {" "}
             {vocabulary.map((item) => (
               <div

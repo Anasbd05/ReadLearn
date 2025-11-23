@@ -68,11 +68,11 @@ export default function MobileNav({ user }: MobileNavProps) {
               Pricing
             </Link>
             <Link
-              href="#faqs"
+              href="#FAQ"
               onClick={toggleMenu}
               className="font-medium text-lg hover:text-primary py-2 border-b border-gray-200"
             >
-              FAQs
+              FAQ
             </Link>
           </nav>
 

@@ -188,9 +188,9 @@ export default function SettingsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-4 sm:p-6">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 transition-colors"
@@ -198,12 +198,14 @@ export default function SettingsPage() {
             <ArrowLeft className="w-5 h-5" />
             Back
           </button>
-          <h1 className="text-4xl font-bold text-gray-900">Settings</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+            Settings
+          </h1>
         </div>
 
-        <div className="flex gap-6">
+        <div className="flex flex-col lg:flex-row gap-6">
           {/* Sidebar */}
-          <div className="w-80 shrink-0">
+          <div className="w-full lg:w-80 lg:shrink-0">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
               <button className="w-full px-6 py-4 text-left font-medium transition-colors bg-gray-900 text-white">
                 General
@@ -215,8 +217,8 @@ export default function SettingsPage() {
           <div className="flex-1">
             <div className="space-y-6">
               {/* Profile Section */}
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-8">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
                   Profile
                 </h2>
 
@@ -224,13 +226,15 @@ export default function SettingsPage() {
                   <div className="w-12 h-12 rounded-full bg-linear-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white text-lg font-bold shrink-0">
                     {getInitials(userEmail)}
                   </div>
-                  <p className="text-gray-900 text-lg">{userEmail}</p>
+                  <p className="text-gray-900 text-base sm:text-lg break-all">
+                    {userEmail}
+                  </p>
                 </div>
               </div>
 
               {/* Language Settings */}
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-8">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
                   Languages
                 </h2>
 
@@ -247,7 +251,7 @@ export default function SettingsPage() {
                 )}
 
                 <form onSubmit={handleLanguageUpdate}>
-                  <div className="grid grid-cols-2 gap-6 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                     {/* Fluent Language */}
                     <div>
                       <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
@@ -324,23 +328,23 @@ export default function SettingsPage() {
               </div>
 
               {/* Actions */}
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-                <div className="flex gap-4">
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-8">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     onClick={handleLogout}
-                    className="flex items-center gap-2 px-6 py-2 hover:bg-red-100 text-red-600 rounded-md transition-all"
+                    className="flex items-center justify-center sm:justify-start gap-2 px-6 py-2 hover:bg-red-100 text-red-600 rounded-md transition-all"
                   >
                     <LogOut className="size-5 text-destructive" />
                     Logout
                   </button>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
-                      <button className="flex items-center gap-2 px-6 py-2 hover:bg-red-600 border  hover:text-white rounded-md transition-all">
+                      <button className="flex items-center justify-center sm:justify-start gap-2 px-6 py-2 hover:bg-red-600 border hover:text-white rounded-md transition-all">
                         <Trash2 className="size-5" />
                         Delete
                       </button>
                     </AlertDialogTrigger>
-                    <AlertDialogContent>
+                    <AlertDialogContent className="max-w-[90vw] sm:max-w-lg">
                       <AlertDialogHeader>
                         <AlertDialogTitle>
                           Are you absolutely sure?
@@ -351,8 +355,10 @@ export default function SettingsPage() {
                           servers.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogFooter className="flex-col sm:flex-row gap-2">
+                        <AlertDialogCancel className="m-0">
+                          Cancel
+                        </AlertDialogCancel>
                         <AlertDialogAction onClick={handleDeleteAccount}>
                           Delete
                         </AlertDialogAction>

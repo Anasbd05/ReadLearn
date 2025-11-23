@@ -145,7 +145,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-gray-400 py-6 flex justify-center w-full">
         <p className="text-gray-800 text-sm">
-          © {currentYear} FluentRead. All rights reserved.
+          © {currentYear} FluencyWave. All rights reserved.
         </p>
       </div>
     </footer>
