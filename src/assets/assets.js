@@ -455,10 +455,10 @@ export const reviews = [
     highlight: "it’s appearance is very beautifull",
   },
   {
-    name: "David Kim",
-    avatar: "DK",
+    name: "karim",
+    avatar: "KR",
     rating: 5,
-    text: "I've made more progress in 6 weeks than I did in a year of evening classes. Perfect for busy professionals.",
-    highlight: "6 weeks",
+    text: "i think the idea is good translations and vocabulary lists are good",
+    highlight: "translations and vocabulary lists are good",
   },
 ];
