@@ -2,38 +2,50 @@
 "use client";
 import { useTransform, motion, useScroll, MotionValue } from "framer-motion";
 import { useRef } from "react";
-import { BookOpen, MousePointerClick, Star, Check } from "lucide-react";
+import { BookOpen, MousePointerClick, Star, Check, Target } from "lucide-react";
 
 const steps = [
   {
     step: "Step 1",
+    title: "Set Your Target Language",
+    features: [
+      "Choose your target language",
+      "Switch languages anytime you want",
+      "Learn multiple languages at your pace",
+    ],
+    icon: Target,
+    color: "#F9F8F6",
+  },
+  {
+    step: "Step 2",
     title: "Choose Your Content",
     features: [
-      "Discover & choose from book library",
-      "Import your own text",
-      "Create content using AI",
+      "Read books in your target language",
+      "Generate articles on any topic with AI",
+      "Create personalized stories using AI",
+      "Import your own articles, stories, or text",
     ],
     icon: BookOpen,
     color: "#F9F8F6",
   },
   {
-    step: "Step 2",
-    title: "Read & Translate",
+    step: "Step 3",
+    title: "Read & Translate Instantly",
     features: [
-      "Click-to-translate any word",
-      "View definition, context & pronunciation",
-      "Seamless reading experience",
+      "Tap or select any word you don't understand",
+      "Get full translation in your native language",
+      "Seamless reading with instant help",
     ],
     icon: MousePointerClick,
     color: "#F9F8F6",
   },
   {
-    step: "Step 3",
-    title: "Build Your Vocabulary",
+    step: "Step 4",
+    title: "Track Your Vocabulary",
     features: [
-      "Bookmark words instantly",
-      "Star difficult words for review",
-      "Track your learning progress",
+      "View all learned vocabularies",
+      "See translations in your native language",
+      "Review and track your progress",
     ],
     icon: Star,
     color: "#F9F8F6",

@@ -440,11 +440,11 @@ export const reviews = [
     highlight: "The translation is good and clear",
   },
   {
-    name: "karim",
-    avatar: "KR",
+    name: "Hamza",
+    avatar: "HZ",
     rating: 5,
-    text: "i think the idea is good translations and vocabulary lists are good",
-    highlight: "translations and vocabulary lists are good",
+    text: "The website is amazing for learning English. The design is clean and user‑friendly, and it is very easy to navigate.",
+    highlight: "The design is clean and user‑friendly",
   },
   {
     name: "Amanda",
@@ -466,5 +466,12 @@ export const reviews = [
     rating: 5,
     text: "Love the idea! Honestly I've heard from friends that the way they made language learning fun is by reading children books and going up the grade ladder.",
     highlight: "language learning fun is by reading",
+  },
+  {
+    name: "karim",
+    avatar: "KR",
+    rating: 5,
+    text: "i think the idea is good translations and vocabulary lists are good",
+    highlight: "translations and vocabulary lists are good",
   },
 ];
