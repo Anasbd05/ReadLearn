@@ -1,0 +1,37 @@
+# FluencyWave – Learn Languages by Reading
+
+FluencyWave is a platform designed to help users learn languages through reading. It offers instant translations, vocabulary expansion, and the ability to create AI-powered stories on various topics, emphasizing that reading is the quickest route to fluency.
+
+## Core Features
+
+[FluencyWave](https://fluencywave.com/): An overview of the FluencyWave platform, highlighting its mission to facilitate language learning through reading.
+
+[Features](https://fluencywave.com/#features): A detailed description of the various features offered by FluencyWave, including instant translations, vocabulary building tools, and interactive reading experiences.
+
+[AI Generator](https://fluencywave.com/content-generator): Information on the AI-powered story generation tool that allows users to create narratives on any topic, enhancing their language learning experience.
+
+[Book Library](https://fluencywave.com/books): A comprehensive collection of books available for reading in multiple languages, designed to cater to different proficiency levels and interests.
+
+## User Engagement
+
+[Reviews](https://fluencywave.com/#reviews): Testimonials and feedback from users who have experienced the benefits of using FluencyWave for language learning.
+
+[FAQ](https://fluencywave.com/#FAQ): A section addressing common questions and concerns about the platform, its features, and usage.
+
+## Account Management
+
+[Login](https://fluencywave.com/login): Access point for users to log into their FluencyWave accounts to track progress and manage their learning experience.
+
+## Policies
+
+[Privacy Policy](https://fluencywave.com/privacy-policy): Details regarding the handling of user data and privacy practices implemented by FluencyWave.
+
+[Terms of use](https://fluencywave.com/terms-of-use): The legal agreements and terms governing the use of the FluencyWave platform, outlining user rights and responsibilities.
+
+## Pricing
+
+[Pricing](https://fluencywave.com/#pricing): Information on the subscription plans and pricing options available for users interested in accessing FluencyWave's features. 
+
+## How It Works
+
+[How it works](https://fluencywave.com/#how-it-works): An explanation of the methodology behind FluencyWave's approach to language learning through reading, including the technology and techniques employed.
