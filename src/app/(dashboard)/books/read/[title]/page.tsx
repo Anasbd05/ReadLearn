@@ -91,7 +91,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-12">
+      <main className=" lg:max-w-5xl mx-auto px-2 lg:px-6 py-12">
         <div className="mb-10">
           <div className="flex items-center justify-between mb-4">
             <div className="bg-amber-100 text-amber-800 px-6 py-3 rounded-full text-sm font-semibold">

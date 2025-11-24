@@ -1,4 +1,4 @@
-// ✅ Updated BookContentWithTranslation with modern centered popup
+// ✅ Updated BookContentWithTranslation with mobile selection support
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
@@ -269,6 +269,7 @@ export default function BookContentWithTranslation({
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [fluent, setFluent] = useState("en");
   const [target, setTarget] = useState("ar");
+  const selectionTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const handleWordClick = async (word: string, x: number, y: number) => {
     const cleanWord = word.replace(/[.,!?;:'"]/g, "").toLowerCase();
@@ -373,9 +374,47 @@ export default function BookContentWithTranslation({
     setLoading(false);
   };
 
+  // Handle text selection on mobile and desktop
+  React.useEffect(() => {
+    const handleSelectionChange = () => {
+      // Clear any pending timeout
+      if (selectionTimeoutRef.current) {
+        clearTimeout(selectionTimeoutRef.current);
+      }
+
+      // Wait a bit for selection to complete
+      selectionTimeoutRef.current = setTimeout(() => {
+        const selection = window.getSelection();
+        const selectedText = selection?.toString().trim();
+
+        if (selectedText && selectedText.length > 0) {
+          const range = selection?.getRangeAt(0);
+          const rect = range?.getBoundingClientRect();
+
+          if (rect) {
+            // Calculate center position of selection
+            const x = rect.left + rect.width / 2;
+            const y = rect.top;
+
+            handleWordClick(selectedText, x, y);
+          }
+        }
+      }, 300); // Wait 300ms for selection to complete
+    };
+
+    document.addEventListener("selectionchange", handleSelectionChange);
+
+    return () => {
+      document.removeEventListener("selectionchange", handleSelectionChange);
+      if (selectionTimeoutRef.current) {
+        clearTimeout(selectionTimeoutRef.current);
+      }
+    };
+  }, [fluent, target]); // Re-run if languages change
+
   return (
     <>
-      <article className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8 border border-amber-100">
+      <article className="bg-white rounded-2xl shadow-xl p-4 lg:p-8 md:p-12 mb-8 border border-amber-100">
         <div className="prose prose-lg prose-amber max-w-none">
           {renderChapterContent(content, handleWordClick)}
         </div>
