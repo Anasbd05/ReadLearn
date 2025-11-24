@@ -10,8 +10,7 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title:
-    "FluencyWave – Learn Languages by Reading Books with Instant Translations & AI Stories",
+  title: "FluencyWave – Learn Languages by Reading",
   description:
     "Learn languages by reading books. Get instant translations, expand your vocabulary naturally, and create AI-powered stories on any topic. Reading is the fastest path to fluency.",
 };

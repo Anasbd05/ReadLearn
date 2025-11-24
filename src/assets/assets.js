@@ -380,34 +380,40 @@ export const ChineseBooks = [
 
 export const features = [
   {
-    icon: BookText,
-    title: "Import Any Content",
-    description:
-      "Add your own text, create custom stories, notes, or learning scripts. Build your personal reading library. Save unlimited content — any length.",
-  },
-  {
     icon: Target,
-    title: "Instant Word Translation",
+    title: "Flexible Language Learning",
     description:
-      "Tap or highlight any word or line in your text to see it instantly translated into your language.",
-  },
-  {
-    icon: Bookmark,
-    title: "Smart Vocabulary Builder",
-    description:
-      "Any word or line you click or select is automatically added to your personal vocabulary for easy reference.",
-  },
-  {
-    icon: Sparkles,
-    title: "AI Content Generator",
-    description:
-      "Create personalized reading material. Choose your topics and interests. Adjust difficulty level (A1-C2). Get content tailored to your level.",
+      "Switch between target languages anytime you want. Learn at your own pace and explore multiple languages whenever you choose.",
   },
   {
     icon: Library,
-    title: "Curated Book Library",
+    title: "Read Books in Your Target Language",
     description:
-      "Access a small selection of books with more coming soon. From classic literature to modern stories, filtered by difficulty and genre.",
+      "Access books in your target language with instant translation support. Tap any word or line you don't understand to see the full translation in your native language.",
+  },
+  {
+    icon: Sparkles,
+    title: "AI Article Generator",
+    description:
+      "Generate articles on any topic you want using AI. Perfect for learning vocabulary in specific fields. Click any word or line for instant translation to your native language.",
+  },
+  {
+    icon: BookText,
+    title: "AI Story Generator",
+    description:
+      "Create personalized stories using AI. Choose your themes and let AI craft engaging narratives. Tap any word or line you don't understand for immediate translation.",
+  },
+  {
+    icon: Bookmark,
+    title: "Import Your Own Content",
+    description:
+      "Import your own articles, stories, or any text you want to read. Build your personal reading library with unlimited content of any length.",
+  },
+  {
+    icon: Target,
+    title: "Smart Vocabulary Tracker",
+    description:
+      "View all the vocabularies you've learned in your target language with translations in your native language. Track your progress and review anytime.",
   },
 ];
 
@@ -418,6 +424,34 @@ export const reviews = [
     rating: 5,
     text: "Love the concept - learning through real content is the most natural method. The UI looks clean and focused.",
     highlight: "learning through real content is the most natural method",
+  },
+  {
+    name: "Wesley Javorsky",
+    avatar: "WJ",
+    rating: 5,
+    text: "I liked the idea, the website is quite good, and it’s appearance is very beautifull",
+    highlight: "it’s appearance is very beautifull",
+  },
+  {
+    name: "Sara Moon",
+    avatar: "SM",
+    rating: 5,
+    text: "The translation is good and clear. As for how user friendly it is, I’m not completely sure. I find it easy to understand.",
+    highlight: "The translation is good and clear",
+  },
+  {
+    name: "karim",
+    avatar: "KR",
+    rating: 5,
+    text: "i think the idea is good translations and vocabulary lists are good",
+    highlight: "translations and vocabulary lists are good",
+  },
+  {
+    name: "Amanda",
+    avatar: "AM",
+    rating: 5,
+    text: "Wait omg that's actually really great I've been searching for website where there's spanish book so i can learn and practice my spanish And finnaly found one",
+    highlight: "learn and practice my spanish",
   },
   {
     name: "Nellie",
@@ -432,33 +466,5 @@ export const reviews = [
     rating: 5,
     text: "Love the idea! Honestly I've heard from friends that the way they made language learning fun is by reading children books and going up the grade ladder.",
     highlight: "language learning fun is by reading",
-  },
-  {
-    name: "Moon X",
-    avatar: "MX",
-    rating: 5,
-    text: "The translation is good and clear. As for how user friendly it is, I’m not completely sure. I find it easy to understand.",
-    highlight: "The translation is good and clear",
-  },
-  {
-    name: "Amanda",
-    avatar: "AM",
-    rating: 5,
-    text: "Wait omg that's actually really great I've been searching for website where there's spanish book so i can learn and practice my spanish And finnaly found one",
-    highlight: "learn and practice my spanish",
-  },
-  {
-    name: "Wesley Javorsky",
-    avatar: "WJ",
-    rating: 5,
-    text: "I liked the idea, the website is quite good, and it’s appearance is very beautifull",
-    highlight: "it’s appearance is very beautifull",
-  },
-  {
-    name: "karim",
-    avatar: "KR",
-    rating: 5,
-    text: "i think the idea is good translations and vocabulary lists are good",
-    highlight: "translations and vocabulary lists are good",
   },
 ];
