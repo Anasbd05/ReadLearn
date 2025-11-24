@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/utils/supabase/client";
-import { Check, Loader2 } from "lucide-react";
+import { Check, Loader2, Star } from "lucide-react";
 
 type Product = {
   product_id: number;
@@ -19,7 +19,7 @@ const MStarterFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "10 AI content generations per month",
+  "10 AI articles & stories generation per month",
   "Progress analytics",
   "Priority support",
 ];
@@ -28,7 +28,7 @@ const MProFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "30 AI content generation per month",
+  "30 AI articles & stories generation per month",
   "Progress analytics",
   "Priority support",
 ];
@@ -37,7 +37,7 @@ const YStarterFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "120 AI content generations per year",
+  "120 AI articles & stories generation per year",
   "Progress analytics",
   "Priority support",
 ];
@@ -45,7 +45,7 @@ const YProFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "365 AI content generation per year",
+  "365 AI articles & stories generation per year",
   "Progress analytics",
   "Priority support",
 ];
@@ -117,31 +117,62 @@ const PricingCards = ({
     }
   };
 
+  let oldPrice;
+  switch (product.price) {
+    case 520: // $5.20
+      oldPrice = 800; // $8
+      break;
+    case 910: // $9.10
+      oldPrice = 1400; // $14
+      break;
+    case 5200: // $52
+      oldPrice = 8000; // $80
+      break;
+    case 9100: // $91
+      oldPrice = 14000; // $140
+      break;
+    default:
+      oldPrice = product.price; // fallback to same price
+  }
+
   // ✅ Component UI
   return (
     <div
-      className={` p-6 shadow-lg flex flex-col h-full gap-5 lg:gap-7 rounded-lg ${
+      className={`rounded-2xl shadow-sm py-5 px-6 flex flex-col justify-between ${
         product.name === "Pro"
-          ? " border-2 border-[#132440]"
-          : " border border-muted "
-      } `}
+          ? "border-[.5px] relative border-black"
+          : "border-[.5px] border-neutral-200"
+      }`}
     >
-      <div>
-        <h2 className="text-lg lg:text-xl font-bold ">{product.name}</h2>
-        <p className=" mt-1 text-neutral-700">{product.description}</p>
-      </div>
-      <div className="flex gap-1 items-end">
-        <h1 className="text-5xl tracking-tight font-extrabold">
-          ${product.price / 100}{" "}
-        </h1>
-        <span className=" text-neutral-500 lg:text-lg font-medium ">
-          /{billingCycle === "monthly" ? "month" : "year"}
-        </span>
-      </div>
+      <main className="flex flex-col">
+        {product.name === "Creators" && (
+          <div className="flex gap-2 absolute -top-3 py-1 px-2 bg-black items-center justify-center rounded-md">
+            <Star className="w-3 h-3 text-white" />
+            <p className="text-xs text-white">Best</p>
+          </div>
+        )}
+        <h2 className="text-xl font-bold text-black capitalize">
+          {product.name}
+        </h2>
+
+        <p className="text-gray-700 mt-2">{product.description}</p>
+
+        <div className="flex items-center gap-2 ">
+          <span className="text-neutral-800 text-3xl line-through">
+            ${oldPrice / 100}
+          </span>
+          <div className="flex my-8 items-end gap-1">
+            <p className="font-semibold text-4xl">${product.price / 100}</p>
+            <span className="text-neutral-500 text-lg">
+              /{billingCycle === "monthly" ? "month" : "year"}
+            </span>
+          </div>
+        </div>
+      </main>
 
       {/* ✅ Render the features */}
       {billingCycle === "monthly" ? (
-        <ul className=" flex flex-col gap-3 ">
+        <ul className=" flex flex-col gap-2 mb-4 ">
           {Mfeatures.map((feature, i) => (
             <div className=" flex gap-2 items-center " key={i}>
               <Check className=" text-primary w-5 h-5 " />
@@ -150,7 +181,7 @@ const PricingCards = ({
           ))}
         </ul>
       ) : (
-        <ul className=" flex flex-col gap-3 ">
+        <ul className=" flex flex-col gap-2 mb-4 ">
           {Yfeatures.map((feature, i) => (
             <div className=" flex gap-2 items-center " key={i}>
               <Check className=" text-primary w-5 h-5 " />
@@ -162,7 +193,11 @@ const PricingCards = ({
 
       {user ? (
         <button
-          className=" hover:bg-secondary  py-2.5 cursor-pointer bg-[#132440] hover:-translate-1 duration-500 hover:shadow-[3px_3px_#000] rounded-lg w-full flex justify-center text-white font-semibold "
+          className={`w-full mt-4 rounded-md ${
+            product.name === "Pro"
+              ? "bg-black hover:opacity-85 flex justify-center duration-500 border-[.3px] text-white cursor-pointer font-medium py-2.5"
+              : "bg-gray-50 hover:bg-gray-200 flex justify-center duration-500 border-[.3px] border-neutral-200 cursor-pointer font-medium py-2.5"
+          }`}
           onClick={() =>
             checkoutProduct(product.product_id, product.is_recurring)
           }
@@ -179,7 +214,11 @@ const PricingCards = ({
       ) : (
         <Link
           href="/login"
-          className=" hover:bg-secondary  py-2.5 cursor-pointer bg-[#132440] hover:-translate-1 duration-500 hover:shadow-[3px_3px_#000] rounded-lg w-full flex justify-center text-white font-semibold "
+          className={`w-full mt-4 rounded-md ${
+            product.name === "Pro"
+              ? "bg-black hover:opacity-85 flex justify-center duration-500 border-[.3px] text-white cursor-pointer font-medium py-2.5"
+              : "bg-gray-50 hover:bg-gray-200 flex justify-center duration-500 border-[.3px] border-neutral-200 cursor-pointer font-medium py-2.5"
+          }`}
         >
           {loading ? (
             <div className=" flex gap-2 justify-center items-center ">

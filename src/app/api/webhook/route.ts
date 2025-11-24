@@ -51,7 +51,7 @@ export async function POST(request: Request) {
           if (amount === 5.2) credits = 10;
           if (amount === 52) credits = 120;
           if (amount === 9.1) credits = 30;
-          if (amount === 90) credits = 365;
+          if (amount === 92) credits = 365;
 
           let ProductPlan = "free";
 

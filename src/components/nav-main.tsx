@@ -53,7 +53,9 @@ export function NavMain() {
             <SidebarMenuItem>
               <SidebarMenuButton tooltip={item.title}>
                 {item.icon && <item.icon />}
-                <span className=" font-medium text-black ">{item.title}</span>
+                <span className=" font-medium text-black cursor-pointer ">
+                  {item.title}
+                </span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </Link>
