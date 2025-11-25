@@ -8,5 +8,5 @@ if (!apiKey) {
 
 export const dodopayments = new DodoPayments({
   bearerToken: apiKey,
-  environment: "live_mode",
+  environment: "test_mode",
 });

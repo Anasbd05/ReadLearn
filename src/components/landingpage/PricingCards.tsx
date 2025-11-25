@@ -58,17 +58,53 @@ const PricingCards = ({
   billingCycle: "monthly" | "yearly";
 }) => {
   const [user, setUser] = useState<any | null>(null);
+  const [userPlan, setUserPlan] = useState<string>("free");
+  const [isScheduledForCancellation, setIsScheduledForCancellation] =
+    useState(false);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [cancelling, setCancelling] = useState(false);
 
-  // ✅ Fetch user once
+  // ✅ Fetch user and their plan + check cancellation status
   useEffect(() => {
     const getUser = async () => {
       const { data } = await supabase.auth.getUser();
       setUser(data.user);
+
+      if (data.user) {
+        // Fetch user's current plan from database
+        const { data: userData } = await supabase
+          .from("users")
+          .select("plan")
+          .eq("id", data.user.id)
+          .single();
+
+        if (userData) {
+          setUserPlan(userData.plan);
+
+          // Check if subscription is scheduled for cancellation
+          if (userData.plan !== "free") {
+            checkCancellationStatus(data.user.id);
+          }
+        }
+      }
     };
     getUser();
   }, []);
+
+  // ✅ Check if subscription is scheduled for cancellation
+  const checkCancellationStatus = async (userId: string) => {
+    try {
+      const res = await fetch(`/api/subscription/status?userId=${userId}`);
+      const data = await res.json();
+
+      if (data.isScheduledForCancellation) {
+        setIsScheduledForCancellation(true);
+      }
+    } catch (err) {
+      console.error("Error checking cancellation status:", err);
+    }
+  };
 
   // ✅ Determine which features to show
   const Mfeatures =
@@ -115,6 +151,48 @@ const PricingCards = ({
     } finally {
       setLoading(false);
     }
+  };
+
+  // ✅ Cancel subscription handler
+  const handleCancelSubscription = async () => {
+    if (!user) return;
+
+    const confirmed = confirm(
+      "Are you sure you want to cancel your subscription? You will keep access until the end of your current billing period."
+    );
+
+    if (!confirmed) return;
+
+    setCancelling(true);
+    try {
+      const res = await fetch("/api/subscription/cancel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: user.id }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert(
+          "Subscription cancelled! You'll keep access until the end of your billing period."
+        );
+        // Mark as scheduled for cancellation
+        setIsScheduledForCancellation(true);
+      } else {
+        alert(data.error || "Failed to cancel subscription");
+      }
+    } catch (err) {
+      console.error("Cancel error:", err);
+      alert("An error occurred while cancelling");
+    } finally {
+      setCancelling(false);
+    }
+  };
+
+  // ✅ Check if user is subscribed to THIS plan
+  const isSubscribedToThisPlan = () => {
+    return userPlan.toLowerCase() === product.name.toLowerCase();
   };
 
   let oldPrice;
@@ -192,25 +270,65 @@ const PricingCards = ({
       )}
 
       {user ? (
-        <button
-          className={`w-full mt-4 rounded-md ${
-            product.name === "Pro"
-              ? "bg-black hover:opacity-85 flex justify-center duration-500 border-[.3px] text-white cursor-pointer font-medium py-2.5"
-              : "bg-gray-50 hover:bg-gray-200 flex justify-center duration-500 border-[.3px] border-neutral-200 cursor-pointer font-medium py-2.5"
-          }`}
-          onClick={() =>
-            checkoutProduct(product.product_id, product.is_recurring)
-          }
-        >
-          {loading ? (
-            <div className=" flex gap-2 justify-center items-center ">
-              <Loader2 className="animate-spin w-5 h-5 text-center" />
-              <p>Choose plan</p>
-            </div>
+        <>
+          {isSubscribedToThisPlan() ? (
+            isScheduledForCancellation ? (
+              // ✅ Show "Scheduled for Cancellation" if already cancelled
+              <button
+                className="w-full mt-4 rounded-md bg-gray-400 flex justify-center duration-500 border-[.3px] border-gray-500 text-white cursor-not-allowed font-medium py-2.5"
+                disabled
+              >
+                Scheduled for Cancellation
+              </button>
+            ) : (
+              // ✅ Show Cancel button if subscribed to THIS plan
+              <button
+                className="w-full mt-4 rounded-md bg-red-500 hover:bg-red-600 flex justify-center duration-500 border-[.3px] border-red-600 text-white cursor-pointer font-medium py-2.5"
+                onClick={handleCancelSubscription}
+                disabled={cancelling}
+              >
+                {cancelling ? (
+                  <div className=" flex gap-2 justify-center items-center ">
+                    <Loader2 className="animate-spin w-5 h-5 text-center" />
+                    <p>Cancelling...</p>
+                  </div>
+                ) : (
+                  "Cancel Subscription"
+                )}
+              </button>
+            )
           ) : (
-            "Choose plan"
+            // ✅ Show Choose Plan button if NOT subscribed to this plan
+            <button
+              className={`w-full mt-4 rounded-md ${
+                product.name === "Pro"
+                  ? "bg-black hover:opacity-85 flex justify-center duration-500 border-[.3px] text-white cursor-pointer font-medium py-2.5"
+                  : "bg-gray-50 hover:bg-gray-200 flex justify-center duration-500 border-[.3px] border-neutral-200 cursor-pointer font-medium py-2.5"
+              } ${
+                userPlan !== "free" && !isSubscribedToThisPlan()
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
+              onClick={() =>
+                checkoutProduct(product.product_id, product.is_recurring)
+              }
+              disabled={
+                loading || (userPlan !== "free" && !isSubscribedToThisPlan())
+              }
+            >
+              {loading ? (
+                <div className=" flex gap-2 justify-center items-center ">
+                  <Loader2 className="animate-spin w-5 h-5 text-center" />
+                  <p>Choose plan</p>
+                </div>
+              ) : userPlan !== "free" && !isSubscribedToThisPlan() ? (
+                "Already Subscribed"
+              ) : (
+                "Choose plan"
+              )}
+            </button>
           )}
-        </button>
+        </>
       ) : (
         <Link
           href="/login"
@@ -220,14 +338,7 @@ const PricingCards = ({
               : "bg-gray-50 hover:bg-gray-200 flex justify-center duration-500 border-[.3px] border-neutral-200 cursor-pointer font-medium py-2.5"
           }`}
         >
-          {loading ? (
-            <div className=" flex gap-2 justify-center items-center ">
-              <Loader2 className="animate-spin w-5 h-5 text-center" />
-              <p>Choose plan</p>
-            </div>
-          ) : (
-            "Choose plan"
-          )}
+          Choose plan
         </Link>
       )}
     </div>
