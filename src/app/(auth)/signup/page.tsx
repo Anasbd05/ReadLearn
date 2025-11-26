@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import { SignupForm } from "@/components/Signup-form";
 import Link from "next/link";
-import { BookOpen, LoaderIcon } from "lucide-react";
+import { LoaderIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import Image from "next/image";
 
 interface PageProps {
   searchParams: Promise<{
@@ -40,7 +41,13 @@ export default async function SignupPage({ searchParams }: PageProps) {
     <Suspense fallback={<SignupLoader />}>
       <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
         <Link href={"/"} className=" flex items-center justify-center gap-1">
-          <BookOpen className=" w-6 h-6 text-primary" />
+          <Image
+            alt="fluencywave logo"
+            width={24}
+            height={24}
+            className=" w-6 h-6"
+            src={"/logo.png"}
+          />
           <span className=" font-semibold text-xl">FluencyWave</span>
         </Link>
         <div className="flex w-full max-w-md flex-col gap-6">

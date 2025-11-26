@@ -1,11 +1,11 @@
-import { redirect } from "next/navigation";
 import React from "react";
+import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
+import Image from "next/image";
 
 interface PageProps {
   searchParams: Promise<{
@@ -72,7 +72,13 @@ const Page = async ({ searchParams }: PageProps) => {
       <div className="flex flex-col items-center w-full gap-4 p-4 md:p-6">
         <div className="flex justify-center gap-2 md:justify-start">
           <Link href={"/"} className=" flex items-center justify-center gap-1">
-            <BookOpen className=" w-6 h-6 text-primary" />
+            <Image
+              alt="fluencywave logo"
+              width={24}
+              height={24}
+              className=" w-6 h-6"
+              src={"/logo.png"}
+            />
             <span className=" font-semibold text-xl">FluencyWave</span>
           </Link>
         </div>

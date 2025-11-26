@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import ForgetPass from "@/components/ForgetPass";
-import { BookOpen } from "lucide-react";
+import Image from "next/image";
 
 // Updated PageProps to match Next.js 15 async searchParams
 interface PageProps {
@@ -19,7 +19,13 @@ const Page: React.FC<PageProps> = async ({ searchParams }) => {
     <div className="flex items-center justify-center w-full h-screen">
       <div className="flex flex-col items-center w-full gap-4 p-4 md:p-6">
         <Link href={"/"} className=" flex items-center justify-center gap-1">
-          <BookOpen className=" w-6 h-6 text-primary" />
+          <Image
+            alt="fluencywave logo"
+            width={24}
+            height={24}
+            className=" w-6 h-6"
+            src={"/logo.png"}
+          />
           <span className=" font-semibold text-xl">FluencyWave</span>
         </Link>
         <div className="flex w-full max-w-md flex-col gap-6">
