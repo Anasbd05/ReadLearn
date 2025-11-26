@@ -7,6 +7,23 @@ import {
 } from "@/components/ui/sidebar";
 import ContentGenerator from "@/components/dashboard/ContentGenerator";
 import Credits from "@/components/Credits";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "AI Story & Article Generator | FluencyWave",
+  description:
+    "Generate custom stories and articles in any language at your level. AI-powered content creation for English, Spanish, French, German, and Chinese learners.",
+  keywords:
+    "AI story generator, AI article generator, language learning content, custom stories for language learning, AI content creator, generate stories in any language, personalized language learning content, AI writing for learners",
+  openGraph: {
+    title: "AI Story & Article Generator | FluencyWave",
+    description:
+      "Create personalized stories and articles at your level. AI-powered content for effective language learning.",
+    url: "https://fluencywave.com/ai-creator",
+    siteName: "Fluencywave",
+    type: "website",
+  },
+};
 
 export default async function Page() {
   return (

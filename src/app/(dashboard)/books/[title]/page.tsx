@@ -1,10 +1,43 @@
 import { supabase } from "@/utils/supabase/client";
 import { MoveLeft, MoveRight, UserRoundPen } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
-import React from "react";
 
 interface PageProps {
   params: Promise<{ title: string }>;
+}
+
+// Generate dynamic metadata for each book page
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const resolvedParams = await Promise.resolve(params);
+  const { title } = resolvedParams;
+  const decodedTitle = decodeURIComponent(title);
+
+  // Fetch book data to get author info if needed
+  const { data: bookData } = await supabase
+    .from("books")
+    .select("title, author")
+    .eq("title", decodedTitle)
+    .single();
+
+  const bookTitle = bookData?.title || decodedTitle;
+  const author = bookData?.author;
+
+  return {
+    title: `${bookTitle} | Learn Languages by Reading`,
+    description: author
+      ? `Read "${bookTitle}" by ${author}. Learn English, Spanish, French, German, or Chinese through immersive reading with instant word translations.`
+      : `Read "${bookTitle}". Learn languages through immersive reading with instant word translations and vocabulary building.`,
+    keywords:
+      "learn languages through reading, language learning books, learn English through books, learn Spanish through books, learn French through books, learn German through books, learn Chinese through books, read books in foreign languages, language vocabulary, immersive reading, vocabulary building, bilingual books, language reading practice",
+    openGraph: {
+      title: `${bookTitle} | FluencyWave`,
+      description: `Read and learn languages with "${bookTitle}". Interactive reading with instant translations.`,
+      type: "website",
+    },
+  };
 }
 
 const page = async ({ params }: PageProps) => {
@@ -145,8 +178,8 @@ const page = async ({ params }: PageProps) => {
 
         {/* Footer note */}
         <p className="text-center text-gray-500 mt-6 text-sm">
-          Ready to dive into this book? Click &rdquo;Start Reading&rdquo; to
-          begin your journey.
+          Ready to dive into this book? Click &quot;Start Reading&quot; to begin
+          your journey.
         </p>
       </div>
     </div>

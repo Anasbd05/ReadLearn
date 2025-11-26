@@ -10,6 +10,23 @@ import { createClient } from "@/utils/supabase/server";
 import { FileText } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My Personal Library | Import & Read Texts | FluencyWave",
+  description:
+    "Build your personal reading library. Import articles, stories, and texts to practice language learning at your own pace with instant translations.",
+  keywords:
+    "personal library, import texts for language learning, custom reading materials, import articles, language learning library, practice reading, personalized content, save texts to read",
+  openGraph: {
+    title: "My Personal Library | FluencyWave",
+    description:
+      "Create your own collection of texts and articles. Import any content to practice reading with instant translations.",
+    url: "https://fluencywave.com/personal-library",
+    siteName: "Fluencywave",
+    type: "website",
+  },
+};
 
 export default async function Page() {
   const supabase = await createClient();

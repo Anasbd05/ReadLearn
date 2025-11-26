@@ -12,6 +12,23 @@ import BrowseBooks from "@/components/dashboard/BrowseBooks";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import ContinueReading from "@/components/dashboard/ContinueReading";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Learn Languages Through Books - FluencyWave",
+  description:
+    "Learn English, Spanish, French, German, and Chinese by reading books. Access a library of books in multiple languages, Improve vocabulary through reading.",
+  keywords:
+    "learn languages through reading, language learning books, learn English through books, learn Spanish through books, learn French through books, learn German through books, learn Chinese through books, read books in foreign languages, language vocabulary, immersive reading, Improve vocabulary through reading ,bilingual books, language reading practice",
+  openGraph: {
+    title: "Learn Languages Through Books | FluencyWave",
+    description:
+      "Master any language by reading books. Interactive reading experience with instant translations and vocabulary building.",
+    url: "https://fluencywave.com/books",
+    siteName: "Fluencywave",
+    type: "website",
+  },
+};
 
 export default async function Page() {
   const supabase = await createClient();
