@@ -1,60 +1,48 @@
-"use client";
-import React, { useState } from "react";
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
-import { supabase } from "@/utils/supabase/client";
-import { toast } from "sonner";
+import Image from "next/image";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const [email, setEmail] = useState("");
-
-  const collectEmails = async () => {
-    const { error } = await supabase.from("emails").insert({ email: email });
-
-    try {
-      if (!email) {
-        toast.error("Enter your email");
-      } else if (!/\S+@\S+\.\S+/.test(email)) {
-        toast.error("Enter a valid email address");
-      } else if (error) {
-        toast.error(error.message);
-      } else {
-        toast.success("Subscribed successfully!");
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setEmail("");
-    }
-  };
-
   return (
-    <footer className="bg-gray-200 border-t border-gray-200">
+    <footer className="bg-white border-t border-gray-200">
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-12 gap-12 mb-12">
+      <div className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-12">
           {/* Brand Column */}
-          <div className="md:col-span-4">
-            <div className="flex items-center gap-2 mb-4">
-              <BookOpen className="w-7 h-7 text-primary" />
-              <h3 className="text-2xl font-bold text-gray-900">FluencyWave</h3>
-            </div>
-            <p className="text-gray-600 mb-6 leading-relaxed">
+          <div className="col-span-2 md:col-span-12 lg:col-span-4">
+            <Link
+              href={"/"}
+              className="inline-flex items-center gap-2 mb-4 group"
+            >
+              <Image
+                alt="fluencywave logo"
+                width={32}
+                height={32}
+                className="w-8 h-8"
+                src={"/logo.png"}
+              />
+              <span className="font-bold text-xl text-gray-900 group-hover:text-secondary transition-colors">
+                FluencyWave
+              </span>
+            </Link>
+            <p className="text-gray-600 text-sm leading-relaxed max-w-sm">
               Master languages through the power of reading. Learn English,
-              French, Spanish, German and Chinese naturally.
+              French, Spanish, German and Chinese naturally with our innovative
+              platform.
             </p>
           </div>
 
           {/* Product Column */}
-          <div className="md:col-span-2">
-            <h4 className="font-bold text-gray-900 mb-4">Product</h4>
-            <ul className="space-y-3">
+          <div className="col-span-1 md:col-span-3 lg:col-span-2">
+            <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wider mb-4">
+              Product
+            </h4>
+            <ul className="space-y-2.5">
               <li>
                 <Link
                   href="#features"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
                   Features
                 </Link>
@@ -62,7 +50,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="#pricing"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
                   Pricing
                 </Link>
@@ -70,7 +58,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="#reviews"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
                   Reviews
                 </Link>
@@ -78,30 +66,81 @@ const Footer = () => {
               <li>
                 <Link
                   href="/books"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
                   Book Library
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/content-generator"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  href="/ai-creator"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
-                  AI Generator
+                  AI Creator
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Company Column */}
-          <div className="md:col-span-2">
-            <h4 className="font-bold text-gray-900 mb-4">Legal</h4>
-            <ul className="space-y-3">
+          {/* Languages Column */}
+          <div className="col-span-1 md:col-span-3 lg:col-span-2">
+            <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wider mb-4">
+              Languages
+            </h4>
+            <ul className="space-y-2.5">
+              <li>
+                <Link
+                  href="/learn-english"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
+                >
+                  Learn english
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/learn-french"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
+                >
+                  Learn french
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/learn-spanish"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
+                >
+                  Learn spanish
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/learn-german"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
+                >
+                  Learn german
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/learn-chinese"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
+                >
+                  Learn chinese
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal Column */}
+          <div className="col-span-1 md:col-span-3 lg:col-span-2">
+            <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wider mb-4">
+              Legal
+            </h4>
+            <ul className="space-y-2.5">
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
                   Privacy Policy
                 </Link>
@@ -109,42 +148,44 @@ const Footer = () => {
               <li>
                 <Link
                   href="/terms-of-use"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
-                  Terms of use
+                  Terms of Use
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Newsletter Column - Takes more space */}
-          <div className="md:col-span-4">
-            <h4 className="font-bold text-gray-900 mb-4">Newsletter</h4>
-            <p className="text-gray-600 text-sm mb-4">
-              Get language learning tips and updates
-            </p>
-            <div className="flex px-2.5 py-1 border bg-white border-gray-300 rounded-lg gap-3">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
-                className=" w-full outline-0 bg-white p-1  text-sm"
-              />
-              <button
-                onClick={collectEmails}
-                className="px-4 cursor-pointer py-2 bg-secondary hover:bg-secondary/80  text-white font-semibold rounded-lg transition-colors text-sm whitespace-nowrap"
-              >
-                Subscribe
-              </button>
-            </div>
+          {/* Company Column */}
+          <div className="col-span-1 md:col-span-3 lg:col-span-2">
+            <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wider mb-4">
+              Company
+            </h4>
+            <ul className="space-y-2.5">
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-gray-600 hover:text-primary transition-colors text-sm"
+                >
+                  Blog
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-400 py-6 flex justify-center w-full">
-        <p className="text-gray-800 text-sm">
+      <div className="border-t px-6 py-6 border-gray-200">
+        <p className="text-gray-600 text-sm text-center">
           © {currentYear} FluencyWave. All rights reserved.
         </p>
       </div>

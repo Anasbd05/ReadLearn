@@ -395,13 +395,13 @@ export const features = [
     icon: Sparkles,
     title: "AI Article Generator",
     description:
-      "Generate articles on any topic you want using AI. Perfect for learning vocabulary in specific fields. Click any word or line for instant translation to your native language.",
+      "Generate articles on any topic you want using AI at your language level (beginner, intermediate, advanced). Perfect for learning vocabulary in specific fields. Click any word or line for instant translation to your native language.",
   },
   {
     icon: BookText,
     title: "AI Story Generator",
     description:
-      "Create personalized stories using AI. Choose your themes and let AI craft engaging narratives. Tap any word or line you don't understand for immediate translation.",
+      "Create personalized stories using AI at your language level (beginner, intermediate, advanced). Choose your themes and let AI craft engaging narratives. Tap any word or line you don't understand for immediate translation.",
   },
   {
     icon: Bookmark,

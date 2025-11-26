@@ -4,30 +4,30 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title:
-    "Learn English Through Reading | Build Vocabulary Naturally - FluencyWave",
+    "Learn German Through Reading | Build Vocabulary Naturally - FluencyWave",
   description:
-    "Master English faster through reading. Click any word for instant translation, build vocabulary naturally, and read books, articles, and stories at your level. Start learning English today!",
+    "Master German faster through reading. Click any word for instant translation, build vocabulary naturally, and read books, articles, and stories at your level. Start learning German today!",
   keywords:
-    "learn English, English vocabulary, learn English through reading, improve English reading, English language learning, build English vocabulary, English fluency",
+    "learn German, German vocabulary, learn German through reading, improve German reading, German language learning, build German vocabulary, German fluency, Deutsch lernen",
   openGraph: {
-    title: "Learn English Through Reading | FluencyWave",
+    title: "Learn German Through Reading | FluencyWave",
     description:
-      "The fastest way to English fluency through natural reading and vocabulary building.",
+      "The fastest way to German fluency through natural reading and vocabulary building.",
     type: "website",
   },
 };
 
-export default function LearnEnglish() {
+export default function LearnGerman() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Learn <span className="text-primary">English</span> Through Reading
+            Learn <span className="text-primary">German</span> Through Reading
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-            The fastest path to English fluency isn&apos;t through grammar
+            The fastest path to German fluency isn&apos;t through grammar
             rules—it&apos;s through reading and building vocabulary naturally.
           </p>
           <a
@@ -35,7 +35,7 @@ export default function LearnEnglish() {
             className="inline-block bg-[#007ff8] text-white px-8 py-4 rounded-lg font-semibold text-lg 
             hover:shadow-xl hover:-translate-y-1 transition-all"
           >
-            Start Reading in English
+            Start Reading in German
           </a>
         </div>
       </section>
@@ -44,31 +44,31 @@ export default function LearnEnglish() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8">
-            Why Reading is the Fastest Way to Learn English
+            Why Reading is the Fastest Way to Learn German
           </h2>
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
             <p className="text-lg leading-relaxed">
-              You&apos;ve probably spent years studying English grammar,
-              memorizing verb conjugations, and doing exercises. But here&apos;s
-              the truth:{" "}
+              You&apos;ve probably spent years studying German grammar,
+              memorizing articles (der, die, das), and doing exercises. But
+              here&apos;s the truth:{" "}
               <strong className="text-primary">
                 reading is how you actually become fluent
               </strong>
               .
             </p>
             <p className="text-lg leading-relaxed">
-              When you read in English, you&apos;re not just learning isolated
+              When you read in German, you&apos;re not just learning isolated
               words or abstract rules. You&apos;re seeing how native speakers
               actually use the language. You&apos;re absorbing sentence
-              patterns, natural expressions, and the rhythm of English—all
+              patterns, natural expressions, and the rhythm of German—all
               without the boring drills and textbooks.
             </p>
             <p className="text-lg leading-relaxed">
               Think about how you learned your first language. You didn&apos;t
               start with grammar books. You heard words in context, over and
               over, until they became natural. Reading does the same thing for
-              English, but faster. Every sentence you read is a real example of
-              how English works in the wild.
+              German, but faster. Every sentence you read is a real example of
+              how German works in the wild.
             </p>
             <p className="text-lg leading-relaxed">
               The best part? Reading is enjoyable. When you&apos;re caught up in
@@ -84,26 +84,26 @@ export default function LearnEnglish() {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8">
-            Vocabulary Matters More Than Grammar
+            Vocabulary Matters More Than Perfect Grammar
           </h2>
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
             <p className="text-lg leading-relaxed">
-              Here&apos;s something most English courses won&apos;t tell you:{" "}
+              Here&apos;s something most German courses won&apos;t tell you:{" "}
               <strong className="text-secondary">
                 vocabulary is more important than perfect grammar
               </strong>
               .
             </p>
             <p className="text-lg leading-relaxed">
-              You can make grammar mistakes and still communicate effectively.
-              But if you don&apos;t know the words, you can&apos;t say anything
-              at all. A strong vocabulary lets you express complex ideas,
-              understand movies and books, and have real conversations—even if
-              your grammar isn&apos;t perfect.
+              You can make grammar mistakes and still communicate effectively in
+              German. But if you don&apos;t know the words, you can&apos;t say
+              anything at all. A strong vocabulary lets you express complex
+              ideas, understand German movies and books, and have real
+              conversations—even if your grammar isn&apos;t perfect.
             </p>
             <p className="text-lg leading-relaxed">
-              Native English speakers understand &ldquo;Yesterday I go to
-              store&rdquo; even though the grammar is wrong. But perfect grammar
+              Native German speakers understand &ldquo;Gestern ich gehen zu
+              Laden&rdquo; even though the grammar is wrong. But perfect grammar
               means nothing if you don&apos;t know the word for what you&apos;re
               trying to say. Words are the building blocks. Grammar is just the
               blueprint.
@@ -111,8 +111,8 @@ export default function LearnEnglish() {
             <p className="text-lg leading-relaxed">
               Research shows that vocabulary size is the strongest predictor of
               reading comprehension and overall language proficiency. The more
-              words you know, the better you understand, and the better you can
-              express yourself.
+              German words you know, the better you understand, and the better
+              you can express yourself.
             </p>
           </div>
         </div>
@@ -122,34 +122,35 @@ export default function LearnEnglish() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8">
-            How Reading Expands Your English Vocabulary
+            How Reading Expands Your German Vocabulary
           </h2>
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
             <p className="text-lg leading-relaxed">
               Reading is the ultimate vocabulary builder because you encounter
-              words in their natural habitat. You don&apos;t just see a word and
-              its definition—you see it being used in a real sentence, with real
-              context and meaning.
+              German words in their natural habitat. You don&apos;t just see a
+              word and its definition—you see it being used in a real sentence,
+              with real context and meaning.
             </p>
             <p className="text-lg leading-relaxed">
-              When you read &ldquo;She felt <em>melancholy</em> watching the
-              sunset,&rdquo; you understand melancholy means a sad, reflective
-              feeling—not just &ldquo;sadness&rdquo; from a dictionary. You
-              learn the nuance, the emotion, the situations where English
-              speakers use that word. That&apos;s learning that sticks.
+              When you read &ldquo;Sie fühlte sich <em>melancholisch</em> beim
+              Betrachten des Sonnenuntergangs,&rdquo; you understand
+              melancholisch means a sad, reflective feeling—not just
+              &ldquo;Traurigkeit&rdquo; from a dictionary. You learn the nuance,
+              the emotion, the situations where German speakers use that word.
+              That&apos;s learning that sticks.
             </p>
             <p className="text-lg leading-relaxed">
               The more you read, the more times you see words repeated in
               different contexts. This natural repetition is how your brain
               locks vocabulary into long-term memory. After seeing
-              &ldquo;ubiquitous&rdquo; five times in different articles,
+              &ldquo;allgegenwärtig&rdquo; five times in different articles,
               you&apos;ll never forget it means &ldquo;everywhere.&rdquo;
             </p>
             <p className="text-lg leading-relaxed">
-              Plus, reading exposes you to thousands of words—far more than any
-              vocabulary list or flashcard deck ever could. A single novel
-              contains 10,000+ unique words. That&apos;s more vocabulary than
-              most textbooks teach in an entire year.
+              Plus, reading exposes you to thousands of German words—far more
+              than any vocabulary list or flashcard deck ever could. A single
+              German novel contains 10,000+ unique words. That&apos;s more
+              vocabulary than most textbooks teach in an entire year.
             </p>
           </div>
         </div>
@@ -159,20 +160,20 @@ export default function LearnEnglish() {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8">
-            Read English Without the Struggle
+            Read German Without the Struggle
           </h2>
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
             <p className="text-lg leading-relaxed">
-              The problem with reading in English? You constantly run into words
+              The problem with reading in German? You constantly run into words
               you don&apos;t know. You either skip them (and miss the meaning)
               or stop to look them up (and lose your flow). Both options are
               frustrating.
             </p>
             <p className="text-lg leading-relaxed">
-              That&apos;s why we built FluencyWave. Click any word or phrase for
-              an instant translation. No switching apps, no breaking your
-              reading rhythm. Just smooth, natural reading where you understand
-              everything.
+              That&apos;s why we built FluencyWave. Click any German word or
+              phrase for an instant translation. No switching apps, no breaking
+              your reading rhythm. Just smooth, natural reading where you
+              understand everything.
             </p>
             <p className="text-lg leading-relaxed">
               Every word you look up gets saved automatically to your personal
@@ -181,10 +182,11 @@ export default function LearnEnglish() {
               and each time they&apos;ll stick a little more.
             </p>
             <p className="text-lg leading-relaxed">
-              Want to read about something specific? Our AI can generate stories
-              on any topic at your level. Whether you&apos;re into science,
-              sports, fantasy, or business, you&apos;ll always have engaging
-              content that&apos;s just challenging enough to help you grow.
+              Want to read about something specific? Our AI can generate German
+              stories on any topic at your level. Whether you&apos;re into
+              science, sports, fantasy, or business, you&apos;ll always have
+              engaging content that&apos;s just challenging enough to help you
+              grow.
             </p>
           </div>
         </div>

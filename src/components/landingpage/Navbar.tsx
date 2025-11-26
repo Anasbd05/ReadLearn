@@ -1,8 +1,8 @@
 import { createClient } from "@/utils/supabase/server";
-import { BookOpen } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import MobileNav from "./MobileNav";
+import Image from "next/image";
 
 const Navbar = async () => {
   const supabase = await createClient();
@@ -12,9 +12,17 @@ const Navbar = async () => {
   } = await supabase.auth.getUser();
   return (
     <section className=" py-5 px-4 sm:px-6 lg:px-10 w-full flex justify-between items-center border-b">
-      <Link href={"/"} className=" flex items-center gap-1.5 ">
-        <BookOpen className=" w-7 h-7 text-primary" />
-        <span className=" font-semibold text-2xl">FluencyWave</span>
+      <Link href={"/"} className=" flex items-center group gap-1.5 ">
+        <Image
+          alt="fluencywave logo"
+          width={24}
+          height={24}
+          className=" w-8 h-8"
+          src={"/logo.png"}
+        />
+        <span className=" font-semibold text-2xl group-hover:text-secondary transition-colors">
+          FluencyWave
+        </span>
       </Link>
       <div className=" hidden lg:flex gap-8">
         <Link

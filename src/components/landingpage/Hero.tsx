@@ -2,8 +2,14 @@ import { Play } from "lucide-react";
 import heroImage from "@/assets/hero.png";
 import Image from "next/image";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/server";
 
-export const Hero = () => {
+export const Hero = async () => {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   return (
     <section
       id="hero"
@@ -28,12 +34,21 @@ export const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-row gap-4">
-              <Link
-                href={"/login"}
-                className="bg-accent hover:bg-accent/80 duration-500 cursor-pointer text-black font-semibold px-6 rounded-lg py-3"
-              >
-                Get Started
-              </Link>
+              {user ? (
+                <Link
+                  href={"/books"}
+                  className="bg-primary text-white hover:bg-primary/80 duration-500 cursor-pointer font-semibold px-6 rounded-lg py-3"
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <Link
+                  href={"/login"}
+                  className="bg-primary text-white hover:bg-primary/80 duration-500 cursor-pointer font-semibold px-6 rounded-lg py-3"
+                >
+                  Get Started
+                </Link>
+              )}
               <Link
                 href={"#how-it-works"}
                 className="font-semibold flex items-center bg-white text-black duration-500 hover:bg-secondary hover:text-white cursor-pointer border  px-4 rounded-lg py-3 gap-2"

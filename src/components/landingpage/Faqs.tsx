@@ -50,7 +50,6 @@ export const FAQ = () => {
                 translation support.
               </AccordionContent>
             </AccordionItem>
-
             {/* 2 */}
             <AccordionItem
               value="item-2"
@@ -60,12 +59,12 @@ export const FAQ = () => {
                 Can I import my own content?
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
-                Yes! Add your own text, create custom stories, notes, or
-                learning scripts. Build your personal reading library. Save
-                unlimited content — any length.
+                Absolutely! Import your own articles, stories, or any text you
+                want to read. Build your personal reading library with unlimited
+                content of any length. Like other content, you can tap any word
+                or line for instant translation.
               </AccordionContent>
             </AccordionItem>
-
             {/* 3 */}
             <AccordionItem
               value="item-3"
@@ -75,12 +74,13 @@ export const FAQ = () => {
                 How does the instant translation work?
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
-                Simply Tap or highlight any word or line in your text to see it
-                instantly translated into your language. No need to switch
-                between apps or look up words manually.
+                Simply tap or select any word or line you don&#39;t understand
+                while reading books, AI-generated articles, AI stories, or your
+                imported content. You&#39;ll instantly see the full translation
+                in your native language. No need to switch between apps or look
+                up words manually.
               </AccordionContent>
             </AccordionItem>
-
             {/* 4 */}
             <AccordionItem
               value="item-4"
@@ -90,12 +90,13 @@ export const FAQ = () => {
                 What is the AI content generator?
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
-                Our AI creates personalized reading material based on topics you
-                choose, adjusted to your proficiency level. It is perfect for
-                practicing specific vocabulary or exploring new subjects.
+                Our AI can generate both articles and stories on any topic you
+                want. Create articles to learn vocabulary in specific fields, or
+                generate personalized stories with themes you choose. Perfect
+                for practicing and exploring new subjects in your target
+                language.
               </AccordionContent>
             </AccordionItem>
-
             {/* 5 */}
             <AccordionItem
               value="item-5"
@@ -105,11 +106,13 @@ export const FAQ = () => {
                 How does the vocabulary tracking work?
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
-                Every word you clicked on is saved to your personal vocabulary
-                list. You can review them anytime.
+                Every word or line you tap or select is automatically saved to
+                your personal vocabulary list. You can view all your learned
+                vocabularies in your target language along with their
+                translations in your native language. Review them anytime to
+                track your progress.
               </AccordionContent>
-            </AccordionItem>
-
+            </AccordionItem>{" "}
             {/* 6 */}
             <AccordionItem
               value="item-6"
@@ -123,7 +126,6 @@ export const FAQ = () => {
                 switch between them anytime.
               </AccordionContent>
             </AccordionItem>
-
             {/* 7 */}
             <AccordionItem
               value="item-7"
@@ -137,7 +139,6 @@ export const FAQ = () => {
                 securely stored.
               </AccordionContent>
             </AccordionItem>
-
             {/* 8 */}
             <AccordionItem
               value="item-8"
@@ -147,20 +148,12 @@ export const FAQ = () => {
                 Can I cancel my subscription?
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
-                Yes, you can cancel your subscription at any time. Simply send
-                us{" "}
-                <Link
-                  href="mailto:anastrying05@gmail.com"
-                  className="font-bold hover:underline"
-                >
-                  an email
-                </Link>{" "}
-                and we will take care of the rest , When cancelling it will
-                cancel at the end of your current billing period; you can still
-                use the features until the end of your billing period.
+                Yes, there&#39;s no lock-in and you can cancel your subscription
+                at anytime of the month. When cancelling it will cancel at the
+                end of your current billing period; you can still use the pro
+                features until the end of your billing period.
               </AccordionContent>
             </AccordionItem>
-
             {/* 9 */}
             <AccordionItem
               value="item-9"
