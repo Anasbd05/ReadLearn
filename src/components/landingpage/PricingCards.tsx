@@ -6,6 +6,16 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/utils/supabase/client";
 import { Check, Loader2, Star } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 type Product = {
   product_id: number;
@@ -58,32 +68,40 @@ const PricingCards = ({
   billingCycle: "monthly" | "yearly";
 }) => {
   const [user, setUser] = useState<any | null>(null);
-  const [userPlan, setUserPlan] = useState<string>("free");
+  const [userSubscriptionAmount, setUserSubscriptionAmount] =
+    useState<number>(0);
   const [isScheduledForCancellation, setIsScheduledForCancellation] =
     useState(false);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [cancelling, setCancelling] = useState(false);
+  const [showSwitchDialog, setShowSwitchDialog] = useState(false);
+  const [showCancelDialog, setShowCancelDialog] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const [showErrorDialog, setShowErrorDialog] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState("");
+  const [pendingProductId, setPendingProductId] = useState<number | null>(null);
+  const [pendingIsRecurring, setPendingIsRecurring] = useState(false);
 
-  // ✅ Fetch user and their plan + check cancellation status
+  // ✅ Fetch user and their subscription amount + check cancellation status
   useEffect(() => {
     const getUser = async () => {
       const { data } = await supabase.auth.getUser();
       setUser(data.user);
 
       if (data.user) {
-        // Fetch user's current plan from database
+        // Fetch user's current subscription_amount from database
         const { data: userData } = await supabase
           .from("users")
-          .select("plan")
+          .select("subscription_amount")
           .eq("id", data.user.id)
           .single();
 
         if (userData) {
-          setUserPlan(userData.plan);
+          setUserSubscriptionAmount(userData.subscription_amount || 0);
 
           // Check if subscription is scheduled for cancellation
-          if (userData.plan !== "free") {
+          if (userData.subscription_amount > 0) {
             checkCancellationStatus(data.user.id);
           }
         }
@@ -120,13 +138,44 @@ const PricingCards = ({
       ? YProFeatures
       : [];
 
-  // ✅ Checkout handler
+  // ✅ Checkout handler - now handles plan switching
   const checkoutProduct = async (productId: number, is_recurring: boolean) => {
     if (!user) {
       router.push("/login");
       return;
     }
 
+    // If user is switching plans, show confirmation dialog
+    if (userSubscriptionAmount > 0 && !isSubscribedToThisPlan()) {
+      const planPrice = product.price / 100;
+      const currentPrice = userSubscriptionAmount;
+      const isUpgrade = planPrice > currentPrice;
+
+      setPendingProductId(productId);
+      setPendingIsRecurring(is_recurring);
+      setDialogMessage(
+        `You are currently subscribed to a ${currentPrice}/${
+          billingCycle === "monthly" ? "month" : "year"
+        } plan. ` +
+          `Do you want to ${
+            isUpgrade ? "upgrade" : "switch"
+          } to the ${planPrice}/${
+            billingCycle === "monthly" ? "month" : "year"
+          } plan? ` +
+          `Your current subscription will be cancelled and you'll be charged for the new plan.`
+      );
+      setShowSwitchDialog(true);
+      return;
+    }
+
+    await proceedWithCheckout(productId, is_recurring);
+  };
+
+  // ✅ Proceed with checkout after confirmation
+  const proceedWithCheckout = async (
+    productId: number,
+    is_recurring: boolean
+  ) => {
     setLoading(true);
     try {
       const endpoint = is_recurring
@@ -148,21 +197,30 @@ const PricingCards = ({
       window.location.href = link;
     } catch (err) {
       console.error("Checkout error:", err);
+      setDialogMessage("An error occurred during checkout. Please try again.");
+      setShowErrorDialog(true);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // ✅ Handle switch dialog confirmation
+  const handleSwitchConfirm = () => {
+    setShowSwitchDialog(false);
+    if (pendingProductId !== null) {
+      proceedWithCheckout(pendingProductId, pendingIsRecurring);
     }
   };
 
   // ✅ Cancel subscription handler
   const handleCancelSubscription = async () => {
     if (!user) return;
+    setShowCancelDialog(true);
+  };
 
-    const confirmed = confirm(
-      "Are you sure you want to cancel your subscription? You will keep access until the end of your current billing period."
-    );
-
-    if (!confirmed) return;
-
+  // ✅ Proceed with cancellation after confirmation
+  const proceedWithCancellation = async () => {
+    setShowCancelDialog(false);
     setCancelling(true);
     try {
       const res = await fetch("/api/subscription/cancel", {
@@ -174,25 +232,28 @@ const PricingCards = ({
       const data = await res.json();
 
       if (data.success) {
-        alert(
+        setDialogMessage(
           "Subscription cancelled! You'll keep access until the end of your billing period."
         );
-        // Mark as scheduled for cancellation
+        setShowSuccessDialog(true);
         setIsScheduledForCancellation(true);
       } else {
-        alert(data.error || "Failed to cancel subscription");
+        setDialogMessage(data.error || "Failed to cancel subscription");
+        setShowErrorDialog(true);
       }
     } catch (err) {
       console.error("Cancel error:", err);
-      alert("An error occurred while cancelling");
+      setDialogMessage("An error occurred while cancelling");
+      setShowErrorDialog(true);
     } finally {
       setCancelling(false);
     }
   };
 
-  // ✅ Check if user is subscribed to THIS plan
+  // ✅ Check if user is subscribed to THIS plan by comparing subscription_amount
   const isSubscribedToThisPlan = () => {
-    return userPlan.toLowerCase() === product.name.toLowerCase();
+    const planPrice = product.price / 100; // Convert cents to dollars
+    return userSubscriptionAmount === planPrice;
   };
 
   let oldPrice;
@@ -213,22 +274,29 @@ const PricingCards = ({
       oldPrice = product.price; // fallback to same price
   }
 
+  // ✅ Get button text based on subscription status
+  const getButtonText = () => {
+    if (isSubscribedToThisPlan()) {
+      return "Current Plan";
+    }
+    if (userSubscriptionAmount > 0) {
+      const planPrice = product.price / 100;
+      const currentPrice = userSubscriptionAmount;
+      return planPrice > currentPrice ? "Upgrade Plan" : "Switch Plan";
+    }
+    return "Choose Plan";
+  };
+
   // ✅ Component UI
   return (
     <div
-      className={`rounded-2xl shadow-sm py-5 px-6 flex flex-col justify-between ${
+      className={`rounded-2xl shadow-sm relative py-5 px-6 flex flex-col justify-between ${
         product.name === "Pro"
           ? "border-[.5px] relative border-black"
           : "border-[.5px] border-neutral-200"
       }`}
     >
       <main className="flex flex-col">
-        {product.name === "Creators" && (
-          <div className="flex gap-2 absolute -top-3 py-1 px-2 bg-black items-center justify-center rounded-md">
-            <Star className="w-3 h-3 text-white" />
-            <p className="text-xs text-white">Best</p>
-          </div>
-        )}
         <h2 className="text-xl font-bold text-black capitalize">
           {product.name}
         </h2>
@@ -272,59 +340,60 @@ const PricingCards = ({
       {user ? (
         <>
           {isSubscribedToThisPlan() ? (
-            isScheduledForCancellation ? (
-              // ✅ Show "Scheduled for Cancellation" if already cancelled
-              <button
-                className="w-full mt-4 rounded-md bg-gray-400 flex justify-center duration-500 border-[.3px] border-gray-500 text-white cursor-not-allowed font-medium py-2.5"
-                disabled
-              >
-                Scheduled for Cancellation
-              </button>
-            ) : (
-              // ✅ Show Cancel button if subscribed to THIS plan
-              <button
-                className="w-full mt-4 rounded-md bg-red-500 hover:bg-red-600 flex justify-center duration-500 border-[.3px] border-red-600 text-white cursor-pointer font-medium py-2.5"
-                onClick={handleCancelSubscription}
-                disabled={cancelling}
-              >
-                {cancelling ? (
-                  <div className=" flex gap-2 justify-center items-center ">
-                    <Loader2 className="animate-spin w-5 h-5 text-center" />
-                    <p>Cancelling...</p>
-                  </div>
-                ) : (
-                  "Cancel Subscription"
-                )}
-              </button>
-            )
+            <>
+              {/* ✅ Show Current Plan badge */}
+              <div className="flex gap-2 absolute -top-3 py-1 px-2 right-44 bg-black items-center justify-center rounded-md">
+                <Star className="w-3 h-3 text-white" />
+                <p className="text-xs text-white">Current Plan</p>
+              </div>
+
+              {/* ✅ Show Cancel button below Current Plan button */}
+              {!isScheduledForCancellation && (
+                <button
+                  className="w-full mt-2 rounded-md bg-red-500 hover:bg-red-600 flex justify-center duration-500 border-[.3px] border-red-600 text-white cursor-pointer font-medium py-2.5"
+                  onClick={handleCancelSubscription}
+                  disabled={cancelling}
+                >
+                  {cancelling ? (
+                    <div className=" flex gap-2 justify-center items-center ">
+                      <Loader2 className="animate-spin w-5 h-5 text-center" />
+                      <p>Cancelling...</p>
+                    </div>
+                  ) : (
+                    "Cancel Subscription"
+                  )}
+                </button>
+              )}
+
+              {isScheduledForCancellation && (
+                <button
+                  className="w-full mt-2 rounded-md bg-gray-400 flex justify-center duration-500 border-[.3px] border-gray-500 text-white cursor-not-allowed font-medium py-2.5"
+                  disabled
+                >
+                  Scheduled for Cancellation
+                </button>
+              )}
+            </>
           ) : (
-            // ✅ Show Choose Plan button if NOT subscribed to this plan
+            // ✅ Show Upgrade/Switch Plan button for other plans
             <button
               className={`w-full mt-4 rounded-md ${
                 product.name === "Pro"
                   ? "bg-black hover:opacity-85 flex justify-center duration-500 border-[.3px] text-white cursor-pointer font-medium py-2.5"
                   : "bg-gray-50 hover:bg-gray-200 flex justify-center duration-500 border-[.3px] border-neutral-200 cursor-pointer font-medium py-2.5"
-              } ${
-                userPlan !== "free" && !isSubscribedToThisPlan()
-                  ? "opacity-50 cursor-not-allowed"
-                  : ""
               }`}
               onClick={() =>
                 checkoutProduct(product.product_id, product.is_recurring)
               }
-              disabled={
-                loading || (userPlan !== "free" && !isSubscribedToThisPlan())
-              }
+              disabled={loading}
             >
               {loading ? (
                 <div className=" flex gap-2 justify-center items-center ">
                   <Loader2 className="animate-spin w-5 h-5 text-center" />
-                  <p>Choose plan</p>
+                  <p>{getButtonText()}</p>
                 </div>
-              ) : userPlan !== "free" && !isSubscribedToThisPlan() ? (
-                "Already Subscribed"
               ) : (
-                "Choose plan"
+                getButtonText()
               )}
             </button>
           )}
@@ -341,6 +410,77 @@ const PricingCards = ({
           Choose plan
         </Link>
       )}
+
+      {/* ✅ Switch Plan Confirmation Dialog */}
+      <AlertDialog open={showSwitchDialog} onOpenChange={setShowSwitchDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Switch Plan?</AlertDialogTitle>
+            <AlertDialogDescription>{dialogMessage}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className=" hover:bg-neutral-100 cursor-pointer ">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className=" bg-primary hover:bg-primary/80 cursor-pointer "
+              onClick={handleSwitchConfirm}
+            >
+              Continue
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* ✅ Cancel Subscription Confirmation Dialog */}
+      <AlertDialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Cancel Subscription?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to cancel your subscription? You will keep
+              access until the end of your current billing period.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className=" hover:bg-neutral-100 cursor-pointer ">
+              No, Keep Subscription
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={proceedWithCancellation}
+              className="bg-red-100 text-red-600 hover:bg-red-600 hover:text-white "
+            >
+              Yes, Cancel
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* ✅ Success Dialog */}
+      <AlertDialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Success!</AlertDialogTitle>
+            <AlertDialogDescription>{dialogMessage}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction>OK</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* ✅ Error Dialog */}
+      <AlertDialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Error</AlertDialogTitle>
+            <AlertDialogDescription>{dialogMessage}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction>OK</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
