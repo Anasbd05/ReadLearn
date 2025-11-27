@@ -164,7 +164,7 @@ const Footer = () => {
             <ul className="space-y-2.5">
               <li>
                 <Link
-                  href="/contact"
+                  href="mailto:anastrying05@gmail.com"
                   className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
                   Contact

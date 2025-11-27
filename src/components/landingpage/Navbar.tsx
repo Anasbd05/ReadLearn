@@ -47,14 +47,14 @@ const Navbar = async () => {
       {user ? (
         <Link
           href="/books"
-          className="py-2 px-5 text-white bg-primary font-semibold hover:shadow-[4px_4px_#03045e] rounded-lg hidden md:block duration-500  cursor-pointer"
+          className="py-2 px-5 text-white bg-secondary font-semibold hover:shadow-[4px_4px_#03045e] rounded-lg hidden md:block duration-500  cursor-pointer"
         >
           dashboard
         </Link>
       ) : (
         <Link
           href="/login"
-          className="py-2 px-5 text-white bg-primary font-semibold hover:shadow-[4px_4px_#03045e]  rounded-lg hidden md:block duration-500  cursor-pointer"
+          className="py-2 px-6 text-white bg-secondary font-semibold hover:shadow-[4px_4px_#03045e]  rounded-lg hidden md:block duration-500  cursor-pointer"
         >
           Login
         </Link>

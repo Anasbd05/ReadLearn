@@ -475,3 +475,66 @@ export const reviews = [
     highlight: "translations and vocabulary lists are good",
   },
 ];
+
+export const BooksCover = [
+  {
+    cover: 東周列國志,
+    alt: "東周列國志",
+  },
+  {
+    cover: sherlock,
+    alt: "The Adventures of Sherlock Holmes",
+  },
+  {
+    cover: DerProzess,
+    alt: "Der Prozess",
+  },
+  {
+    cover: Lupin,
+    alt: "Arsène Lupin",
+  },
+  {
+    cover: EffiBriest,
+    alt: "Effi Briest",
+  },
+  {
+    cover: bluebird,
+    alt: "The Blue Bird",
+  },
+  {
+    cover: PlateroYo,
+    alt: "Platero y yo",
+  },
+  {
+    cover: LeComte,
+    alt: "Le Comte de Monte-Cristo",
+  },
+  {
+    cover: DerSchimmelreiter,
+    alt: "Der Schimmelreiter",
+  },
+  {
+    cover: PoilDeCarotte,
+    alt: "Poil de carotte",
+  },
+  {
+    cover: LazarilloDeTormes,
+    alt: "Vida De Lazarillo De Tormes",
+  },
+  {
+    cover: FabulasLiterarias,
+    alt: "Fábulas Literarias",
+  },
+  {
+    cover: 世說新語,
+    alt: "世說新語",
+  },
+  {
+    cover: Northanger,
+    alt: "Northanger Abbey",
+  },
+  {
+    cover: greatGatsbyCover,
+    alt: "The Great Gatsby",
+  },
+];

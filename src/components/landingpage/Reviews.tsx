@@ -25,7 +25,7 @@ const Reviews = () => {
           Loved by Language Learners Worldwide
         </h2>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Join thousands who are mastering languages through reading
+          What Our Language Learners Are Saying
         </p>
       </div>
 
