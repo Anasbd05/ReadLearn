@@ -256,24 +256,6 @@ const PricingCards = ({
     return userSubscriptionAmount === planPrice;
   };
 
-  let oldPrice;
-  switch (product.price) {
-    case 520: // $5.20
-      oldPrice = 800; // $8
-      break;
-    case 910: // $9.10
-      oldPrice = 1400; // $14
-      break;
-    case 5200: // $52
-      oldPrice = 8000; // $80
-      break;
-    case 9100: // $91
-      oldPrice = 14000; // $140
-      break;
-    default:
-      oldPrice = product.price; // fallback to same price
-  }
-
   // ✅ Get button text based on subscription status
   const getButtonText = () => {
     if (isSubscribedToThisPlan()) {
@@ -303,16 +285,11 @@ const PricingCards = ({
 
         <p className="text-gray-700 mt-2">{product.description}</p>
 
-        <div className="flex items-center gap-2 ">
-          <span className="text-neutral-800 text-3xl line-through">
-            ${oldPrice / 100}
+        <div className="flex my-8 items-end gap-1">
+          <p className="font-semibold text-4xl">${product.price / 100}</p>
+          <span className="text-neutral-500 text-lg">
+            /{billingCycle === "monthly" ? "month" : "year"}
           </span>
-          <div className="flex my-8 items-end gap-1">
-            <p className="font-semibold text-4xl">${product.price / 100}</p>
-            <span className="text-neutral-500 text-lg">
-              /{billingCycle === "monthly" ? "month" : "year"}
-            </span>
-          </div>
         </div>
       </main>
 

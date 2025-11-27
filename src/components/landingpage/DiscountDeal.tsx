@@ -9,7 +9,8 @@ const DiscountDeal = () => {
         className="w-full py-2.5 md:py-3.5 flex items-center justify-center"
       >
         <p className="text-black font-bold text-base text-center px-4">
-          USE CODE <span className=" bg-secondary py-0.5 px-1 ">BF25</span> for
+          USE CODE{" "}
+          <span className=" bg-secondary py-0.5 px-1 ">BLACKFRIDAY</span> for
           40% off for 2 months at checkout.
         </p>
       </Link>

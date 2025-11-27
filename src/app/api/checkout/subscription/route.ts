@@ -36,6 +36,7 @@ export async function GET(request: Request) {
       metadata: {
         user_id: userId,
       },
+      discount_code: "BLACKFRIDAY",
     });
 
     return NextResponse.json(response);

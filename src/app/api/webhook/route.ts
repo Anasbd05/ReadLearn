@@ -48,10 +48,14 @@ export async function POST(request: Request) {
 
           // Determine credits based on amount
           let credits = 0;
-          if (amount === 5.2) credits = 10;
-          if (amount === 52) credits = 120;
-          if (amount === 9.1) credits = 30;
-          if (amount === 91) credits = 365;
+          if (subscription.product_id === "pdt_VCvmQKjGxC11zSFSs0Jzd")
+            credits = 10;
+          if (subscription.product_id === "pdt_eQrolLKL97YHO4ZRum5rc")
+            credits = 120;
+          if (subscription.product_id === "pdt_5cF2E8r2I6HAldTSLPO0H")
+            credits = 30;
+          if (subscription.product_id === "pdt_9VEEGoDgGpqQZPka36Dfg")
+            credits = 365;
 
           let ProductPlan = "free";
 
