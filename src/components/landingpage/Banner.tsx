@@ -10,12 +10,6 @@ import Link from "next/link";
 const firstRow = BooksCover.slice(0, BooksCover.length / 2);
 const secondRow = BooksCover.slice(BooksCover.length / 2);
 
-const supabase = await createClient();
-
-const {
-  data: { user },
-} = await supabase.auth.getUser();
-
 const BookCard = ({ cover, alt }: { cover: StaticImageData; alt: string }) => {
   return (
     <figure
@@ -35,7 +29,14 @@ const BookCard = ({ cover, alt }: { cover: StaticImageData; alt: string }) => {
   );
 };
 
-const Banner = () => {
+// ✅ Make Banner an async component
+const Banner = async () => {
+  // ✅ Move these INSIDE the component
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <section className="bg-linear-to-br from-orange-50 via-amber-50 to-orange-100 py-16 px-4 w-full relative overflow-hidden">
       {/* Decorative orange circles */}
@@ -63,8 +64,6 @@ const Banner = () => {
             <BookCard key={index} {...book} />
           ))}
         </Marquee>
-        {/* <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
-        <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"></div> */}
       </div>
 
       <div className="text-center mt-12">
