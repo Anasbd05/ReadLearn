@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/
+Disallow: /admin/
+Disallow: /server/
+
+Sitemap: https://fluencywave.com/sitemap.xml
