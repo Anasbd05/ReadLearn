@@ -181,10 +181,10 @@ const PricingCards = ({
       const endpoint = is_recurring
         ? `/api/checkout/subscription?productId=${productId}&userId=${
             user.id
-          }&email=${encodeURIComponent(user.email)}&name=${encodeURIComponent(
-            user.user_metadata?.name || "Customer"
-          )}`
-        : `/api/checkout/onetime?productId=${productId}&userId=${user.id}`;
+          }&email=${encodeURIComponent(user.email)}`
+        : `/api/checkout/onetime?productId=${productId}&userId=${
+            user.id
+          }&email=${encodeURIComponent(user.email)}`;
 
       const res = await fetch(endpoint, { cache: "no-store" });
       const data = await res.json();

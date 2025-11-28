@@ -399,7 +399,7 @@ export default function BookContentWithTranslation({
             handleWordClick(selectedText, x, y);
           }
         }
-      }, 300); // Wait 300ms for selection to complete
+      }, 1500); // Wait 1000ms for selection to complete
     };
 
     document.addEventListener("selectionchange", handleSelectionChange);
