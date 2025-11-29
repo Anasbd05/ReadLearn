@@ -279,17 +279,29 @@ const PricingCards = ({
       }`}
     >
       <main className="flex flex-col">
-        <h2 className="text-xl font-bold text-black capitalize">
-          {product.name}
-        </h2>
+        <div className="flex justify-between items-center">
+          <h2 className="text-xl font-bold text-black capitalize">
+            {product.name}
+          </h2>
+          <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded-md ml-1">
+            40% OFF
+          </span>
+        </div>
 
         <p className="text-gray-700 mt-2">{product.description}</p>
 
-        <div className="flex my-8 items-end gap-1">
-          <p className="font-semibold text-4xl">${product.price / 100}</p>
-          <span className="text-neutral-500 text-lg">
-            /{billingCycle === "monthly" ? "month" : "year"}
-          </span>
+        <div className="flex my-8 items-center gap-2">
+          <p className="font-semibold text-2xl  line-through text-neutral-900">
+            ${product.price / 100}
+          </p>
+          <div className=" flex items-end">
+            <p className="font-semibold text-4xl text-black">
+              ${((product.price / 100) * 0.6).toFixed(2)}
+            </p>
+            <span className="text-neutral-500 text-lg">
+              /{billingCycle === "monthly" ? "month" : "year"}
+            </span>
+          </div>
         </div>
       </main>
 

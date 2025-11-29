@@ -1,4 +1,5 @@
 import Banner from "@/components/landingpage/Banner";
+import DiscountDeal from "@/components/landingpage/DiscountDeal";
 import { FAQ } from "@/components/landingpage/Faqs";
 import { Features } from "@/components/landingpage/Features";
 import Footer from "@/components/landingpage/Footer";
@@ -11,6 +12,7 @@ import Reviews from "@/components/landingpage/Reviews";
 export default function Home() {
   return (
     <section>
+      <DiscountDeal />
       <Navbar />
       <Hero />
       <Features />

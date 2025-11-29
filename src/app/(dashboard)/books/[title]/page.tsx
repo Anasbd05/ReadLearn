@@ -1,7 +1,8 @@
-import { supabase } from "@/utils/supabase/client";
-import { MoveLeft, MoveRight, UserRoundPen } from "lucide-react";
+import { createClient } from "@/utils/supabase/server";
+import { MoveLeft, MoveRight, UserRoundPen, Crown, Check } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ title: string }>;
@@ -14,6 +15,8 @@ export async function generateMetadata({
   const resolvedParams = await Promise.resolve(params);
   const { title } = resolvedParams;
   const decodedTitle = decodeURIComponent(title);
+
+  const supabase = await createClient();
 
   // Fetch book data to get author info if needed
   const { data: bookData } = await supabase
@@ -45,6 +48,29 @@ const page = async ({ params }: PageProps) => {
   const { title } = resolvedParams;
 
   const decodedTitle = decodeURIComponent(title);
+
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    console.error("User not logged in");
+    redirect("/login");
+  }
+
+  // Check user's plan
+  const { data: profile, error: profileError } = await supabase
+    .from("users")
+    .select("plan")
+    .eq("id", user.id)
+    .single();
+  if (profileError) {
+    console.log(profileError.message);
+  }
+
+  const isFreeUser = profile?.plan === "free" || !profile;
 
   // Fetch book data from Supabase where title matches
   const { data: bookData, error } = await supabase
@@ -156,6 +182,48 @@ const page = async ({ params }: PageProps) => {
               </p>
             </div>
 
+            {/* Subscription Gate for Free Users */}
+            {isFreeUser && (
+              <div className="mb-8 bg-linear-to-br from-orange-50 to-yellow-50 border-2 border-orange-200 rounded-2xl p-8">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="bg-orange-500 p-3 rounded-full">
+                    <Crown className="w-8 h-8 text-white" />
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 text-center">
+                  Unlock Full Access
+                </h3>
+                <p className="text-gray-700 text-center mb-6">
+                  Subscribe to a premium plan to start reading this book and
+                  unlock unlimited access to our entire library.
+                </p>
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <Check className="w-5 h-5 text-green-600 shrink-0" />
+                    <span>Unlimited access to all books</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <Check className="w-5 h-5 text-green-600 shrink-0" />
+                    <span>Instant word translations</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <Check className="w-5 h-5 text-green-600 shrink-0" />
+                    <span>Track your reading progress</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <Check className="w-5 h-5 text-green-600 shrink-0" />
+                    <span>Build your vocabulary</span>
+                  </div>
+                </div>
+                <Link
+                  href="/billing"
+                  className="block w-full bg-linear-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl text-center"
+                >
+                  View Pricing Plans
+                </Link>
+              </div>
+            )}
+
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
               <Link
@@ -165,21 +233,32 @@ const page = async ({ params }: PageProps) => {
                 <MoveLeft />
                 Back
               </Link>
-              <Link
-                href={`/books/read/${encodeURIComponent(bookData.title)}`}
-                className="flex-1 bg-linear-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl text-center flex items-center justify-center gap-2 transform"
-              >
-                Start Reading
-                <MoveRight />
-              </Link>
+              {isFreeUser ? (
+                <Link
+                  href="/billing"
+                  className="flex-1 bg-linear-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl text-center flex items-center justify-center gap-2"
+                >
+                  <Crown className="w-5 h-5" />
+                  Subscribe to Read
+                </Link>
+              ) : (
+                <Link
+                  href={`/books/read/${encodeURIComponent(bookData.title)}`}
+                  className="flex-1 bg-linear-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl text-center flex items-center justify-center gap-2 transform"
+                >
+                  Start Reading
+                  <MoveRight />
+                </Link>
+              )}
             </div>
           </div>
         </div>
 
         {/* Footer note */}
         <p className="text-center text-gray-500 mt-6 text-sm">
-          Ready to dive into this book? Click &quot;Start Reading&quot; to begin
-          your journey.
+          {isFreeUser
+            ? "Subscribe to unlock unlimited reading and language learning features."
+            : 'Ready to dive into this book? Click "Start Reading" to begin your journey.'}
         </p>
       </div>
     </div>

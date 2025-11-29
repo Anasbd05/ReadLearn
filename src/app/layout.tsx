@@ -3,7 +3,6 @@ import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import Script from "next/script";
-import DiscountDeal from "@/components/landingpage/DiscountDeal";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-geist-sans",
@@ -61,7 +60,6 @@ export default function RootLayout({
             `,
           }}
         />
-        <DiscountDeal />
         {children}
         <Toaster />
       </body>

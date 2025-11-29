@@ -70,12 +70,14 @@ export default function BillingCards() {
     <section id="pricing" className="px-4 sm:px-6 lg:px-10  ">
       <div className="flex flex-col items-center gap-2 mb-8">
         <div className="text-center mb-8 space-y-4 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-            Your Fluent Future Starts Here
+          <div className="inline-block bg-secondary text-white px-4 py-2 rounded-full text-sm font-semibold mb-2">
+            BLACK FRIDAY SPECIAL
+          </div>
+          <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
+            Save 40% on Your First 2 Months
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Flexible plans designed to help you learn faster and stay
-            consistent.
+          <p className="text-lg md:text-xl max-w-3xl mx-auto text-muted-foreground">
+            Start your language learning journey for less than a coffee
           </p>
         </div>
 
