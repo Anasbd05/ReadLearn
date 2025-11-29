@@ -48,28 +48,24 @@ export async function POST(request: Request) {
 
           // Determine credits based on amount
           let credits = 0;
-          if (subscription.product_id === "pdt_VCvmQKjGxC11zSFSs0Jzd")
-            credits = 10;
-          if (subscription.product_id === "pdt_eQrolLKL97YHO4ZRum5rc")
-            credits = 120;
-          if (subscription.product_id === "pdt_5cF2E8r2I6HAldTSLPO0H")
-            credits = 30;
-          if (subscription.product_id === "pdt_9VEEGoDgGpqQZPka36Dfg")
-            credits = 365;
-
           let ProductPlan = "free";
 
-          // starter
-          if (subscription.product_id === "pdt_VCvmQKjGxC11zSFSs0Jzd") {
+          // Starter plans
+          if (subscription.product_id === "pdt_wXoCSEAWldmzqUs7hCdKo") {
+            credits = 10;
             ProductPlan = "Starter";
           }
-          if (subscription.product_id === "pdt_eQrolLKL97YHO4ZRum5rc") {
+          if (subscription.product_id === "pdt_TxZ5kYf0338HRNojwd0mw") {
+            credits = 120;
             ProductPlan = "Starter";
           }
-          // pro
-          if (subscription.product_id === "pdt_5cF2E8r2I6HAldTSLPO0H") {
+          // PRO PLANS
+          if (subscription.product_id === "pdt_rBsSbB6lU1IGCTYyk4kjB") {
+            credits = 30;
             ProductPlan = "Pro";
-          } else if (subscription.product_id === "pdt_9VEEGoDgGpqQZPka36Dfg") {
+          }
+          if (subscription.product_id === "pdt_NgzyrNTg6fojIRlMGmmkL") {
+            credits = 365;
             ProductPlan = "Pro";
           }
 

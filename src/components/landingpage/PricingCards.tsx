@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -18,7 +19,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 type Product = {
-  product_id: number;
+  product_id: string; // string now, matches DodoPayments
   name: string;
   description: string;
   price: number; // in cents
@@ -51,6 +52,7 @@ const YStarterFeatures = [
   "Progress analytics",
   "Priority support",
 ];
+
 const YProFeatures = [
   "All 5 languages",
   "Unlimited library access",
@@ -80,17 +82,16 @@ const PricingCards = ({
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [dialogMessage, setDialogMessage] = useState("");
-  const [pendingProductId, setPendingProductId] = useState<number | null>(null);
+  const [pendingProductId, setPendingProductId] = useState<string | null>(null);
   const [pendingIsRecurring, setPendingIsRecurring] = useState(false);
 
-  // ✅ Fetch user and their subscription amount + check cancellation status
+  // Fetch user and subscription info
   useEffect(() => {
     const getUser = async () => {
       const { data } = await supabase.auth.getUser();
       setUser(data.user);
 
       if (data.user) {
-        // Fetch user's current subscription_amount from database
         const { data: userData } = await supabase
           .from("users")
           .select("subscription_amount")
@@ -100,7 +101,6 @@ const PricingCards = ({
         if (userData) {
           setUserSubscriptionAmount(userData.subscription_amount || 0);
 
-          // Check if subscription is scheduled for cancellation
           if (userData.subscription_amount > 0) {
             checkCancellationStatus(data.user.id);
           }
@@ -110,7 +110,6 @@ const PricingCards = ({
     getUser();
   }, []);
 
-  // ✅ Check if subscription is scheduled for cancellation
   const checkCancellationStatus = async (userId: string) => {
     try {
       const res = await fetch(`/api/subscription/status?userId=${userId}`);
@@ -124,7 +123,6 @@ const PricingCards = ({
     }
   };
 
-  // ✅ Determine which features to show
   const Mfeatures =
     product.name.toLowerCase() === "starter"
       ? MStarterFeatures
@@ -138,14 +136,27 @@ const PricingCards = ({
       ? YProFeatures
       : [];
 
-  // ✅ Checkout handler - now handles plan switching
-  const checkoutProduct = async (productId: number, is_recurring: boolean) => {
+  const isSubscribedToThisPlan = () => {
+    const planPrice = product.price / 100;
+    return userSubscriptionAmount === planPrice;
+  };
+
+  const getButtonText = () => {
+    if (isSubscribedToThisPlan()) return "Current Plan";
+    if (userSubscriptionAmount > 0) {
+      const planPrice = product.price / 100;
+      const currentPrice = userSubscriptionAmount;
+      return planPrice > currentPrice ? "Upgrade Plan" : "Switch Plan";
+    }
+    return "Choose Plan";
+  };
+
+  const checkoutProduct = async (productId: string, is_recurring: boolean) => {
     if (!user) {
       router.push("/login");
       return;
     }
 
-    // If user is switching plans, show confirmation dialog
     if (userSubscriptionAmount > 0 && !isSubscribedToThisPlan()) {
       const planPrice = product.price / 100;
       const currentPrice = userSubscriptionAmount;
@@ -161,8 +172,7 @@ const PricingCards = ({
             isUpgrade ? "upgrade" : "switch"
           } to the ${planPrice}/${
             billingCycle === "monthly" ? "month" : "year"
-          } plan? ` +
-          `Your current subscription will be cancelled and you'll be charged for the new plan.`
+          } plan? Your current subscription will be cancelled and you'll be charged for the new plan.`
       );
       setShowSwitchDialog(true);
       return;
@@ -171,30 +181,26 @@ const PricingCards = ({
     await proceedWithCheckout(productId, is_recurring);
   };
 
-  // ✅ Proceed with checkout after confirmation
   const proceedWithCheckout = async (
-    productId: number,
+    productId: string,
     is_recurring: boolean
   ) => {
     setLoading(true);
     try {
-      const endpoint = is_recurring
-        ? `/api/checkout/subscription?productId=${productId}&userId=${
-            user.id
-          }&email=${encodeURIComponent(user.email)}&name=${encodeURIComponent(
-            user.user_metadata?.name || "Customer"
-          )}`
-        : `/api/checkout/onetime?productId=${productId}&userId=${user.id}`;
-
+      const endpoint = `/api/checkout/subscription?productId=${productId}&userId=${
+        user.id
+      }&email=${encodeURIComponent(user.email)}&name=${encodeURIComponent(
+        user.user_metadata?.name || "Customer"
+      )}`;
       const res = await fetch(endpoint, { cache: "no-store" });
       const data = await res.json();
 
-      const link =
-        data.payment_link ??
-        data.url ??
-        `https://test.checkout.dodopayments.com/buy/${productId}?quantity=1&redirect_url=${process.env.NEXT_PUBLIC_BASE_URL}`;
-
-      window.location.href = link;
+      if (data.checkout_url) {
+        window.location.href = data.checkout_url;
+      } else {
+        setDialogMessage("Failed to create checkout session.");
+        setShowErrorDialog(true);
+      }
     } catch (err) {
       console.error("Checkout error:", err);
       setDialogMessage("An error occurred during checkout. Please try again.");
@@ -204,21 +210,17 @@ const PricingCards = ({
     }
   };
 
-  // ✅ Handle switch dialog confirmation
   const handleSwitchConfirm = () => {
     setShowSwitchDialog(false);
-    if (pendingProductId !== null) {
+    if (pendingProductId)
       proceedWithCheckout(pendingProductId, pendingIsRecurring);
-    }
   };
 
-  // ✅ Cancel subscription handler
   const handleCancelSubscription = async () => {
     if (!user) return;
     setShowCancelDialog(true);
   };
 
-  // ✅ Proceed with cancellation after confirmation
   const proceedWithCancellation = async () => {
     setShowCancelDialog(false);
     setCancelling(true);
@@ -228,7 +230,6 @@ const PricingCards = ({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user.id }),
       });
-
       const data = await res.json();
 
       if (data.success) {
@@ -250,26 +251,6 @@ const PricingCards = ({
     }
   };
 
-  // ✅ Check if user is subscribed to THIS plan by comparing subscription_amount
-  const isSubscribedToThisPlan = () => {
-    const planPrice = product.price / 100; // Convert cents to dollars
-    return userSubscriptionAmount === planPrice;
-  };
-
-  // ✅ Get button text based on subscription status
-  const getButtonText = () => {
-    if (isSubscribedToThisPlan()) {
-      return "Current Plan";
-    }
-    if (userSubscriptionAmount > 0) {
-      const planPrice = product.price / 100;
-      const currentPrice = userSubscriptionAmount;
-      return planPrice > currentPrice ? "Upgrade Plan" : "Switch Plan";
-    }
-    return "Choose Plan";
-  };
-
-  // ✅ Component UI
   return (
     <div
       className={`rounded-2xl shadow-sm relative py-5 px-6 flex flex-col justify-between ${
@@ -305,38 +286,28 @@ const PricingCards = ({
         </div>
       </main>
 
-      {/* ✅ Render the features */}
-      {billingCycle === "monthly" ? (
-        <ul className=" flex flex-col gap-2 mb-4 ">
-          {Mfeatures.map((feature, i) => (
+      {/* Features */}
+      <ul className=" flex flex-col gap-2 mb-4 ">
+        {(billingCycle === "monthly" ? Mfeatures : Yfeatures).map(
+          (feature, i) => (
             <div className=" flex gap-2 items-center " key={i}>
               <Check className=" text-primary w-5 h-5 " />
-              <p className="  font-medium text-neutral-800">{feature}</p>
+              <p className=" font-medium text-neutral-800">{feature}</p>
             </div>
-          ))}
-        </ul>
-      ) : (
-        <ul className=" flex flex-col gap-2 mb-4 ">
-          {Yfeatures.map((feature, i) => (
-            <div className=" flex gap-2 items-center " key={i}>
-              <Check className=" text-primary w-5 h-5 " />
-              <p className=" font-medium text-neutral-800 ">{feature}</p>
-            </div>
-          ))}
-        </ul>
-      )}
+          )
+        )}
+      </ul>
 
+      {/* Buttons */}
       {user ? (
         <>
           {isSubscribedToThisPlan() ? (
             <>
-              {/* ✅ Show Current Plan badge */}
               <div className="flex gap-2 absolute -top-3 py-1 px-2 right-44 bg-black items-center justify-center rounded-md">
                 <Star className="w-3 h-3 text-white" />
                 <p className="text-xs text-white">Current Plan</p>
               </div>
 
-              {/* ✅ Show Cancel button below Current Plan button */}
               {!isScheduledForCancellation && (
                 <button
                   className="w-full mt-2 rounded-md bg-red-500 hover:bg-red-600 flex justify-center duration-500 border-[.3px] border-red-600 text-white cursor-pointer font-medium py-2.5"
@@ -364,7 +335,6 @@ const PricingCards = ({
               )}
             </>
           ) : (
-            // ✅ Show Upgrade/Switch Plan button for other plans
             <button
               className={`w-full mt-4 rounded-md ${
                 product.name === "Pro"
@@ -400,7 +370,7 @@ const PricingCards = ({
         </Link>
       )}
 
-      {/* ✅ Switch Plan Confirmation Dialog */}
+      {/* Switch Plan Dialog */}
       <AlertDialog open={showSwitchDialog} onOpenChange={setShowSwitchDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -421,7 +391,7 @@ const PricingCards = ({
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* ✅ Cancel Subscription Confirmation Dialog */}
+      {/* Cancel Subscription Dialog */}
       <AlertDialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -445,7 +415,7 @@ const PricingCards = ({
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* ✅ Success Dialog */}
+      {/* Success Dialog */}
       <AlertDialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -458,7 +428,7 @@ const PricingCards = ({
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* ✅ Error Dialog */}
+      {/* Error Dialog */}
       <AlertDialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>

@@ -1,49 +1,41 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { dodopayments } from "@/lib/dodopayments";
+// app/api/checkout/subscription/route.ts
+import DodoPayments from "dodopayments";
 import { NextResponse } from "next/server";
+
+const client = new DodoPayments({
+  bearerToken: process.env.DODO_PAYMENTS_API_KEY!,
+});
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const productId = searchParams.get("productId");
-    const userId = searchParams.get("userId");
     const email = searchParams.get("email");
-    const name = searchParams.get("name") || "Customer";
+    const userId = searchParams.get("userId");
 
-    if (!productId || !userId || !email) {
+    if (!productId || !email || !userId) {
       return NextResponse.json(
-        { error: "Missing required parameters" },
+        { error: "Missing required parameters: productId, email, or userId" },
         { status: 400 }
       );
     }
 
-    const response = await dodopayments.subscriptions.create({
-      billing: {
-        city: searchParams.get("city") || "", // Get from request
-        country: (searchParams.get("country") || "US") as any,
-        state: searchParams.get("state") || "",
-        street: searchParams.get("street") || "",
-        zipcode: searchParams.get("zipcode") || "",
-      },
-      customer: {
-        email,
-        name,
-      },
-      payment_link: true,
-      product_id: productId,
-      quantity: 1,
+    const session = await client.checkoutSessions.create({
+      product_cart: [{ product_id: productId, quantity: 1 }],
+      customer: { email },
+      metadata: { user_id: userId },
       return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/books`,
-      metadata: {
-        user_id: userId,
-      },
-      discount_code: "BLACKFRIDAY",
     });
 
-    return NextResponse.json(response);
-  } catch (error) {
+    return NextResponse.json({
+      session_id: session.session_id,
+      checkout_url: session.checkout_url,
+    });
+  } catch (error: any) {
     console.error(error);
     return NextResponse.json(
-      { error: "Failed to create subscription" },
+      { error: error.message || "Failed to create checkout session" },
       { status: 500 }
     );
   }
