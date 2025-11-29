@@ -7,7 +7,7 @@ type Product = {
   product_id: number;
   name: string;
   description: string;
-  price: number;
+  price: number; // in cents
   is_recurring: boolean;
   billing_period?: "monthly" | "yearly";
 };

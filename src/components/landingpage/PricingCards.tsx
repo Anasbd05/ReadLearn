@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 type Product = {
-  product_id: string; // string now, matches DodoPayments
+  product_id: number;
   name: string;
   description: string;
   price: number; // in cents
@@ -342,7 +342,10 @@ const PricingCards = ({
                   : "bg-gray-50 hover:bg-gray-200 flex justify-center duration-500 border-[.3px] border-neutral-200 cursor-pointer font-medium py-2.5"
               }`}
               onClick={() =>
-                checkoutProduct(product.product_id, product.is_recurring)
+                checkoutProduct(
+                  product.product_id.toString(),
+                  product.is_recurring
+                )
               }
               disabled={loading}
             >
