@@ -96,6 +96,11 @@ export default function RootLayout({
         />
 
         <link rel="manifest" href="/site.webmanifest" />
+        <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="MqYcJJwDO2uxjSAdtnZ4Cw"
+          async
+        ></script>
       </head>
       <body cz-shortcut-listen="true">
         {/* Google Analytics */}
