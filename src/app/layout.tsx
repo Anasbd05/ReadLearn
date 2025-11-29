@@ -3,6 +3,7 @@ import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-geist-sans",
@@ -62,6 +63,7 @@ export default function RootLayout({
         />
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
