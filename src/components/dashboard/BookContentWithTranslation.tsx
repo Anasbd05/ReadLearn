@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // ✅ Updated BookContentWithTranslation with mobile selection support
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useState, JSX } from "react";
@@ -234,30 +234,59 @@ function handleTextClick(
   e: React.MouseEvent<HTMLParagraphElement>,
   onWordClick: (word: string, x: number, y: number) => void
 ) {
-  const target = e.target as HTMLElement;
   const selection = window.getSelection();
   const selectedText = selection?.toString().trim();
 
+  // If user has selected text, use that
   if (selectedText && selectedText.length > 0) {
     const rect = selection?.getRangeAt(0).getBoundingClientRect();
     if (rect) onWordClick(selectedText, rect.left + rect.width / 2, rect.top);
     return;
   }
 
-  const range = document.caretRangeFromPoint(e.clientX, e.clientY);
+  // Get the clicked position
+  let range: Range | null = null;
+
+  // Try modern API first
+  if (document.caretRangeFromPoint) {
+    range = document.caretRangeFromPoint(e.clientX, e.clientY);
+  }
+  // Fallback for Firefox
+  else if ((document as any).caretPositionFromPoint) {
+    const position = (document as any).caretPositionFromPoint(
+      e.clientX,
+      e.clientY
+    );
+    if (position) {
+      range = document.createRange();
+      range.setStart(position.offsetNode, position.offset);
+    }
+  }
+
   if (!range || range.startContainer.nodeType !== Node.TEXT_NODE) return;
 
   const textNode = range.startContainer;
   const offset = range.startOffset;
   const textContent = textNode.textContent || "";
 
-  let start = offset,
-    end = offset;
-  while (start > 0 && /[a-zA-Z']/i.test(textContent[start - 1])) start--;
-  while (end < textContent.length && /[a-zA-Z']/i.test(textContent[end])) end++;
+  // Find word boundaries
+  let start = offset;
+  let end = offset;
+
+  // Move start pointer backwards to beginning of word
+  while (start > 0 && /[a-zA-Z']/i.test(textContent[start - 1])) {
+    start--;
+  }
+
+  // Move end pointer forwards to end of word
+  while (end < textContent.length && /[a-zA-Z']/i.test(textContent[end])) {
+    end++;
+  }
 
   const word = textContent.slice(start, end).trim();
-  if (word.length > 0) onWordClick(word, e.clientX, e.clientY);
+  if (word.length > 0) {
+    onWordClick(word, e.clientX, e.clientY);
+  }
 }
 
 export default function BookContentWithTranslation({
@@ -272,7 +301,8 @@ export default function BookContentWithTranslation({
   const selectionTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const handleWordClick = async (word: string, x: number, y: number) => {
-    const cleanWord = word.replace(/[.,!?;:'"]/g, "").toLowerCase();
+    // ✅ FIX: Preserve apostrophes by only removing double quotes
+    const cleanWord = word.replace(/[.,!?;:"]/g, "").toLowerCase();
     if (!cleanWord) return;
 
     console.log("🔍 Word clicked:", cleanWord);
@@ -399,7 +429,7 @@ export default function BookContentWithTranslation({
             handleWordClick(selectedText, x, y);
           }
         }
-      }, 1500); // Wait 1000ms for selection to complete
+      }, 1500); // Wait 1500ms for selection to complete
     };
 
     document.addEventListener("selectionchange", handleSelectionChange);

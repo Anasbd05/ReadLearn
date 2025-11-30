@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
+import { ChevronLeft, ChevronRight, BookOpen, Info } from "lucide-react";
 import { supabase } from "@/utils/supabase/client";
 import BookContentWithTranslation from "@/components/dashboard/BookContentWithTranslation";
 import SaveProgressButton from "@/components/dashboard/SaveProgressButton";
@@ -140,6 +140,17 @@ const Page = async ({ params, searchParams }: PageProps) => {
               style={{ width: `${(currentPage / totalPages) * 100}%` }}
             />
           </div>
+        </div>
+
+        {/* Translation Tip */}
+        <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+          <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+          <p className="text-sm text-blue-900">
+            <span className="font-semibold">Translation Tip:</span> If clicking
+            a word translates only partial characters rather than the complete
+            word, please select the entire word manually to view the full
+            translation.
+          </p>
         </div>
 
         <BookContentWithTranslation content={pageContent} />
