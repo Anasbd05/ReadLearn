@@ -30,7 +30,8 @@ const MStarterFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "10 AI articles & stories generation per month",
+  "5 articles per week",
+  "3 life stories per week",
   "Progress analytics",
   "Priority support",
 ];
@@ -39,7 +40,8 @@ const MProFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "30 AI articles & stories generation per month",
+  "7 articles per week",
+  "5 life stories per week",
   "Progress analytics",
   "Priority support",
 ];
@@ -48,7 +50,8 @@ const YStarterFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "120 AI articles & stories generation per year",
+  "10 articles per week",
+  "7 life stories per week",
   "Progress analytics",
   "Priority support",
 ];
@@ -57,7 +60,8 @@ const YProFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "365 AI articles & stories generation per year",
+  "15 articles per week",
+  "10 life stories per week",
   "Progress analytics",
   "Priority support",
 ];
