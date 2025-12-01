@@ -75,10 +75,10 @@ export const FAQ = () => {
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
                 Simply tap or select any word or line you don&#39;t understand
-                while reading books, AI-generated articles, AI stories, or your
-                imported content. You&#39;ll instantly see the full translation
-                in your native language. No need to switch between apps or look
-                up words manually.
+                while reading books, articles and stories, or your imported
+                content. You&#39;ll instantly see the full translation in your
+                native language. No need to switch between apps or look up words
+                manually.
               </AccordionContent>
             </AccordionItem>
             {/* 4 */}
@@ -87,14 +87,12 @@ export const FAQ = () => {
               className="bg-background border border-border rounded-lg px-6 shadow-sm hover:shadow-md transition-shadow"
             >
               <AccordionTrigger className="text-left text-lg font-semibold hover:text-primary">
-                What is the AI content generator?
+                What content is available?
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
-                Our AI can generate both articles and stories on any topic you
-                want. Create articles to learn vocabulary in specific fields, or
-                generate personalized stories with themes you choose. Perfect
-                for practicing and exploring new subjects in your target
-                language.
+                Access daily articles and 3 engaging stories each week in your
+                target language. Expand your vocabulary, explore new topics, and
+                enjoy reading content designed to improve your language skills
               </AccordionContent>
             </AccordionItem>
             {/* 5 */}

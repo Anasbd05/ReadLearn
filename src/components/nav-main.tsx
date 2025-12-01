@@ -8,7 +8,13 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Book, Bookmark, Sparkles, TextInitial } from "lucide-react";
+import {
+  Book,
+  Bookmark,
+  Newspaper,
+  ScrollText,
+  TextInitial,
+} from "lucide-react";
 
 export function NavMain() {
   const pathname = usePathname();
@@ -25,9 +31,14 @@ export function NavMain() {
       icon: TextInitial,
     },
     {
-      title: "Ai Creator",
-      url: "/ai-creator",
-      icon: Sparkles,
+      title: "Daily Articles",
+      url: "/daily-articles",
+      icon: Newspaper,
+    },
+    {
+      title: "Life Stories",
+      url: "/life-stories",
+      icon: ScrollText,
     },
     {
       title: "My Vocabulary",

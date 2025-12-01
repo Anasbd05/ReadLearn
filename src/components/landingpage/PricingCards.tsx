@@ -141,14 +141,20 @@ const PricingCards = ({
     return userSubscriptionAmount === planPrice;
   };
 
+  const DISCOUNT = 0.4; // 40%
+
   const getButtonText = () => {
     if (isSubscribedToThisPlan()) return "Current Plan";
+
+    const planPrice = product.price / 100;
+    const discountedPrice = planPrice * (1 - DISCOUNT); // apply 40% discount
+    const currentPrice = userSubscriptionAmount;
+
     if (userSubscriptionAmount > 0) {
-      const planPrice = product.price / 100;
-      const currentPrice = userSubscriptionAmount;
-      return planPrice > currentPrice ? "Upgrade Plan" : "Switch Plan";
+      return discountedPrice > currentPrice ? "Upgrade Plan" : "Switch Plan";
     }
-    return "Choose Plan";
+
+    return `Choose Plan - ${discountedPrice.toFixed(2)}$`; // optional: show discounted price
   };
 
   const checkoutProduct = async (productId: string, is_recurring: boolean) => {

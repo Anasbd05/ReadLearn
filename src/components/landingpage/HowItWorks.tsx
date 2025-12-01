@@ -21,9 +21,8 @@ const steps = [
     title: "Choose Your Content",
     features: [
       "Read books in your target language",
-      "Generate articles on any topic with AI",
-      "Create personalized stories using AI",
-      "Import your own articles, stories, or text",
+      "Daily articles to grow your vocabulary",
+      "3 weekly stories in your target language",
     ],
     icon: BookOpen,
     color: "#F9F8F6",

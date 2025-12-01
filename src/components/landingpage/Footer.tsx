@@ -73,10 +73,10 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/ai-creator"
+                  href="/articles"
                   className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
-                  AI Creator
+                  Articles
                 </Link>
               </li>
             </ul>

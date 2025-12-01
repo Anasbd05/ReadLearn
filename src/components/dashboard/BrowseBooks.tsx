@@ -142,8 +142,8 @@ const BrowseBooks = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-            <BookOpen className="w-8 h-8 text-blue-600" />
+          <h1 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <BookOpen className="w-7 h-7 text-primary" />
             Book Library
           </h1>
           <p className="text-gray-600">
