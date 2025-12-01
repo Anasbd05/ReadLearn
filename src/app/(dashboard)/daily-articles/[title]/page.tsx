@@ -39,7 +39,7 @@ const ArticlePage = async ({ params }: PageProps) => {
   const isFreeUser = profile?.plan === "free" || !profile;
 
   const article = allArticles.find(
-    (a) => a.title.toLowerCase() === decodedTitle.toLowerCase()
+    (a) => a.title?.toLowerCase() === decodedTitle.toLowerCase()
   );
 
   if (!article) {
