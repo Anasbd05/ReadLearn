@@ -73,7 +73,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/articles"
+                  href="/daily-articles"
                   className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
                   Articles
@@ -159,7 +159,7 @@ const Footer = () => {
           {/* Company Column */}
           <div className="col-span-1 md:col-span-3 lg:col-span-2">
             <h4 className="font-semibold text-gray-900 text-sm uppercase tracking-wider mb-4">
-              Company
+              Support
             </h4>
             <ul className="space-y-2.5">
               <li>
@@ -168,14 +168,6 @@ const Footer = () => {
                   className="text-gray-600 hover:text-primary transition-colors text-sm"
                 >
                   Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-gray-600 hover:text-primary transition-colors text-sm"
-                >
-                  Blog
                 </Link>
               </li>
             </ul>

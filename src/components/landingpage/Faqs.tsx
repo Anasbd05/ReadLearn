@@ -90,9 +90,10 @@ export const FAQ = () => {
                 What content is available?
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
-                Access daily articles and 3 engaging stories each week in your
-                target language. Expand your vocabulary, explore new topics, and
-                enjoy reading content designed to improve your language skills
+                Access books, daily articles and 3 engaging stories each week in
+                your target language. Expand your vocabulary, explore new
+                topics, and enjoy reading content designed to improve your
+                language skills.
               </AccordionContent>
             </AccordionItem>
             {/* 5 */}
@@ -120,7 +121,7 @@ export const FAQ = () => {
                 Can I switch between languages?
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
-                Yes! Both plans give you access to all 5 languages, and you can
+                Yes! All plans give you access to all 5 languages, and you can
                 switch between them anytime.
               </AccordionContent>
             </AccordionItem>

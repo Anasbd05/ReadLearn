@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Newspaper } from "lucide-react";
+import { Loader2, Newspaper } from "lucide-react";
 import {
   englishArticles,
   spanishArticles,
@@ -88,8 +88,11 @@ const BrowseArticles = () => {
 
   if (loading) {
     return (
-      <div className="w-full min-h-screen flex items-center justify-center">
-        <p>Loading...</p>
+      <div className="w-full min-h-screen bg-muted/50 rounded-xl p-6 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
+          <p className="text-gray-600">Loading the articles...</p>
+        </div>
       </div>
     );
   }

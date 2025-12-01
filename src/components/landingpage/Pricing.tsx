@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import PricingCards from "@/components/landingpage/PricingCards";
+import { Loader2 } from "lucide-react";
 
 type Product = {
   product_id: number;
@@ -67,8 +68,11 @@ export default function Pricing() {
       </div>
 
       {loading ? (
-        <div className="flex justify-center items-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
+        <div className="w-full min-h-screen bg-muted/50 rounded-xl p-6 flex items-center justify-center">
+          <div className="text-center">
+            <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
+            <p className="text-gray-600">Loading pricing plans...</p>
+          </div>
         </div>
       ) : error ? (
         <div className="flex flex-col items-center justify-center py-20 gap-4">

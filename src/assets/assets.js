@@ -387,7 +387,7 @@ export const features = [
   },
   {
     icon: Library,
-    title: "Read Books in Your Target Language",
+    title: "Books in Your Target Language",
     description:
       "Access books in your target language with instant translation support. Tap any word or line you don't understand to see the full translation in your native language.",
   },

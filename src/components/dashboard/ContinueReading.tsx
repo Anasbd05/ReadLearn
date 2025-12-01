@@ -24,7 +24,6 @@ export default function ContinueReading() {
           setLoading(false);
           return;
         }
-
         const { data, error } = await supabase
           .from("reading_progress")
           .select("*")

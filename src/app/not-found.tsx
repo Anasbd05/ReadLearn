@@ -69,10 +69,10 @@ export default function NotFound() {
             </Link>
             <span className="text-gray-300">•</span>
             <Link
-              href="/ai-creator"
+              href="/daily-articles"
               className="text-sm text-primary hover:underline"
             >
-              Ai creator
+              Daily articles
             </Link>
             <span className="text-gray-300">•</span>
             <Link

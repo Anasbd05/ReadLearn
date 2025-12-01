@@ -47,30 +47,23 @@ export async function POST(request: Request) {
           const amount = rawAmount / 100; // convert cents to dollars
 
           // Determine credits based on amount
-          let credits = 0;
           let ProductPlan = "free";
 
           // Starter plans
           if (subscription.product_id === "pdt_wXoCSEAWldmzqUs7hCdKo") {
-            credits = 10;
             ProductPlan = "Starter";
           }
-          if (subscription.product_id === "pdt_TxZ5kYf0338HRNojwd0mw") {
-            credits = 120;
-            ProductPlan = "Starter";
-          }
-          // PRO PLANS
+          // Pro PLAN
           if (subscription.product_id === "pdt_rBsSbB6lU1IGCTYyk4kjB") {
-            credits = 30;
             ProductPlan = "Pro";
           }
-          if (subscription.product_id === "pdt_NgzyrNTg6fojIRlMGmmkL") {
-            credits = 365;
-            ProductPlan = "Pro";
+          // Elite PLAN
+          if (subscription.product_id === "pdt_TxZ5kYf0338HRNojwd0mw") {
+            ProductPlan = "Elite";
           }
 
           console.log(
-            `✅ User info: id=${userId}, email=${userEmail}, name=${userName}, amount=${amount}, credits=${credits}`
+            `✅ User info: id=${userId}, email=${userEmail}, name=${userName}, amount=${amount}`
           );
 
           if (!userId) {
@@ -84,7 +77,6 @@ export async function POST(request: Request) {
           const { error } = await supabase
             .from("users")
             .update({
-              credits: credits,
               plan: ProductPlan,
               subscription_amount: amount,
             })
@@ -113,7 +105,6 @@ export async function POST(request: Request) {
             await supabase
               .from("users")
               .update({
-                credits: 0,
                 plan: "free",
                 subscription_amount: 0,
               })
