@@ -1,4 +1,5 @@
 import selfImprovement from "./selfImprovement.jpeg";
+import anxiety from "./anxiety.jpeg";
 
 export const englishArticles = [
   {
@@ -62,6 +63,90 @@ export const englishArticles = [
       {
         headline: "Learn More About Performance Development Reviews",
         body: "In personal development, there may come a time when you feel like you’re stuck or not making much or any progress at all. That’s totally normal. If you feel like you’ve hit a plateau and aren’t making the progress you want, it might be time to consider a Performance Development Review (PDR). PDRs can help you gain clarity on your performance, set new goals, and get back on track toward achieving personal and career growth. If you’d like to learn more about PDRs, contact us today, and we’ll gladly see how we can help you get back on track.",
+      },
+    ],
+  },
+  {
+    id: 2,
+    targetLanguage: "English",
+    thumbnail: anxiety,
+    title: "Understanding Anxiety: Causes, Symptoms, and How to Overcome It",
+    sections: [
+      {
+        headline: "Introduction",
+        body: "Anxiety has become one of the most common emotional challenges people face today. Whether caused by work stress, personal struggles, uncertainty, or overwhelming responsibilities, anxiety can leave you feeling mentally drained and emotionally exhausted. If you’ve been experiencing persistent worry, tension, or racing thoughts, you’re not alone. In this article, we’ll explore what anxiety really is, why it affects so many people, the different types of anxiety, and practical steps you can take to regain control and restore peace of mind.",
+      },
+      {
+        headline: "What is Anxiety?",
+        body: "Anxiety is the body’s natural response to stress. It acts as an internal alarm system that prepares you to face potential threats. While occasional anxiety is normal and sometimes even helpful, chronic or intense anxiety can disrupt your daily life. It often appears without any real danger present, causing your mind to overreact and your body to enter a constant state of alertness. Understanding how anxiety works is the first step toward managing it effectively.",
+      },
+      {
+        headline: "Why Do We Experience Anxiety?",
+        body: "There are several reasons people develop anxiety. Biological factors, past experiences, lifestyle habits, and even personality traits can contribute. Anxiety can also be triggered by pressure to succeed, financial worries, relationship problems, or fear of the unknown. In today’s fast-paced digital world, the constant flow of information and expectations can overstimulate your mind and increase stress levels. Regardless of the cause, anxiety is a sign that your mind and body are asking for balance.",
+      },
+      {
+        subheadline: "The Brain’s Alarm System",
+        body: "Anxiety starts in the brain’s fear center, known as the amygdala. When the brain senses danger, it activates your fight-or-flight response—even if the threat isn’t real. This leads to symptoms such as rapid heartbeat, sweating, and racing thoughts. Understanding this process helps you see anxiety not as a personal flaw, but as a natural system that sometimes becomes overactive.",
+      },
+      {
+        subheadline: "Environmental and Lifestyle Factors",
+        body: "Stressful work environments, lack of sleep, excessive screen time, and poor diet can all contribute to anxiety. When your body and mind aren’t given the rest or support they need, stress hormones remain high, making it harder to relax or think clearly.",
+      },
+      {
+        subheadline: "Past Experiences",
+        body: "Traumatic or emotionally intense experiences can shape how your brain responds to stress. Even if the event happened years ago, your brain may still react as if the danger is present. This makes anxiety feel unpredictable and difficult to control.",
+      },
+      {
+        headline: "Common Symptoms of Anxiety",
+        body: "Anxiety looks different for everyone. Some people experience physical symptoms, while others struggle more with emotional or behavioral changes. Recognizing these symptoms can help you understand what you’re going through and seek appropriate support.",
+      },
+      {
+        subheadline: "Physical Symptoms",
+        body: "These may include a racing heart, tight chest, sweating, shaking, shortness of breath, headaches, or feeling dizzy. Sometimes anxiety can even mimic medical conditions, which makes it confusing and frightening.",
+      },
+      {
+        subheadline: "Emotional Symptoms",
+        body: "Emotional signs include excessive worry, overthinking, fear of the worst-case scenario, irritability, or difficulty concentrating. People with anxiety may also feel overwhelmed or disconnected from the present moment.",
+      },
+      {
+        subheadline: "Behavioral Symptoms",
+        body: "Some people avoid situations that trigger anxiety, withdraw socially, or develop habits like skin picking or nail biting. These behaviors can bring temporary relief but often make anxiety worse in the long term.",
+      },
+      {
+        headline: "Types of Anxiety",
+        body: "Anxiety isn’t a single experience—it comes in different forms. Understanding the type you’re dealing with can help you manage it more effectively. Common types include Generalized Anxiety Disorder (GAD), Social Anxiety, Panic Disorder, and situational anxiety triggered by specific events.",
+      },
+      {
+        headline: "How to Manage and Reduce Anxiety",
+        body: "While anxiety may feel overwhelming, it is manageable with the right strategies. You don’t need to eliminate anxiety completely; instead, focus on improving your habits, building resilience, and calming your mind. Consistency is key.",
+      },
+      {
+        subheadline: "Practice Deep Breathing",
+        body: "Slow, deep breaths signal your brain to relax. This reduces stress hormones and helps your body return to a calmer state. Even one minute of controlled breathing can make a significant difference.",
+      },
+      {
+        subheadline: "Limit Overthinking Through Journaling",
+        body: "Writing your thoughts down helps you organize your worries instead of letting them spin in your mind. Journaling also allows you to recognize patterns and triggers more easily.",
+      },
+      {
+        subheadline: "Stay Physically Active",
+        body: "Regular exercise releases chemicals that naturally lower anxiety. You don’t need intense workouts—walking, stretching, or light activities can be enough to reduce tension.",
+      },
+      {
+        subheadline: "Set Digital Boundaries",
+        body: "Limiting screen time, especially social media, reduces mental overstimulation. Creating moments of quiet throughout your day allows your mind to reset.",
+      },
+      {
+        subheadline: "Talk to Someone You Trust",
+        body: "Sharing your feelings with a friend, family member, or professional can provide relief and perspective. You don’t have to face anxiety alone. Support makes healing easier.",
+      },
+      {
+        headline: "When to Seek Professional Support",
+        body: "If anxiety begins to interfere with your ability to work, socialize, or enjoy life, seeking help is a strong and important step. Therapists, counselors, and mental health professionals can provide personalized strategies and treatments that help you regain control and improve your well-being.",
+      },
+      {
+        headline: "Final Thoughts",
+        body: "Anxiety is not a sign of weakness—it’s a natural response that sometimes becomes too loud. With awareness, patience, and the right techniques, you can learn to quiet the noise and build a healthier relationship with your mind. Healing takes time, but every step forward brings you closer to calm, clarity, and a more peaceful life.",
       },
     ],
   },
@@ -199,6 +284,90 @@ export const frenchArticles = [
       },
     ],
   },
+  {
+    id: 1,
+    targetLanguage: "French",
+    thumbnail: anxietyImage,
+    title: "Comprendre l’Anxiété : Causes, Symptômes et Comment la Surmonter",
+    sections: [
+      {
+        headline: "Introduction",
+        body: "L’anxiété est devenue l’un des défis émotionnels les plus courants. Qu’elle soit causée par le travail, les responsabilités ou les incertitudes de la vie, l’anxiété peut être épuisante. Si vous ressentez de l’inquiétude constante ou des pensées rapides, vous n’êtes pas seul. Cet article explique ce qu’est l’anxiété, pourquoi elle apparaît, les symptômes à connaître et des étapes efficaces pour retrouver la sérénité.",
+      },
+      {
+        headline: "Qu’est-ce que l’Anxiété ?",
+        body: "L’anxiété est une réponse naturelle au stress. Elle sert de système d’alarme interne destiné à nous protéger. Mais lorsque cette alarme devient trop sensible, elle déclenche des réactions fortes sans réel danger. Comprendre ce mécanisme aide à mieux la gérer.",
+      },
+      {
+        headline: "Pourquoi Ressentons-nous de l’Anxiété ?",
+        body: "Plusieurs facteurs peuvent provoquer l’anxiété : biologie, expériences passées, style de vie, pression sociale, incertitude, etc. Dans un monde connecté et rapide, l’esprit est souvent surchargé.",
+      },
+      {
+        subheadline: "Le Système d’Alerte du Cerveau",
+        body: "L’amygdale déclenche la réponse de fuite ou de combat, parfois à tort. Cela provoque des symptômes comme le cœur qui bat vite ou les pensées incontrôlables.",
+      },
+      {
+        subheadline: "Facteurs Environnementaux",
+        body: "Manque de sommeil, stress chronique, mauvaise alimentation et surcharge numérique augmentent le niveau d’anxiété.",
+      },
+      {
+        subheadline: "Expériences Passées",
+        body: "Des expériences traumatisantes peuvent entraîner une hyperréaction du cerveau face au stress, même des années plus tard.",
+      },
+      {
+        headline: "Symptômes Courants",
+        body: "Les symptômes peuvent être physiques, émotionnels ou comportementaux.",
+      },
+      {
+        subheadline: "Symptômes Physiques",
+        body: "Palpitations, tension musculaire, transpiration, étourdissements.",
+      },
+      {
+        subheadline: "Symptômes Émotionnels",
+        body: "Inquiétude excessive, irritabilité, difficultés de concentration.",
+      },
+      {
+        subheadline: "Symptômes Comportementaux",
+        body: "Évitement, isolement ou comportements compulsifs.",
+      },
+      {
+        headline: "Types d’Anxiété",
+        body: "Anxiété généralisée, anxiété sociale, crises de panique, anxiété situationnelle.",
+      },
+      {
+        headline: "Comment Réduire l’Anxiété",
+        body: "Des stratégies simples peuvent aider à retrouver le calme.",
+      },
+      {
+        subheadline: "Respiration Profonde",
+        body: "La respiration lente calme le système nerveux.",
+      },
+      {
+        subheadline: "Écriture de Pensées",
+        body: "Écrire apaise le chaos mental.",
+      },
+      {
+        subheadline: "Activité Physique",
+        body: "Bouger libère des hormones anti-stress.",
+      },
+      {
+        subheadline: "Limiter les Écrans",
+        body: "Réduire les stimuli numériques aide l’esprit à se reposer.",
+      },
+      {
+        subheadline: "Parler à un Proche",
+        body: "Partager ses émotions apporte soutien et clarté.",
+      },
+      {
+        headline: "Quand Chercher de l’Aide",
+        body: "Si l’anxiété perturbe votre vie quotidienne, consulter un professionnel est une étape importante.",
+      },
+      {
+        headline: "Conclusion",
+        body: "L’anxiété n’est pas un signe de faiblesse. Avec des outils adaptés, il est possible de retrouver paix et équilibre.",
+      },
+    ],
+  },
 ];
 
 export const germanArticles = [
@@ -267,6 +436,90 @@ export const germanArticles = [
       },
     ],
   },
+  {
+    id: 1,
+    targetLanguage: "German",
+    thumbnail: anxietyImage,
+    title: "Angst Verstehen: Ursachen, Symptome und Wege zur Bewältigung",
+    sections: [
+      {
+        headline: "Einführung",
+        body: "Angst ist heute eine der häufigsten emotionalen Belastungen. Ob durch Arbeit, persönliche Probleme oder Unsicherheit – Angst kann überwältigend sein. Wenn du dich ständig sorgst oder deine Gedanken rasen, bist du nicht allein. Dieser Artikel erklärt, was Angst ist, warum sie entsteht, welche Symptome typisch sind und welche Schritte dir helfen können, wieder Ruhe zu finden.",
+      },
+      {
+        headline: "Was ist Angst?",
+        body: "Angst ist die natürliche Reaktion des Körpers auf Stress. Sie dient als internes Warnsystem. Doch wenn dieses System überaktiv wird, reagiert der Körper stark, auch ohne echte Gefahr. Das Verständnis dieses Prozesses ist entscheidend für den Umgang mit Angst.",
+      },
+      {
+        headline: "Warum haben wir Angst?",
+        body: "Biologische Faktoren, frühere Erfahrungen, Lebensstil, Erfolgsdruck, finanzielle Sorgen und digitale Überreizung können Angst auslösen.",
+      },
+      {
+        subheadline: "Das Alarmsystem des Gehirns",
+        body: "Die Amygdala löst die Kampf-oder-Flucht-Reaktion aus – manchmal unnötig –, was körperliche und mentale Symptome erzeugt.",
+      },
+      {
+        subheadline: "Umweltfaktoren",
+        body: "Schlafmangel, schlechte Ernährung, ständige Erreichbarkeit und Stress erhöhen den Angstpegel.",
+      },
+      {
+        subheadline: "Vergangene Erfahrungen",
+        body: "Traumata können das Gehirn dauerhaft sensibler für Stress machen.",
+      },
+      {
+        headline: "Häufige Symptome",
+        body: "Angst kann körperlich, emotional oder verhaltensbezogen auftreten.",
+      },
+      {
+        subheadline: "Körperliche Symptome",
+        body: "Schneller Herzschlag, Engegefühl, Schwitzen, Zittern, Schwindel.",
+      },
+      {
+        subheadline: "Emotionale Symptome",
+        body: "Ständige Sorgen, Überdenken, Reizbarkeit, Konzentrationsprobleme.",
+      },
+      {
+        subheadline: "Verhaltenssymptome",
+        body: "Vermeidung, sozialer Rückzug, nervöse Angewohnheiten.",
+      },
+      {
+        headline: "Arten von Angst",
+        body: "Generalisierte Angststörung, soziale Angst, Panikattacken, situative Angst.",
+      },
+      {
+        headline: "Wie man Angst bewältigt",
+        body: "Mit den richtigen Strategien lässt sich Angst erheblich reduzieren.",
+      },
+      {
+        subheadline: "Tiefes Atmen",
+        body: "Langsame Atmung aktiviert den Ruhemechanismus des Körpers.",
+      },
+      {
+        subheadline: "Gedanken aufschreiben",
+        body: "Schreiben hilft, Sorgen zu ordnen.",
+      },
+      {
+        subheadline: "Körperliche Aktivität",
+        body: "Bewegung reduziert Stresshormone.",
+      },
+      {
+        subheadline: "Digitale Pausen",
+        body: "Weniger Bildschirmzeit beruhigt den Geist.",
+      },
+      {
+        subheadline: "Mit jemandem reden",
+        body: "Gespräche schaffen emotionale Entlastung.",
+      },
+      {
+        headline: "Wann professionelle Hilfe sinnvoll ist",
+        body: "Wenn Angst deinen Alltag beeinträchtigt, ist Hilfe eine wichtige Entscheidung.",
+      },
+      {
+        headline: "Fazit",
+        body: "Angst bedeutet keine Schwäche. Mit Geduld und den richtigen Werkzeugen kannst du wieder Klarheit und Ruhe finden.",
+      },
+    ],
+  },
 ];
 
 export const chineseArticles = [
@@ -331,6 +584,90 @@ export const chineseArticles = [
       {
         headline: "了解更多关于绩效发展评估的信息",
         body: "在个人发展中，可能会有一段时间，您会觉得自己停滞不前或几乎没有进展。这是完全正常的。如果您觉得自己达到了瓶颈并且没有取得想要的进展，可能是时候考虑绩效发展评估（PDR）了。PDR 可以帮助您清楚了解自己的绩效、设定新目标，并重回实现个人和职业成长的正轨。如果您想了解有关 PDR 的更多信息，请今天联系我们，我们将很乐意帮助您重新回到正轨。",
+      },
+    ],
+  },
+  {
+    id: 1,
+    targetLanguage: "Chinese",
+    thumbnail: anxietyImage,
+    title: "理解焦虑：原因、症状及克服方法",
+    sections: [
+      {
+        headline: "简介",
+        body: "焦虑已成为现代社会最常见的情绪问题之一。无论是工作压力、生活困难、责任增加，还是对未来的不确定感，焦虑都会让人感到精神紧绷、心神不安。若你正经历持续担忧或思绪加速，请记住，你并不孤单。本篇文章将介绍什么是焦虑、为何会发生、常见症状以及有效的应对方法。",
+      },
+      {
+        headline: "什么是焦虑？",
+        body: "焦虑是身体对压力的自然反应，就像一个内部警报系统。当它变得过度敏感时，即使没有危险也会被触发，引发身体和心理反应。理解其机制是管理焦虑的重要一步。",
+      },
+      {
+        headline: "为什么会产生焦虑？",
+        body: "生理机制、过去经历、生活方式、成功压力、财务担忧及数字信息过载都可能导致焦虑。",
+      },
+      {
+        subheadline: "大脑的警报系统",
+        body: "杏仁核会启动“战斗或逃跑”反应，有时却是误报，导致心跳加快、紧张、思绪失控等症状。",
+      },
+      {
+        subheadline: "环境与生活方式因素",
+        body: "睡眠不足、过度使用电子设备、不规律饮食及高压环境都会提升焦虑水平。",
+      },
+      {
+        subheadline: "过去的经历",
+        body: "创伤经历会让大脑长期保持警觉，使焦虑更难控制。",
+      },
+      {
+        headline: "常见症状",
+        body: "焦虑的表现可以分为身体、情绪与行为三类。",
+      },
+      {
+        subheadline: "身体症状",
+        body: "心跳加速、胸闷、出汗、颤抖、头晕。",
+      },
+      {
+        subheadline: "情绪症状",
+        body: "过度担忧、反复思考、易怒、注意力难以集中。",
+      },
+      {
+        subheadline: "行为症状",
+        body: "逃避社交、回避情境、出现紧张习惯（如咬指甲）。",
+      },
+      {
+        headline: "焦虑的类型",
+        body: "常见的焦虑类型包括：广泛性焦虑、社交焦虑、恐慌发作、情境性焦虑等。",
+      },
+      {
+        headline: "如何管理与减少焦虑",
+        body: "焦虑可以通过一系列策略来缓解，不需要完全消除，而是学会调节。",
+      },
+      {
+        subheadline: "深呼吸练习",
+        body: "缓慢深呼吸有助于降低压力反应。",
+      },
+      {
+        subheadline: "通过书写避免过度思考",
+        body: "写下思绪能帮助你整理压力。",
+      },
+      {
+        subheadline: "保持身体活动",
+        body: "运动释放天然的抗焦虑化学物质。",
+      },
+      {
+        subheadline: "减少数字干扰",
+        body: "减少社交媒体使用能降低心理负担。",
+      },
+      {
+        subheadline: "与信任的人交谈",
+        body: "分享情绪能有效减轻心理压力。",
+      },
+      {
+        headline: "何时寻求专业帮助",
+        body: "如果焦虑影响你的生活、工作或人际关系，专业协助会是重要且有效的选择。",
+      },
+      {
+        headline: "总结",
+        body: "焦虑不是弱点，而是身体发出的讯号。通过学习管理情绪，你可以重新获得平静与清晰。",
       },
     ],
   },
@@ -464,6 +801,90 @@ export const allArticles = [
         body: "En el desarrollo personal, puede llegar un momento en el que sientas que estás estancado o no estás progresando mucho o nada en absoluto. Eso es totalmente normal. Si sientes que has alcanzado un estancamiento y no estás logrando el progreso que deseas, podría ser el momento de considerar una Revisión de Desarrollo de Desempeño (PDR). Las PDR pueden ayudarte a obtener claridad sobre tu desempeño, establecer nuevas metas y volver a encaminarte hacia el crecimiento personal y profesional. Si deseas aprender más sobre las PDR, contáctanos hoy, y con gusto veremos cómo podemos ayudarte a volver a encaminarte.",
       },
     ],
+    spanish: {
+      id: 1,
+      targetLanguage: "Spanish",
+      thumbnail: anxietyImage,
+      title: "Comprender la Ansiedad: Causas, Síntomas y Cómo Superarla",
+      sections: [
+        {
+          headline: "Introducción",
+          body: "La ansiedad se ha convertido en uno de los desafíos emocionales más comunes en la actualidad. Ya sea causada por el estrés laboral, problemas personales, incertidumbre o responsabilidades abrumadoras, la ansiedad puede dejarte mentalmente agotado. Si has estado experimentando preocupación constante o pensamientos acelerados, no estás solo. En este artículo exploraremos qué es la ansiedad, por qué afecta a tantas personas, los tipos más comunes y pasos prácticos para recuperar el control y encontrar paz mental.",
+        },
+        {
+          headline: "¿Qué es la Ansiedad?",
+          body: "La ansiedad es la respuesta natural del cuerpo al estrés. Funciona como un sistema de alarma interno diseñado para protegerte de posibles amenazas. Aunque la ansiedad ocasional es normal, cuando se vuelve persistente puede interferir con tu vida diaria. Muchas veces aparece sin un peligro real, provocando que tu mente reaccione de manera exagerada. Comprender este proceso es el primer paso para manejarla.",
+        },
+        {
+          headline: "¿Por Qué Experimentamos Ansiedad?",
+          body: "Varias razones pueden desencadenar ansiedad: factores biológicos, experiencias pasadas, hábitos de vida y rasgos de personalidad. También puede surgir debido a la presión por tener éxito, preocupaciones económicas o miedo al futuro. En un mundo acelerado y digital, la sobrecarga de información aumenta los niveles de estrés. Sin importar la causa, la ansiedad es una señal de que tu cuerpo necesita equilibrio.",
+        },
+        {
+          subheadline: "El Sistema de Alarma del Cerebro",
+          body: "La ansiedad comienza en la amígdala, el centro del miedo. Cuando detecta peligro, activa la respuesta de lucha o huida, incluso si la amenaza no es real. Esto provoca síntomas como taquicardia, sudoración y pensamientos acelerados. Saber esto te ayuda a entender que la ansiedad no es un defecto personal.",
+        },
+        {
+          subheadline: "Factores Ambientales y de Estilo de Vida",
+          body: "Ambientes laborales estresantes, falta de sueño, exceso de pantallas y mala alimentación pueden contribuir a la ansiedad. Cuando tu cuerpo no descansa, las hormonas del estrés permanecen elevadas, dificultando la relajación.",
+        },
+        {
+          subheadline: "Experiencias Pasadas",
+          body: "Experiencias traumáticas pueden hacer que el cerebro reaccione como si el peligro aún estuviera presente. Esto hace que la ansiedad parezca impredecible y difícil de manejar.",
+        },
+        {
+          headline: "Síntomas Comunes de la Ansiedad",
+          body: "La ansiedad se manifiesta de diferentes maneras. Algunas personas sienten síntomas físicos, otras emocionales o conductuales. Reconocerlos es fundamental para buscar apoyo.",
+        },
+        {
+          subheadline: "Síntomas Físicos",
+          body: "Incluyen palpitaciones, opresión en el pecho, sudoración, temblores, dificultad para respirar o mareos.",
+        },
+        {
+          subheadline: "Síntomas Emocionales",
+          body: "Preocupación excesiva, sobrepensamiento, irritabilidad y dificultad para concentrarse suelen acompañar la ansiedad.",
+        },
+        {
+          subheadline: "Síntomas Conductuales",
+          body: "Evitar situaciones, aislarse o desarrollar hábitos nerviosos puede proporcionar alivio temporal pero empeora la ansiedad a largo plazo.",
+        },
+        {
+          headline: "Tipos de Ansiedad",
+          body: "Entre los más comunes están el Trastorno de Ansiedad Generalizada (TAG), ansiedad social, ataques de pánico y ansiedad situacional.",
+        },
+        {
+          headline: "Cómo Manejar y Reducir la Ansiedad",
+          body: "La ansiedad puede manejarse con estrategias adecuadas. No necesitas eliminarla, sino aprender a regularla.",
+        },
+        {
+          subheadline: "Practicar Respiración Profunda",
+          body: "La respiración lenta activa el sistema de relajación del cuerpo.",
+        },
+        {
+          subheadline: "Escribir para Reducir el Overthinking",
+          body: "Anotar tus pensamientos ayuda a organizar tus preocupaciones.",
+        },
+        {
+          subheadline: "Mantener Actividad Física",
+          body: "El ejercicio libera químicos que reducen naturalmente la ansiedad.",
+        },
+        {
+          subheadline: "Reducir Ruido Digital",
+          body: "Limitar redes sociales reduce la sobreestimulación mental.",
+        },
+        {
+          subheadline: "Hablar con Alguien de Confianza",
+          body: "Compartir tus emociones alivia la carga mental.",
+        },
+        {
+          headline: "Cuándo Buscar Ayuda Profesional",
+          body: "Si la ansiedad afecta tu vida diaria, buscar ayuda es un paso valiente y necesario.",
+        },
+        {
+          headline: "Reflexión Final",
+          body: "La ansiedad no es debilidad. Con paciencia y estrategias adecuadas, puedes recuperar la calma y vivir con mayor claridad.",
+        },
+      ],
+    },
   },
   {
     id: 1,
@@ -658,5 +1079,430 @@ export const allArticles = [
         body: "在个人发展中，可能会有一段时间，您会觉得自己停滞不前或几乎没有进展。这是完全正常的。如果您觉得自己达到了瓶颈并且没有取得想要的进展，可能是时候考虑绩效发展评估（PDR）了。PDR 可以帮助您清楚了解自己的绩效、设定新目标，并重回实现个人和职业成长的正轨。如果您想了解有关 PDR 的更多信息，请今天联系我们，我们将很乐意帮助您重新回到正轨。",
       },
     ],
+  },
+  {
+    english: {
+      id: 1,
+      targetLanguage: "English",
+      thumbnail: anxietyImage,
+      title: "Understanding Anxiety: Causes, Symptoms, and How to Overcome It",
+      sections: [
+        {
+          headline: "Introduction",
+          body: "Anxiety has become one of the most common emotional challenges people face today. Whether caused by work stress, personal struggles, uncertainty, or overwhelming responsibilities, anxiety can leave you feeling mentally drained and emotionally exhausted. If you’ve been experiencing persistent worry, tension, or racing thoughts, you’re not alone. In this article, we’ll explore what anxiety really is, why it affects so many people, the different types of anxiety, and practical steps you can take to regain control and restore peace of mind.",
+        },
+        {
+          headline: "What is Anxiety?",
+          body: "Anxiety is the body’s natural response to stress. It acts as an internal alarm system that prepares you to face potential threats. While occasional anxiety is normal and sometimes even helpful, chronic or intense anxiety can disrupt your daily life. It often appears without any real danger present, causing your mind to overreact and your body to enter a constant state of alertness. Understanding how anxiety works is the first step toward managing it effectively.",
+        },
+        {
+          headline: "Why Do We Experience Anxiety?",
+          body: "There are several reasons people develop anxiety. Biological factors, past experiences, lifestyle habits, and even personality traits can contribute. Anxiety can also be triggered by pressure to succeed, financial worries, relationship problems, or fear of the unknown. In today’s fast-paced digital world, the constant flow of information and expectations can overstimulate your mind and increase stress levels. Regardless of the cause, anxiety is a sign that your mind and body are asking for balance.",
+        },
+        {
+          subheadline: "The Brain’s Alarm System",
+          body: "Anxiety starts in the brain’s fear center, known as the amygdala. When the brain senses danger, it activates your fight-or-flight response—even if the threat isn’t real. This leads to symptoms such as rapid heartbeat, sweating, and racing thoughts. Understanding this process helps you see anxiety not as a personal flaw, but as a natural system that sometimes becomes overactive.",
+        },
+        {
+          subheadline: "Environmental and Lifestyle Factors",
+          body: "Stressful work environments, lack of sleep, excessive screen time, and poor diet can all contribute to anxiety. When your body and mind aren’t given the rest or support they need, stress hormones remain high, making it harder to relax or think clearly.",
+        },
+        {
+          subheadline: "Past Experiences",
+          body: "Traumatic or emotionally intense experiences can shape how your brain responds to stress. Even if the event happened years ago, your brain may still react as if the danger is present. This makes anxiety feel unpredictable and difficult to control.",
+        },
+        {
+          headline: "Common Symptoms of Anxiety",
+          body: "Anxiety looks different for everyone. Some people experience physical symptoms, while others struggle more with emotional or behavioral changes. Recognizing these symptoms can help you understand what you’re going through and seek appropriate support.",
+        },
+        {
+          subheadline: "Physical Symptoms",
+          body: "These may include a racing heart, tight chest, sweating, shaking, shortness of breath, headaches, or feeling dizzy. Sometimes anxiety can even mimic medical conditions, which makes it confusing and frightening.",
+        },
+        {
+          subheadline: "Emotional Symptoms",
+          body: "Emotional signs include excessive worry, overthinking, fear of the worst-case scenario, irritability, or difficulty concentrating. People with anxiety may also feel overwhelmed or disconnected from the present moment.",
+        },
+        {
+          subheadline: "Behavioral Symptoms",
+          body: "Some people avoid situations that trigger anxiety, withdraw socially, or develop habits like skin picking or nail biting. These behaviors can bring temporary relief but often make anxiety worse in the long term.",
+        },
+        {
+          headline: "Types of Anxiety",
+          body: "Anxiety isn’t a single experience—it comes in different forms. Understanding the type you’re dealing with can help you manage it more effectively. Common types include Generalized Anxiety Disorder (GAD), Social Anxiety, Panic Disorder, and situational anxiety triggered by specific events.",
+        },
+        {
+          headline: "How to Manage and Reduce Anxiety",
+          body: "While anxiety may feel overwhelming, it is manageable with the right strategies. You don’t need to eliminate anxiety completely; instead, focus on improving your habits, building resilience, and calming your mind. Consistency is key.",
+        },
+        {
+          subheadline: "Practice Deep Breathing",
+          body: "Slow, deep breaths signal your brain to relax. This reduces stress hormones and helps your body return to a calmer state. Even one minute of controlled breathing can make a significant difference.",
+        },
+        {
+          subheadline: "Limit Overthinking Through Journaling",
+          body: "Writing your thoughts down helps you organize your worries instead of letting them spin in your mind. Journaling also allows you to recognize patterns and triggers more easily.",
+        },
+        {
+          subheadline: "Stay Physically Active",
+          body: "Regular exercise releases chemicals that naturally lower anxiety. You don’t need intense workouts—walking, stretching, or light activities can be enough to reduce tension.",
+        },
+        {
+          subheadline: "Set Digital Boundaries",
+          body: "Limiting screen time, especially social media, reduces mental overstimulation. Creating moments of quiet throughout your day allows your mind to reset.",
+        },
+        {
+          subheadline: "Talk to Someone You Trust",
+          body: "Sharing your feelings with a friend, family member, or professional can provide relief and perspective. You don’t have to face anxiety alone. Support makes healing easier.",
+        },
+        {
+          headline: "When to Seek Professional Support",
+          body: "If anxiety begins to interfere with your ability to work, socialize, or enjoy life, seeking help is a strong and important step. Therapists, counselors, and mental health professionals can provide personalized strategies and treatments that help you regain control and improve your well-being.",
+        },
+        {
+          headline: "Final Thoughts",
+          body: "Anxiety is not a sign of weakness—it’s a natural response that sometimes becomes too loud. With awareness, patience, and the right techniques, you can learn to quiet the noise and build a healthier relationship with your mind. Healing takes time, but every step forward brings you closer to calm, clarity, and a more peaceful life.",
+        },
+      ],
+    },
+    spanish: {
+      id: 1,
+      targetLanguage: "Spanish",
+      thumbnail: anxietyImage,
+      title: "Comprender la Ansiedad: Causas, Síntomas y Cómo Superarla",
+      sections: [
+        {
+          headline: "Introducción",
+          body: "La ansiedad se ha convertido en uno de los desafíos emocionales más comunes en la actualidad. Ya sea causada por el estrés laboral, problemas personales, incertidumbre o responsabilidades abrumadoras, la ansiedad puede dejarte mentalmente agotado. Si has estado experimentando preocupación constante o pensamientos acelerados, no estás solo. En este artículo exploraremos qué es la ansiedad, por qué afecta a tantas personas, los tipos más comunes y pasos prácticos para recuperar el control y encontrar paz mental.",
+        },
+        {
+          headline: "¿Qué es la Ansiedad?",
+          body: "La ansiedad es la respuesta natural del cuerpo al estrés. Funciona como un sistema de alarma interno diseñado para protegerte de posibles amenazas. Aunque la ansiedad ocasional es normal, cuando se vuelve persistente puede interferir con tu vida diaria. Muchas veces aparece sin un peligro real, provocando que tu mente reaccione de manera exagerada. Comprender este proceso es el primer paso para manejarla.",
+        },
+        {
+          headline: "¿Por Qué Experimentamos Ansiedad?",
+          body: "Varias razones pueden desencadenar ansiedad: factores biológicos, experiencias pasadas, hábitos de vida y rasgos de personalidad. También puede surgir debido a la presión por tener éxito, preocupaciones económicas o miedo al futuro. En un mundo acelerado y digital, la sobrecarga de información aumenta los niveles de estrés. Sin importar la causa, la ansiedad es una señal de que tu cuerpo necesita equilibrio.",
+        },
+        {
+          subheadline: "El Sistema de Alarma del Cerebro",
+          body: "La ansiedad comienza en la amígdala, el centro del miedo. Cuando detecta peligro, activa la respuesta de lucha o huida, incluso si la amenaza no es real. Esto provoca síntomas como taquicardia, sudoración y pensamientos acelerados. Saber esto te ayuda a entender que la ansiedad no es un defecto personal.",
+        },
+        {
+          subheadline: "Factores Ambientales y de Estilo de Vida",
+          body: "Ambientes laborales estresantes, falta de sueño, exceso de pantallas y mala alimentación pueden contribuir a la ansiedad. Cuando tu cuerpo no descansa, las hormonas del estrés permanecen elevadas, dificultando la relajación.",
+        },
+        {
+          subheadline: "Experiencias Pasadas",
+          body: "Experiencias traumáticas pueden hacer que el cerebro reaccione como si el peligro aún estuviera presente. Esto hace que la ansiedad parezca impredecible y difícil de manejar.",
+        },
+        {
+          headline: "Síntomas Comunes de la Ansiedad",
+          body: "La ansiedad se manifiesta de diferentes maneras. Algunas personas sienten síntomas físicos, otras emocionales o conductuales. Reconocerlos es fundamental para buscar apoyo.",
+        },
+        {
+          subheadline: "Síntomas Físicos",
+          body: "Incluyen palpitaciones, opresión en el pecho, sudoración, temblores, dificultad para respirar o mareos.",
+        },
+        {
+          subheadline: "Síntomas Emocionales",
+          body: "Preocupación excesiva, sobrepensamiento, irritabilidad y dificultad para concentrarse suelen acompañar la ansiedad.",
+        },
+        {
+          subheadline: "Síntomas Conductuales",
+          body: "Evitar situaciones, aislarse o desarrollar hábitos nerviosos puede proporcionar alivio temporal pero empeora la ansiedad a largo plazo.",
+        },
+        {
+          headline: "Tipos de Ansiedad",
+          body: "Entre los más comunes están el Trastorno de Ansiedad Generalizada (TAG), ansiedad social, ataques de pánico y ansiedad situacional.",
+        },
+        {
+          headline: "Cómo Manejar y Reducir la Ansiedad",
+          body: "La ansiedad puede manejarse con estrategias adecuadas. No necesitas eliminarla, sino aprender a regularla.",
+        },
+        {
+          subheadline: "Practicar Respiración Profunda",
+          body: "La respiración lenta activa el sistema de relajación del cuerpo.",
+        },
+        {
+          subheadline: "Escribir para Reducir el Overthinking",
+          body: "Anotar tus pensamientos ayuda a organizar tus preocupaciones.",
+        },
+        {
+          subheadline: "Mantener Actividad Física",
+          body: "El ejercicio libera químicos que reducen naturalmente la ansiedad.",
+        },
+        {
+          subheadline: "Reducir Ruido Digital",
+          body: "Limitar redes sociales reduce la sobreestimulación mental.",
+        },
+        {
+          subheadline: "Hablar con Alguien de Confianza",
+          body: "Compartir tus emociones alivia la carga mental.",
+        },
+        {
+          headline: "Cuándo Buscar Ayuda Profesional",
+          body: "Si la ansiedad afecta tu vida diaria, buscar ayuda es un paso valiente y necesario.",
+        },
+        {
+          headline: "Reflexión Final",
+          body: "La ansiedad no es debilidad. Con paciencia y estrategias adecuadas, puedes recuperar la calma y vivir con mayor claridad.",
+        },
+      ],
+    },
+
+    french: {
+      id: 1,
+      targetLanguage: "French",
+      thumbnail: anxietyImage,
+      title: "Comprendre l’Anxiété : Causes, Symptômes et Comment la Surmonter",
+      sections: [
+        {
+          headline: "Introduction",
+          body: "L’anxiété est devenue l’un des défis émotionnels les plus courants. Qu’elle soit causée par le travail, les responsabilités ou les incertitudes de la vie, l’anxiété peut être épuisante. Si vous ressentez de l’inquiétude constante ou des pensées rapides, vous n’êtes pas seul. Cet article explique ce qu’est l’anxiété, pourquoi elle apparaît, les symptômes à connaître et des étapes efficaces pour retrouver la sérénité.",
+        },
+        {
+          headline: "Qu’est-ce que l’Anxiété ?",
+          body: "L’anxiété est une réponse naturelle au stress. Elle sert de système d’alarme interne destiné à nous protéger. Mais lorsque cette alarme devient trop sensible, elle déclenche des réactions fortes sans réel danger. Comprendre ce mécanisme aide à mieux la gérer.",
+        },
+        {
+          headline: "Pourquoi Ressentons-nous de l’Anxiété ?",
+          body: "Plusieurs facteurs peuvent provoquer l’anxiété : biologie, expériences passées, style de vie, pression sociale, incertitude, etc. Dans un monde connecté et rapide, l’esprit est souvent surchargé.",
+        },
+        {
+          subheadline: "Le Système d’Alerte du Cerveau",
+          body: "L’amygdale déclenche la réponse de fuite ou de combat, parfois à tort. Cela provoque des symptômes comme le cœur qui bat vite ou les pensées incontrôlables.",
+        },
+        {
+          subheadline: "Facteurs Environnementaux",
+          body: "Manque de sommeil, stress chronique, mauvaise alimentation et surcharge numérique augmentent le niveau d’anxiété.",
+        },
+        {
+          subheadline: "Expériences Passées",
+          body: "Des expériences traumatisantes peuvent entraîner une hyperréaction du cerveau face au stress, même des années plus tard.",
+        },
+        {
+          headline: "Symptômes Courants",
+          body: "Les symptômes peuvent être physiques, émotionnels ou comportementaux.",
+        },
+        {
+          subheadline: "Symptômes Physiques",
+          body: "Palpitations, tension musculaire, transpiration, étourdissements.",
+        },
+        {
+          subheadline: "Symptômes Émotionnels",
+          body: "Inquiétude excessive, irritabilité, difficultés de concentration.",
+        },
+        {
+          subheadline: "Symptômes Comportementaux",
+          body: "Évitement, isolement ou comportements compulsifs.",
+        },
+        {
+          headline: "Types d’Anxiété",
+          body: "Anxiété généralisée, anxiété sociale, crises de panique, anxiété situationnelle.",
+        },
+        {
+          headline: "Comment Réduire l’Anxiété",
+          body: "Des stratégies simples peuvent aider à retrouver le calme.",
+        },
+        {
+          subheadline: "Respiration Profonde",
+          body: "La respiration lente calme le système nerveux.",
+        },
+        {
+          subheadline: "Écriture de Pensées",
+          body: "Écrire apaise le chaos mental.",
+        },
+        {
+          subheadline: "Activité Physique",
+          body: "Bouger libère des hormones anti-stress.",
+        },
+        {
+          subheadline: "Limiter les Écrans",
+          body: "Réduire les stimuli numériques aide l’esprit à se reposer.",
+        },
+        {
+          subheadline: "Parler à un Proche",
+          body: "Partager ses émotions apporte soutien et clarté.",
+        },
+        {
+          headline: "Quand Chercher de l’Aide",
+          body: "Si l’anxiété perturbe votre vie quotidienne, consulter un professionnel est une étape importante.",
+        },
+        {
+          headline: "Conclusion",
+          body: "L’anxiété n’est pas un signe de faiblesse. Avec des outils adaptés, il est possible de retrouver paix et équilibre.",
+        },
+      ],
+    },
+
+    german: {
+      id: 1,
+      targetLanguage: "German",
+      thumbnail: anxietyImage,
+      title: "Angst Verstehen: Ursachen, Symptome und Wege zur Bewältigung",
+      sections: [
+        {
+          headline: "Einführung",
+          body: "Angst ist heute eine der häufigsten emotionalen Belastungen. Ob durch Arbeit, persönliche Probleme oder Unsicherheit – Angst kann überwältigend sein. Wenn du dich ständig sorgst oder deine Gedanken rasen, bist du nicht allein. Dieser Artikel erklärt, was Angst ist, warum sie entsteht, welche Symptome typisch sind und welche Schritte dir helfen können, wieder Ruhe zu finden.",
+        },
+        {
+          headline: "Was ist Angst?",
+          body: "Angst ist die natürliche Reaktion des Körpers auf Stress. Sie dient als internes Warnsystem. Doch wenn dieses System überaktiv wird, reagiert der Körper stark, auch ohne echte Gefahr. Das Verständnis dieses Prozesses ist entscheidend für den Umgang mit Angst.",
+        },
+        {
+          headline: "Warum haben wir Angst?",
+          body: "Biologische Faktoren, frühere Erfahrungen, Lebensstil, Erfolgsdruck, finanzielle Sorgen und digitale Überreizung können Angst auslösen.",
+        },
+        {
+          subheadline: "Das Alarmsystem des Gehirns",
+          body: "Die Amygdala löst die Kampf-oder-Flucht-Reaktion aus – manchmal unnötig –, was körperliche und mentale Symptome erzeugt.",
+        },
+        {
+          subheadline: "Umweltfaktoren",
+          body: "Schlafmangel, schlechte Ernährung, ständige Erreichbarkeit und Stress erhöhen den Angstpegel.",
+        },
+        {
+          subheadline: "Vergangene Erfahrungen",
+          body: "Traumata können das Gehirn dauerhaft sensibler für Stress machen.",
+        },
+        {
+          headline: "Häufige Symptome",
+          body: "Angst kann körperlich, emotional oder verhaltensbezogen auftreten.",
+        },
+        {
+          subheadline: "Körperliche Symptome",
+          body: "Schneller Herzschlag, Engegefühl, Schwitzen, Zittern, Schwindel.",
+        },
+        {
+          subheadline: "Emotionale Symptome",
+          body: "Ständige Sorgen, Überdenken, Reizbarkeit, Konzentrationsprobleme.",
+        },
+        {
+          subheadline: "Verhaltenssymptome",
+          body: "Vermeidung, sozialer Rückzug, nervöse Angewohnheiten.",
+        },
+        {
+          headline: "Arten von Angst",
+          body: "Generalisierte Angststörung, soziale Angst, Panikattacken, situative Angst.",
+        },
+        {
+          headline: "Wie man Angst bewältigt",
+          body: "Mit den richtigen Strategien lässt sich Angst erheblich reduzieren.",
+        },
+        {
+          subheadline: "Tiefes Atmen",
+          body: "Langsame Atmung aktiviert den Ruhemechanismus des Körpers.",
+        },
+        {
+          subheadline: "Gedanken aufschreiben",
+          body: "Schreiben hilft, Sorgen zu ordnen.",
+        },
+        {
+          subheadline: "Körperliche Aktivität",
+          body: "Bewegung reduziert Stresshormone.",
+        },
+        {
+          subheadline: "Digitale Pausen",
+          body: "Weniger Bildschirmzeit beruhigt den Geist.",
+        },
+        {
+          subheadline: "Mit jemandem reden",
+          body: "Gespräche schaffen emotionale Entlastung.",
+        },
+        {
+          headline: "Wann professionelle Hilfe sinnvoll ist",
+          body: "Wenn Angst deinen Alltag beeinträchtigt, ist Hilfe eine wichtige Entscheidung.",
+        },
+        {
+          headline: "Fazit",
+          body: "Angst bedeutet keine Schwäche. Mit Geduld und den richtigen Werkzeugen kannst du wieder Klarheit und Ruhe finden.",
+        },
+      ],
+    },
+
+    chinese: {
+      id: 1,
+      targetLanguage: "Chinese",
+      thumbnail: anxietyImage,
+      title: "理解焦虑：原因、症状及克服方法",
+      sections: [
+        {
+          headline: "简介",
+          body: "焦虑已成为现代社会最常见的情绪问题之一。无论是工作压力、生活困难、责任增加，还是对未来的不确定感，焦虑都会让人感到精神紧绷、心神不安。若你正经历持续担忧或思绪加速，请记住，你并不孤单。本篇文章将介绍什么是焦虑、为何会发生、常见症状以及有效的应对方法。",
+        },
+        {
+          headline: "什么是焦虑？",
+          body: "焦虑是身体对压力的自然反应，就像一个内部警报系统。当它变得过度敏感时，即使没有危险也会被触发，引发身体和心理反应。理解其机制是管理焦虑的重要一步。",
+        },
+        {
+          headline: "为什么会产生焦虑？",
+          body: "生理机制、过去经历、生活方式、成功压力、财务担忧及数字信息过载都可能导致焦虑。",
+        },
+        {
+          subheadline: "大脑的警报系统",
+          body: "杏仁核会启动“战斗或逃跑”反应，有时却是误报，导致心跳加快、紧张、思绪失控等症状。",
+        },
+        {
+          subheadline: "环境与生活方式因素",
+          body: "睡眠不足、过度使用电子设备、不规律饮食及高压环境都会提升焦虑水平。",
+        },
+        {
+          subheadline: "过去的经历",
+          body: "创伤经历会让大脑长期保持警觉，使焦虑更难控制。",
+        },
+        {
+          headline: "常见症状",
+          body: "焦虑的表现可以分为身体、情绪与行为三类。",
+        },
+        {
+          subheadline: "身体症状",
+          body: "心跳加速、胸闷、出汗、颤抖、头晕。",
+        },
+        {
+          subheadline: "情绪症状",
+          body: "过度担忧、反复思考、易怒、注意力难以集中。",
+        },
+        {
+          subheadline: "行为症状",
+          body: "逃避社交、回避情境、出现紧张习惯（如咬指甲）。",
+        },
+        {
+          headline: "焦虑的类型",
+          body: "常见的焦虑类型包括：广泛性焦虑、社交焦虑、恐慌发作、情境性焦虑等。",
+        },
+        {
+          headline: "如何管理与减少焦虑",
+          body: "焦虑可以通过一系列策略来缓解，不需要完全消除，而是学会调节。",
+        },
+        {
+          subheadline: "深呼吸练习",
+          body: "缓慢深呼吸有助于降低压力反应。",
+        },
+        {
+          subheadline: "通过书写避免过度思考",
+          body: "写下思绪能帮助你整理压力。",
+        },
+        {
+          subheadline: "保持身体活动",
+          body: "运动释放天然的抗焦虑化学物质。",
+        },
+        {
+          subheadline: "减少数字干扰",
+          body: "减少社交媒体使用能降低心理负担。",
+        },
+        {
+          subheadline: "与信任的人交谈",
+          body: "分享情绪能有效减轻心理压力。",
+        },
+        {
+          headline: "何时寻求专业帮助",
+          body: "如果焦虑影响你的生活、工作或人际关系，专业协助会是重要且有效的选择。",
+        },
+        {
+          headline: "总结",
+          body: "焦虑不是弱点，而是身体发出的讯号。通过学习管理情绪，你可以重新获得平静与清晰。",
+        },
+      ],
+    },
   },
 ];
