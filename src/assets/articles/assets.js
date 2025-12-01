@@ -287,7 +287,7 @@ export const frenchArticles = [
   {
     id: 1,
     targetLanguage: "French",
-    thumbnail: anxietyImage,
+    thumbnail: anxiety,
     title: "Comprendre l’Anxiété : Causes, Symptômes et Comment la Surmonter",
     sections: [
       {
@@ -439,7 +439,7 @@ export const germanArticles = [
   {
     id: 1,
     targetLanguage: "German",
-    thumbnail: anxietyImage,
+    thumbnail: anxiety,
     title: "Angst Verstehen: Ursachen, Symptome und Wege zur Bewältigung",
     sections: [
       {
@@ -590,7 +590,7 @@ export const chineseArticles = [
   {
     id: 1,
     targetLanguage: "Chinese",
-    thumbnail: anxietyImage,
+    thumbnail: anxiety,
     title: "理解焦虑：原因、症状及克服方法",
     sections: [
       {
@@ -804,7 +804,7 @@ export const allArticles = [
     spanish: {
       id: 1,
       targetLanguage: "Spanish",
-      thumbnail: anxietyImage,
+      thumbnail: anxiety,
       title: "Comprender la Ansiedad: Causas, Síntomas y Cómo Superarla",
       sections: [
         {
@@ -1084,7 +1084,7 @@ export const allArticles = [
     english: {
       id: 1,
       targetLanguage: "English",
-      thumbnail: anxietyImage,
+      thumbnail: anxiety,
       title: "Understanding Anxiety: Causes, Symptoms, and How to Overcome It",
       sections: [
         {
@@ -1168,7 +1168,7 @@ export const allArticles = [
     spanish: {
       id: 1,
       targetLanguage: "Spanish",
-      thumbnail: anxietyImage,
+      thumbnail: anxiety,
       title: "Comprender la Ansiedad: Causas, Síntomas y Cómo Superarla",
       sections: [
         {
@@ -1253,7 +1253,7 @@ export const allArticles = [
     french: {
       id: 1,
       targetLanguage: "French",
-      thumbnail: anxietyImage,
+      thumbnail: anxiety,
       title: "Comprendre l’Anxiété : Causes, Symptômes et Comment la Surmonter",
       sections: [
         {
@@ -1338,7 +1338,7 @@ export const allArticles = [
     german: {
       id: 1,
       targetLanguage: "German",
-      thumbnail: anxietyImage,
+      thumbnail: anxiety,
       title: "Angst Verstehen: Ursachen, Symptome und Wege zur Bewältigung",
       sections: [
         {
@@ -1423,7 +1423,7 @@ export const allArticles = [
     chinese: {
       id: 1,
       targetLanguage: "Chinese",
-      thumbnail: anxietyImage,
+      thumbnail: anxiety,
       title: "理解焦虑：原因、症状及克服方法",
       sections: [
         {
