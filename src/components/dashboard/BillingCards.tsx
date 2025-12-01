@@ -9,13 +9,9 @@ type Product = {
   description: string;
   price: number;
   is_recurring: boolean;
-  billing_period?: "monthly" | "yearly";
 };
 
 export default function BillingCards() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">(
-    "monthly"
-  );
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -55,58 +51,18 @@ export default function BillingCards() {
     fetchProducts();
   }, []);
 
-  // Filter products based on billing cycle
-  const filteredProducts = products.filter((product) => {
-    // If price > $60 (6000 cents) = Yearly plan
-    // If price <= $60 (6000 cents) = Monthly plan
-    if (billingCycle === "monthly") {
-      return product.price <= 4000; // $60 or less = monthly plans
-    } else {
-      return product.price > 4000; // More than $60 = yearly plans
-    }
-  });
-
   return (
     <section id="pricing" className="px-4 sm:px-6 lg:px-10  ">
       <div className="flex flex-col items-center gap-2 mb-8">
-        <div className="text-center mb-8 space-y-4 animate-fade-in">
-          <div className="inline-block bg-secondary text-white px-4 py-2 rounded-full text-sm font-semibold mb-2">
-            BLACK FRIDAY SPECIAL
-          </div>
-          <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
-            Save 40% on Your First 2 Months
-          </h2>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto text-muted-foreground">
-            Start your language learning journey for less than a coffee
-          </p>
-        </div>
-
-        {/* Billing Cycle Toggle */}
-        <div className="flex items-center gap-4 mt-6 p-1 bg-gray-100 rounded-lg">
-          <button
-            onClick={() => setBillingCycle("monthly")}
-            className={`px-6 py-2  cursor-pointer rounded-md font-medium transition-all duration-200 ${
-              billingCycle === "monthly"
-                ? "bg-white text-black shadow-sm"
-                : "text-gray-600 hover:text-black"
-            }`}
-          >
-            Monthly
-          </button>
-          <button
-            onClick={() => setBillingCycle("yearly")}
-            className={`px-6 py-2 cursor-pointer  rounded-md font-medium transition-all duration-200 flex items-center gap-2 ${
-              billingCycle === "yearly"
-                ? "bg-white text-black shadow-sm"
-                : "text-gray-600 hover:text-black"
-            }`}
-          >
-            Yearly
-            <span className="text-xs bg-green-200 text-black px-2 py-0.5 rounded">
-              2 months free
-            </span>
-          </button>
-        </div>
+        <p className="text-black text-2xl leading-relaxed font-bold text-center px-4">
+          USE CODE
+          <span className=" bg-secondary py-0.5 px-1 ">
+            BLACKFRIDAY
+          </span> <br /> FOR 40% OFF FOR 2 MONTHS AT CHECKOUT!
+        </p>
+        <p className="text-lg max-w-3xl mx-auto text-muted-foreground">
+          Start your language learning journey for less than a coffee
+        </p>
       </div>
 
       {loading ? (
@@ -127,18 +83,14 @@ export default function BillingCards() {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-10">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product: Product) => (
-              <PricingCards
-                key={product.product_id}
-                product={product}
-                billingCycle={billingCycle}
-              />
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-10">
+          {products.length > 0 ? (
+            products.map((product: Product) => (
+              <PricingCards key={product.product_id} product={product} />
             ))
           ) : (
             <div className="col-span-full text-center py-10 text-gray-500">
-              No plans available for {billingCycle} billing
+              No plans available
             </div>
           )}
         </div>

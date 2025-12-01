@@ -24,56 +24,49 @@ type Product = {
   description: string;
   price: number; // in cents
   is_recurring: boolean;
+  billing_period?: "monthly" | "3months" | "6months";
 };
 
-const MStarterFeatures = [
+const StarterFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
   "5 articles per week",
   "3 life stories per week",
-  "Progress analytics",
-  "Priority support",
+  "Priority human support",
 ];
 
-const MProFeatures = [
+const ProFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "7 articles per week",
-  "5 life stories per week",
-  "Progress analytics",
-  "Priority support",
+  "5 articles per week",
+  "3 life stories per week",
+  "Priority human support",
 ];
 
-const YStarterFeatures = [
+const EliteFeatures = [
   "All 5 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "10 articles per week",
-  "7 life stories per week",
-  "Progress analytics",
-  "Priority support",
+  "5 articles per week",
+  "3 life stories per week",
+  "Priority human support",
 ];
 
-const YProFeatures = [
-  "All 5 languages",
-  "Unlimited library access",
-  "Unlimited vocabulary bookmarks",
-  "15 articles per week",
-  "10 life stories per week",
-  "Progress analytics",
-  "Priority support",
-];
+const getPlanFeatures = (planName: string) => {
+  const name = planName.toLowerCase();
+  if (name === "starter") return StarterFeatures;
+  if (name === "pro") return ProFeatures;
+  if (name === "elite") return EliteFeatures;
+  return [];
+};
 
-const PricingCards = ({
-  product,
-  billingCycle,
-}: {
-  product: Product;
-  billingCycle: "monthly" | "yearly";
-}) => {
+const PricingCards = ({ product }: { product: Product }) => {
   const [user, setUser] = useState<any | null>(null);
+  const [userSubscriptionPlan, setUserSubscriptionPlan] = useState<
+    string | null
+  >(null);
   const [userSubscriptionAmount, setUserSubscriptionAmount] =
     useState<number>(0);
   const [isScheduledForCancellation, setIsScheduledForCancellation] =
@@ -98,12 +91,13 @@ const PricingCards = ({
       if (data.user) {
         const { data: userData } = await supabase
           .from("users")
-          .select("subscription_amount")
+          .select("subscription_amount, plan")
           .eq("id", data.user.id)
           .single();
 
         if (userData) {
           setUserSubscriptionAmount(userData.subscription_amount || 0);
+          setUserSubscriptionPlan(userData.plan || null);
 
           if (userData.subscription_amount > 0) {
             checkCancellationStatus(data.user.id);
@@ -127,38 +121,21 @@ const PricingCards = ({
     }
   };
 
-  const Mfeatures =
-    product.name.toLowerCase() === "starter"
-      ? MStarterFeatures
-      : product.name.toLowerCase() === "pro"
-      ? MProFeatures
-      : [];
-  const Yfeatures =
-    product.name.toLowerCase() === "starter"
-      ? YStarterFeatures
-      : product.name.toLowerCase() === "pro"
-      ? YProFeatures
-      : [];
+  if (!product) {
+    return null;
+  }
+
+  const features = getPlanFeatures(product.name);
 
   const isSubscribedToThisPlan = () => {
-    const planPrice = product.price / 100;
-    return userSubscriptionAmount === planPrice;
+    return userSubscriptionPlan?.toLowerCase() === product.name.toLowerCase();
   };
 
   const DISCOUNT = 0.4; // 40%
 
   const getButtonText = () => {
     if (isSubscribedToThisPlan()) return "Current Plan";
-
-    const planPrice = product.price / 100;
-    const discountedPrice = planPrice * (1 - DISCOUNT); // apply 40% discount
-    const currentPrice = userSubscriptionAmount;
-
-    if (userSubscriptionAmount > 0) {
-      return discountedPrice > currentPrice ? "Upgrade Plan" : "Switch Plan";
-    }
-
-    return `Choose Plan - ${discountedPrice.toFixed(2)}$`; // optional: show discounted price
+    return userSubscriptionAmount > 0 ? "Switch Plan" : "Choose Plan";
   };
 
   const checkoutProduct = async (productId: string, is_recurring: boolean) => {
@@ -175,14 +152,10 @@ const PricingCards = ({
       setPendingProductId(productId);
       setPendingIsRecurring(is_recurring);
       setDialogMessage(
-        `You are currently subscribed to a ${currentPrice}/${
-          billingCycle === "monthly" ? "month" : "year"
-        } plan. ` +
-          `Do you want to ${
-            isUpgrade ? "upgrade" : "switch"
-          } to the ${planPrice}/${
-            billingCycle === "monthly" ? "month" : "year"
-          } plan? Your current subscription will be cancelled and you'll be charged for the new plan.`
+        `You are currently subscribed to a $${currentPrice} plan. ` +
+          `Do you want to ${isUpgrade ? "upgrade" : "switch"} to the ${
+            product.name
+          } plan at $${planPrice}? Your current subscription will be cancelled and you'll be charged for the new plan.`
       );
       setShowSwitchDialog(true);
       return;
@@ -238,7 +211,10 @@ const PricingCards = ({
       const res = await fetch("/api/subscription/cancel", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: user.id }),
+        body: JSON.stringify({
+          userId: user.id,
+          planName: userSubscriptionPlan,
+        }),
       });
       const data = await res.json();
 
@@ -261,10 +237,26 @@ const PricingCards = ({
     }
   };
 
+  const isProPlan = product.name.toLowerCase() === "pro";
+
+  const getDiscountPercentage = () => {
+    if (product.billing_period === "3months") return "20%";
+    if (product.billing_period === "6months") return "30%";
+    return "40%";
+  };
+
+  const getDiscountedPrice = () => {
+    if (product.billing_period === "3months")
+      return (product.price / 100) * 0.8;
+    if (product.billing_period === "6months")
+      return (product.price / 100) * 0.7;
+    return (product.price / 100) * 0.6;
+  };
+
   return (
     <div
       className={`rounded-2xl shadow-sm relative py-5 px-6 flex flex-col justify-between ${
-        product.name === "Pro"
+        isProPlan
           ? "border-[.5px] relative border-black"
           : "border-[.5px] border-neutral-200"
       }`}
@@ -275,43 +267,45 @@ const PricingCards = ({
             {product.name}
           </h2>
           <span className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded-md ml-1">
-            40% OFF
+            {getDiscountPercentage()} OFF
           </span>
         </div>
 
-        <p className="text-gray-700 mt-2">{product.description}</p>
+        <p className=" text-neutral-600 mt-4 ">{product.description}</p>
 
-        <div className="flex my-8 items-center gap-2">
-          <p className="font-semibold text-2xl  line-through text-neutral-900">
-            ${product.price / 100}
-          </p>
-          <div className=" flex items-end">
-            <p className="font-semibold text-4xl text-black">
-              ${((product.price / 100) * 0.6).toFixed(2)}
+        <div className="flex my-8 items-end ">
+          <div className="flex items-center gap-2">
+            <p className="font-semibold text-2xl line-through text-neutral-900">
+              ${product.price / 100}
             </p>
-            <span className="text-neutral-500 text-lg">
-              /{billingCycle === "monthly" ? "month" : "year"}
-            </span>
+            <p className="font-semibold text-4xl text-black">
+              ${getDiscountedPrice().toFixed(2)}
+            </p>
           </div>
+          <span className="text-neutral-800 text-lg">
+            {product.name === "Pro"
+              ? "/Per 3 months"
+              : product.name === "Elite"
+              ? "/Per 6 months"
+              : "/Per month"}
+          </span>
         </div>
       </main>
 
       {/* Features */}
-      <ul className=" flex flex-col gap-2 mb-4 ">
-        {(billingCycle === "monthly" ? Mfeatures : Yfeatures).map(
-          (feature, i) => (
-            <div className=" flex gap-2 items-center " key={i}>
-              <Check className=" text-primary w-5 h-5 " />
-              <p className=" font-medium text-neutral-800">{feature}</p>
-            </div>
-          )
-        )}
+      <ul className="flex flex-col gap-2 mb-4">
+        {features.map((feature, i) => (
+          <div className="flex gap-2 items-center" key={i}>
+            <Check className="text-primary w-5 h-5" />
+            <p className="font-medium text-neutral-800">{feature}</p>
+          </div>
+        ))}
       </ul>
 
       {/* Buttons */}
       {user ? (
         <>
-          {isSubscribedToThisPlan() ? (
+          {isSubscribedToThisPlan() && userSubscriptionPlan ? (
             <>
               <div className="flex gap-2 absolute -top-3 py-1 px-2 right-44 bg-black items-center justify-center rounded-md">
                 <Star className="w-3 h-3 text-white" />
@@ -325,7 +319,7 @@ const PricingCards = ({
                   disabled={cancelling}
                 >
                   {cancelling ? (
-                    <div className=" flex gap-2 justify-center items-center ">
+                    <div className="flex gap-2 justify-center items-center">
                       <Loader2 className="animate-spin w-5 h-5 text-center" />
                       <p>Cancelling...</p>
                     </div>
@@ -347,7 +341,7 @@ const PricingCards = ({
           ) : (
             <button
               className={`w-full mt-4 rounded-md ${
-                product.name === "Pro"
+                isProPlan
                   ? "bg-black hover:opacity-85 flex justify-center duration-500 border-[.3px] text-white cursor-pointer font-medium py-2.5"
                   : "bg-gray-50 hover:bg-gray-200 flex justify-center duration-500 border-[.3px] border-neutral-200 cursor-pointer font-medium py-2.5"
               }`}
@@ -360,7 +354,7 @@ const PricingCards = ({
               disabled={loading}
             >
               {loading ? (
-                <div className=" flex gap-2 justify-center items-center ">
+                <div className="flex gap-2 justify-center items-center">
                   <Loader2 className="animate-spin w-5 h-5 text-center" />
                   <p>{getButtonText()}</p>
                 </div>
@@ -374,7 +368,7 @@ const PricingCards = ({
         <Link
           href="/login"
           className={`w-full mt-4 rounded-md ${
-            product.name === "Pro"
+            isProPlan
               ? "bg-black hover:opacity-85 flex justify-center duration-500 border-[.3px] text-white cursor-pointer font-medium py-2.5"
               : "bg-gray-50 hover:bg-gray-200 flex justify-center duration-500 border-[.3px] border-neutral-200 cursor-pointer font-medium py-2.5"
           }`}
@@ -391,11 +385,11 @@ const PricingCards = ({
             <AlertDialogDescription>{dialogMessage}</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className=" hover:bg-neutral-100 cursor-pointer ">
+            <AlertDialogCancel className="hover:bg-neutral-100 cursor-pointer">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
-              className=" bg-primary hover:bg-primary/80 cursor-pointer "
+              className="bg-primary hover:bg-primary/80 cursor-pointer"
               onClick={handleSwitchConfirm}
             >
               Continue
@@ -415,12 +409,12 @@ const PricingCards = ({
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className=" hover:bg-neutral-100 cursor-pointer ">
+            <AlertDialogCancel className="hover:bg-neutral-100 cursor-pointer">
               No, Keep Subscription
             </AlertDialogCancel>
             <AlertDialogAction
               onClick={proceedWithCancellation}
-              className="bg-red-100 text-red-600 hover:bg-red-600 hover:text-white "
+              className="bg-red-100 text-red-600 hover:bg-red-600 hover:text-white"
             >
               Yes, Cancel
             </AlertDialogAction>

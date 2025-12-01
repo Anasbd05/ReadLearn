@@ -10,7 +10,7 @@ const supabase = createClient(
 
 export async function POST(request: Request) {
   try {
-    const { userId } = await request.json();
+    const { userId, planName } = await request.json();
 
     if (!userId) {
       return NextResponse.json(
@@ -28,6 +28,14 @@ export async function POST(request: Request) {
 
     if (userError || !userData) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    // Verify the user is cancelling their current plan
+    if (planName && userData.plan?.toLowerCase() !== planName.toLowerCase()) {
+      return NextResponse.json(
+        { error: "Plan mismatch. You can only cancel your current plan." },
+        { status: 400 }
+      );
     }
 
     // List all subscriptions and find the active one for this user
@@ -57,6 +65,7 @@ export async function POST(request: Request) {
       success: true,
       message:
         "Subscription will be cancelled at the end of your billing period",
+      cancelledPlan: planName || userData.plan,
       nextBillingDate: userSubscription.next_billing_date,
     });
   } catch (error) {

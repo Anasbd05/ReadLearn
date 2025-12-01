@@ -9,13 +9,10 @@ type Product = {
   description: string;
   price: number; // in cents
   is_recurring: boolean;
-  billing_period?: "monthly" | "yearly";
+  billing_period?: "monthly" | "3months" | "6months";
 };
 
 export default function Pricing() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">(
-    "monthly"
-  );
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -55,17 +52,6 @@ export default function Pricing() {
     fetchProducts();
   }, []);
 
-  // Filter products based on billing cycle
-  const filteredProducts = products.filter((product) => {
-    // If price > $60 (6000 cents) = Yearly plan
-    // If price <= $60 (6000 cents) = Monthly plan
-    if (billingCycle === "monthly") {
-      return product.price <= 4000; // $60 or less = monthly plans
-    } else {
-      return product.price > 4000; // More than $60 = yearly plans
-    }
-  });
-
   return (
     <section id="pricing" className="py-16 px-4 sm:px-6 lg:px-10 md:py-24 ">
       <div className="flex flex-col items-center gap-2 mb-8">
@@ -77,33 +63,6 @@ export default function Pricing() {
             Flexible plans designed to help you learn faster and stay
             consistent.
           </p>
-        </div>
-
-        {/* Billing Cycle Toggle */}
-        <div className="flex items-center gap-4 mt-6 p-1 bg-gray-100 rounded-lg">
-          <button
-            onClick={() => setBillingCycle("monthly")}
-            className={`px-6 py-2  cursor-pointer rounded-md font-medium transition-all duration-200 ${
-              billingCycle === "monthly"
-                ? "bg-white text-black shadow-sm"
-                : "text-gray-600 hover:text-black"
-            }`}
-          >
-            Monthly
-          </button>
-          <button
-            onClick={() => setBillingCycle("yearly")}
-            className={`px-6 py-2 cursor-pointer  rounded-md font-medium transition-all duration-200 flex items-center gap-2 ${
-              billingCycle === "yearly"
-                ? "bg-white text-black shadow-sm"
-                : "text-gray-600 hover:text-black"
-            }`}
-          >
-            Yearly
-            <span className="text-xs bg-green-200 text-black px-2 py-0.5 rounded">
-              2 months free
-            </span>
-          </button>
         </div>
       </div>
 
@@ -125,18 +84,14 @@ export default function Pricing() {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 w-10/12 mx-auto gap-10">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product: Product) => (
-              <PricingCards
-                key={product.product_id}
-                product={product}
-                billingCycle={billingCycle}
-              />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mx-auto gap-10">
+          {products.length > 0 ? (
+            products.map((product: Product) => (
+              <PricingCards key={product.product_id} product={product} />
             ))
           ) : (
             <div className="col-span-full text-center py-10 text-gray-500">
-              No plans available for {billingCycle} billing
+              No plans available
             </div>
           )}
         </div>
