@@ -45,9 +45,9 @@ export async function generateMetadata({
 }
 // Page configuration based on book length
 const PAGES_CONFIG = {
-  short: 20,
-  medium: 40,
-  long: 60,
+  short: 50,
+  medium: 80,
+  long: 130,
 } as const;
 
 // Helper: split book into equal-length sections by lines

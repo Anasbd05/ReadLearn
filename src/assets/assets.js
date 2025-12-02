@@ -301,82 +301,6 @@ export const GermanBooks = [
     difficulty: "Very Easy",
   },
 ];
-import 論語 from "./論語.jpg";
-import 孟子 from "./孟子.jpg";
-import 三字經 from "./三字經.webp";
-import 聊齋志異 from "./聊齋志異.jpg";
-import 古文觀止 from "./古文觀止.jpg";
-import 東周列國志 from "./東周列國志.jpg";
-import 世說新語 from "./世說新語.jpg";
-import 史記 from "./史記.jpg";
-export const ChineseBooks = [
-  {
-    title: "論語",
-    author: "Confucius",
-    cover: 論語,
-    difficulty: "Hard", // Classical Chinese, concise but difficult
-  },
-  {
-    title: "孟子",
-    author: "Mencius",
-    cover: 孟子,
-    difficulty: "Very Hard", // Philosophical + dense Classical Chinese
-  },
-  {
-    title: "三字經",
-    author: "Yinglin Wang",
-    cover: 三字經,
-    difficulty: "Medium", // Simple sentences, easier classical style
-  },
-  {
-    title: "聊齋志異 I",
-    author: "Songling Pu",
-    cover: 聊齋志異,
-    difficulty: "Medium", // Vernacular Classical Chinese, manageable
-  },
-  {
-    title: "聊齋志異 II",
-    author: "Songling Pu",
-    cover: 聊齋志異,
-    difficulty: "Medium",
-  },
-  {
-    title: "古文觀止",
-    author: "Dazhi Wu && Chengquan Wu",
-    cover: 古文觀止,
-    difficulty: "Very Hard", // Pure Classical Chinese anthology
-  },
-  {
-    title: "世說新語",
-    author: "Yiqing Liu",
-    cover: 世說新語,
-    difficulty: "Hard", // Anecdotal classical prose, short but dense
-  },
-  {
-    title: "東周列國志",
-    author: "Menglong Feng",
-    cover: 東周列國志,
-    difficulty: "Medium", // Vernacular Chinese; much easier than classical works
-  },
-  {
-    title: "史记 I",
-    author: "Qian Sima",
-    cover: 史記,
-    difficulty: "Very Hard", // Pure Classical Chinese, historical narrative
-  },
-  {
-    title: "史記 II",
-    author: "Qian Sima",
-    cover: 史記,
-    difficulty: "Very Hard",
-  },
-  {
-    title: "史記 III",
-    author: "Qian Sima",
-    cover: 史記,
-    difficulty: "Very Hard",
-  },
-];
 
 export const features = [
   {
@@ -478,10 +402,6 @@ export const reviews = [
 
 export const BooksCover = [
   {
-    cover: 東周列國志,
-    alt: "東周列國志",
-  },
-  {
     cover: sherlock,
     alt: "The Adventures of Sherlock Holmes",
   },
@@ -524,10 +444,6 @@ export const BooksCover = [
   {
     cover: FabulasLiterarias,
     alt: "Fábulas Literarias",
-  },
-  {
-    cover: 世說新語,
-    alt: "世說新語",
   },
   {
     cover: Northanger,

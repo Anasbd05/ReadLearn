@@ -28,7 +28,6 @@ const TranslationPopup = ({
     ar: "Arabic",
     en: "English",
     fr: "French",
-    zh: "Chinese",
     es: "Spanish",
     de: "German",
   };

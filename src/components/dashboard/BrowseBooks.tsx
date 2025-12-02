@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Search, BookOpen, Loader2 } from "lucide-react";
 import {
-  ChineseBooks,
   EnglishBooks,
   FrenchBooks,
   GermanBooks,
@@ -69,10 +68,6 @@ const BrowseBooks = () => {
           case "de":
           case "german":
             selectedBooks = GermanBooks;
-            break;
-          case "zh":
-          case "chinese":
-            selectedBooks = ChineseBooks;
             break;
           default:
             selectedBooks = EnglishBooks; // Default to English

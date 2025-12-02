@@ -45,9 +45,8 @@ export const FAQ = () => {
                 Which languages does Fluencywave support?
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed pt-2">
-                We currently support English, French, Spanish, German and
-                Chinese. Each language has a curated library and full
-                translation support.
+                We currently support English, French, Spanish and German . Each
+                language has a curated library and full translation support.
               </AccordionContent>
             </AccordionItem>
             {/* 2 */}

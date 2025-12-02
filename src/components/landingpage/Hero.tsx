@@ -26,9 +26,9 @@ export const Hero = async () => {
                 naturally with instant translations.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
-                Learn English, French, Spanish, German and Chinese by reading
-                whatever you like. Click any word for instant translation and
-                build your vocabulary naturally.
+                Learn English, French, Spanish and German by reading whatever
+                you like. Click any word for instant translation and build your
+                vocabulary naturally.
               </p>
             </div>
 

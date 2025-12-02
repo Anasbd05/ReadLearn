@@ -28,7 +28,7 @@ type Product = {
 };
 
 const StarterFeatures = [
-  "All 5 languages",
+  "All 4 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
   "5 articles per week",
@@ -37,7 +37,7 @@ const StarterFeatures = [
 ];
 
 const ProFeatures = [
-  "All 5 languages",
+  "All 4 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
   "5 articles per week",
@@ -46,7 +46,7 @@ const ProFeatures = [
 ];
 
 const EliteFeatures = [
-  "All 5 languages",
+  "All 4 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
   "5 articles per week",

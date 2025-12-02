@@ -120,14 +120,6 @@ const Footer = () => {
                   Learn german
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/learn-chinese"
-                  className="text-gray-600 hover:text-primary transition-colors text-sm"
-                >
-                  Learn chinese
-                </Link>
-              </li>
             </ul>
           </div>
 
