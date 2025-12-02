@@ -9,7 +9,6 @@ import {
   spanishArticles,
   frenchArticles,
   germanArticles,
-  chineseArticles,
 } from "@/assets/articles/assets";
 import { supabase } from "@/utils/supabase/client";
 
@@ -65,10 +64,6 @@ const BrowseArticles = () => {
           case "de":
           case "german":
             selectedArticles = germanArticles;
-            break;
-          case "zh":
-          case "chinese":
-            selectedArticles = chineseArticles;
             break;
           default:
             selectedArticles = englishArticles;
