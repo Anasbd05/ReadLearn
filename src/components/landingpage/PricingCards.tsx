@@ -31,8 +31,7 @@ const StarterFeatures = [
   "All 4 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "5 articles per week",
-  "3 life stories per week",
+  "10 ai creation per month",
   "Priority human support",
 ];
 
@@ -40,8 +39,7 @@ const ProFeatures = [
   "All 4 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "5 articles per week",
-  "3 life stories per week",
+  "15 ai creation per month",
   "Priority human support",
 ];
 
@@ -49,8 +47,7 @@ const EliteFeatures = [
   "All 4 languages",
   "Unlimited library access",
   "Unlimited vocabulary bookmarks",
-  "5 articles per week",
-  "3 life stories per week",
+  "20 ai creation per month",
   "Priority human support",
 ];
 

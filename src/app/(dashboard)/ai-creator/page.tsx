@@ -5,20 +5,21 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import ContentGenerator from "@/components/dashboard/ContentGenerator";
+import Credits from "@/components/Credits";
 import { Metadata } from "next";
-import BrowseArticles from "@/components/dashboard/BrowseArticles";
 
 export const metadata: Metadata = {
-  title: "Daily Articles for Learning - FluencyWave",
+  title: "AI Story & Article Generator | FluencyWave",
   description:
-    "Read daily articles to improve your knowledge and language skills. Explore articles in multiple languages and expand your vocabulary effortlessly.",
+    "Generate custom stories and articles in any language at your level. AI-powered content creation for English, Spanish, French, German, and Chinese learners.",
   keywords:
-    "daily articles, article in English language, article in Spanish language, article in French language, article in German language, article in Chinese language, improve vocabulary through articles, language reading practice, daily reading content",
+    "AI story generator, AI article generator, language learning content, custom stories for language learning, AI content creator, generate stories in any language, personalized language learning content, AI writing for learners",
   openGraph: {
-    title: "Daily Articles | FluencyWave",
+    title: "AI Story & Article Generator | FluencyWave",
     description:
-      "Enhance your language skills with daily articles. Interactive reading experience with instant translations and vocabulary building.",
-    url: "https://fluencywave.com/daily-articles",
+      "Create personalized stories and articles at your level. AI-powered content for effective language learning.",
+    url: "https://fluencywave.com/ai-creator",
     siteName: "Fluencywave",
     type: "website",
   },
@@ -37,9 +38,11 @@ export default async function Page() {
               className="mr-2 data-[orientation=vertical]:h-4"
             />
           </div>
+          <Credits />
         </header>
+
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <BrowseArticles />
+          <ContentGenerator />
         </div>
       </SidebarInset>
     </SidebarProvider>

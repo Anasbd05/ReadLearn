@@ -9,7 +9,7 @@ import canadian from "./canadian.jpeg";
 import sherlock from "./sherlock.jpeg";
 import childhood from "./childhood.jpeg";
 
-import { Target, Bookmark, Library, Newspaper, ScrollText } from "lucide-react";
+import { Target, Bookmark, Library, ScrollText, Sparkles } from "lucide-react";
 
 export const EnglishBooks = [
   {
@@ -316,16 +316,17 @@ export const features = [
       "Access books in your target language with instant translation support. Tap any word or line you don't understand to see the full translation in your native language.",
   },
   {
-    icon: Newspaper,
-    title: "Daily Articles",
+    icon: Sparkles,
+    title: "AI Article Generator",
     description:
-      "Receive a fresh article every day in your target language. Perfect for expanding your knowledge, learning new vocabulary, and improving your language skills. Click any word or line for instant translation to your native language.",
+      "Generate articles on any topic you want using AI at your language level (beginner, intermediate, advanced). Perfect for learning vocabulary in specific fields. Click any word or line for instant translation to your native language.",
   },
   {
+    title: "AI Story Generator",
     icon: ScrollText,
     title: "Weekly Stories",
     description:
-      "Enjoy 3 engaging stories every week in your target language. Explore exciting narratives and different themes while enhancing your language skills. Tap any word or line you don't understand for immediate translation.",
+      "Create personalized stories using AI at your language level (beginner, intermediate, advanced). Choose your themes and let AI craft engaging narratives. Tap any word or line you don't understand for immediate translation.",
   },
   {
     icon: Bookmark,

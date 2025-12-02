@@ -71,14 +71,6 @@ const Footer = () => {
                   Book Library
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/daily-articles"
-                  className="text-gray-600 hover:text-primary transition-colors text-sm"
-                >
-                  Articles
-                </Link>
-              </li>
             </ul>
           </div>
 

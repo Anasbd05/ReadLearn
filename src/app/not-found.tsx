@@ -68,12 +68,6 @@ export default function NotFound() {
               Personal Library
             </Link>
             <span className="text-gray-300">•</span>
-            <Link
-              href="/daily-articles"
-              className="text-sm text-primary hover:underline"
-            >
-              Daily articles
-            </Link>
             <span className="text-gray-300">•</span>
             <Link
               href="/billing"
